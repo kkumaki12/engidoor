@@ -1,3 +1,7 @@
 Rails.application.routes.draw do
-  get 'application_pages/home'
+  get '/home', to:'application_pages#home'
+  root 'application_pages#home'
+
+  resource :questions
+  resource :search
 end
