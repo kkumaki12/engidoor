@@ -4,7 +4,7 @@
     <title>技術者に質問！</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+     
 
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all',
@@ -17,12 +17,12 @@
     <![endif]-->
   </head>
   <body>
-    <header class="navbar navbar-fixed-top navbar-inverse">
+    <header class="navbar navbar-fixed-top bg-success">
       <div class="container">
-        <%= link_to "技術者に質問！", '#', id: "logo" %>
+        <%= link_to "技術者に質問！", '#', id: "logo"  %>
         <nav>
           <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "登録",   '#' %></li>
+            <li><%= link_to "登録",   signup_path %></li>
             <li><%= link_to "ログイン",   '#' %></li>
           </ul>
         </nav>

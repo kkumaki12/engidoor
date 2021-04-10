@@ -1,3 +1,23 @@
-// Place all the styles related to the ApplicationPages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+/* 全体 */
+body{
+padding-top: 100px;
+};
+
+/* ヘッダー */
+#logo{
+    font-size: 2.0em;
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    padding-top: 9px;
+    font-weight: bold;
+    
+};
+
+#logo:hover{
+    text-decoration: none;
+}
