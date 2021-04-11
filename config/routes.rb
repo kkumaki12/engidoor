@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   get 'questions/create'
   get 'questions/edit'
   get '/search', to:'questions#list'
+ 
 
-  resource :questions
+  resources :users
+  resources :questions
   
 end
