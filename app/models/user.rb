@@ -8,4 +8,5 @@ uniqueness: true
 has_secure_password
 validates :password, presence: true, length: {minimum: 6}
 mount_uploader :image, ImageUploader
+has_many :questions
 end
