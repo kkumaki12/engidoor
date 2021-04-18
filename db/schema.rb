@@ -10,27 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_17_012214) do
-
-  create_table "questions", charset: "utf8", force: :cascade do |t|
-    t.string "title"
-    t.text "content"
-    t.string "image"
-    t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_questions_on_user_id"
+ActiveRecord::Schema.define(version: 20_210_417_012_214) do
+  create_table 'questions', charset: 'utf8', force: :cascade do |t|
+    t.string 'title'
+    t.text 'content'
+    t.string 'image'
+    t.bigint 'user_id', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['user_id'], name: 'index_questions_on_user_id'
   end
 
-  create_table "users", charset: "utf8", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "password_digest"
-    t.string "image"
-    t.index ["email"], name: "index_users_on_email", unique: true
+  create_table 'users', charset: 'utf8', force: :cascade do |t|
+    t.string 'name'
+    t.string 'email'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.string 'password_digest'
+    t.string 'image'
+    t.index ['email'], name: 'index_users_on_email', unique: true
   end
 
-  add_foreign_key "questions", "users"
+  add_foreign_key 'questions', 'users'
 end

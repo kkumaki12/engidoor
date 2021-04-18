@@ -1,7 +1,5 @@
 class ApplicationPagesController < ApplicationController
-
-
   def home
-    @questions=Question.all
+    @questions = Question.all
   end
 end
