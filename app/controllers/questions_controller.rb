@@ -1,5 +1,4 @@
 class QuestionsController < ApplicationController
-
   def index
     @questions = Question.all
   end
@@ -8,27 +7,24 @@ class QuestionsController < ApplicationController
     @question = Question.new
   end
 
-  def list
-  end
+  def list; end
 
   def create
     @question = current_user.questions.build(question_params)
-    if 
-      @question.save
+    if @question.save
       redirect_to @question
     else
-    render 'new'
+      render 'new'
     end
 
     def show
       @question = Question.find(params[:id])
     end
-  
-end
+  end
 
+  private
 
-private
-def question_params
-  params.require(:question).permit(:title, :content)
-end
+  def question_params
+    params.require(:question).permit(:title, :content)
+  end
 end

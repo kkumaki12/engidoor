@@ -1,10 +1,9 @@
 <%= form_tag(search_path, :method => 'get') do %>
- <%= text_field_tag :search %>
- <%= submit_tag '検索', :name => nil %>
- <% end %>
+<%= text_field_tag :search %>
+<%= submit_tag '検索', :name => nil %>
+<% end %>
 
- <h2>タグから検索</h2>
- <% if @question %>
- <%= render 'questions/question' %>
- <% end %>
- 
+<h2>タグから検索</h2>
+<% if @question %>
+<%= render 'questions/question' %>
+<% end %>
