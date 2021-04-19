@@ -4,6 +4,7 @@
 <% end %>
 
 <h2>タグから検索</h2>
-<% if @question %>
+
+<h2>新着質問</h2>
 <%= render 'questions/question' %>
-<% end %>
+<%= link_to "一覧", questions_path %>
