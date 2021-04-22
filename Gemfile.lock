@@ -337,6 +337,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   listen (~> 3.3)
   mime-types
+  mini_magick
   mysql2
   pry-rails
   puma (~> 5.0)
