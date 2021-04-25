@@ -14,6 +14,9 @@
   <li><%= tag.name %></li>
 <% end %>
 
+
+<%= link_to '削除', @question, method: :delete, data: {confirm: '本当に削除しますか？'} %>
+
 <p>
   <strong>コメント一覧</strong>
   <%= @comment.content %>
