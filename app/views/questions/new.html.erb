@@ -9,6 +9,9 @@
         <%= f.label :content,"内容" %>
         <%= f.text_area :content %>
 
+        <%= f.label :name,"タグ" %>
+        <%= f.text_field :name,placeholder: "複数タグ付けする場合はスペースを開けてください" %>
+
         <%= f.submit "投稿する", class: "btn btn-primary" %>
         <% end %>
     </div>

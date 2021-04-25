@@ -4,6 +4,11 @@
 <% end %>
 
 <h2>タグから検索</h2>
+<ul class="tags-frame">
+  <% @tags.each do |tag| %>
+    <li class="btn-tag"><%= tag.name %></li>
+  <% end %>
+</ul>
 
 <h2>新着質問</h2>
 <%= render 'questions/question' %>
