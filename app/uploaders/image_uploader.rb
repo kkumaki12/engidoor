@@ -13,10 +13,10 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def extension_whitelist
-    %w(jpg jpeg gif png)
+    %w[jpg jpeg gif png]
   end
 
-  process :resize_to_limit => [200, 200]
+  process resize_to_limit: [200, 200]
 
   version :thumb do
     process resize_to_fill: [50, 50]

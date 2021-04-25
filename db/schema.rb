@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_20_092514) do
+ActiveRecord::Schema.define(version: 2021_04_22_130530) do
 
   create_table "comments", charset: "utf8", force: :cascade do |t|
     t.text "content"
@@ -32,6 +32,21 @@ ActiveRecord::Schema.define(version: 2021_04_20_092514) do
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
+  create_table "tag_relationships", charset: "utf8", force: :cascade do |t|
+    t.bigint "question_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["question_id"], name: "index_tag_relationships_on_question_id"
+    t.index ["tag_id"], name: "index_tag_relationships_on_tag_id"
+  end
+
+  create_table "tags", charset: "utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", charset: "utf8", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -45,4 +60,6 @@ ActiveRecord::Schema.define(version: 2021_04_20_092514) do
   add_foreign_key "comments", "questions"
   add_foreign_key "comments", "users"
   add_foreign_key "questions", "users"
+  add_foreign_key "tag_relationships", "questions"
+  add_foreign_key "tag_relationships", "tags"
 end

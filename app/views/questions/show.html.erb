@@ -1,15 +1,21 @@
 <p>
-  <strong>Title:</strong>
+
+  <strong>タイトル:</strong>
   <%= @question.title %>
 </p>
 
 <p>
-  <strong>Text:</strong>
+  <strong>内容:</strong>
   <%= @question.content %>
 </p>
+<p>
+  <strong>タグ:</strong>
+  <% @question.tags.each do |tag| %>
+  <li><%= tag.name %></li>
+<% end %>
 
 <p>
-  <strong>Text:</strong>
+  <strong>コメント一覧</strong>
   <%= @comment.content %>
 </p>
 
