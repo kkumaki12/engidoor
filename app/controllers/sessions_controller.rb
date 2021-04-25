@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_before_action :verify_authenticity_token
+  
   def new; end
 
   def create
@@ -14,6 +16,6 @@ class SessionsController < ApplicationController
 
   def destroy
     log_out
-    redirect_to root_url
+    redirect_to root_path
   end
 end
