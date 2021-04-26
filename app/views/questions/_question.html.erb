@@ -1,7 +1,11 @@
 <% @questions.each do |question| %>
 <li id="question-board">
-    
-    <%= image_tag question.user.image.thumb.to_s, class: "q-user-image" %>
+    <% if question.user.image? %>
+  <%= image_tag question.user.image.thumb.to_s, class: "q-user-image" %>
+<% else %>
+  <%= image_tag "default.png", class: "q-user-image", alt:"ユーザーアイコン" %>
+<% end %>
+   
     <span class="user"><%= link_to question.user.name %></span>
     <span class="title"><%= link_to question.title, question_path(question) %></span>
     <span class="timestamp">
