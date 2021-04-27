@@ -12,4 +12,5 @@
 
 <h2>新着質問</h2>
 <%= render 'questions/question' %>
-<%= link_to "一覧", questions_path %>
+<%= paginate @questions %>
+
