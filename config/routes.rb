@@ -9,9 +9,10 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+  post '/application_pages/guest_sign_in', to: 'application_pages#guest_sign_in'
 
   resources :users
   resources :questions do
-    resources :comments, only: %i[create destroy]
+  resources :comments, only: [:create, :destroy]
   end
 end

@@ -11,6 +11,7 @@
                                'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application',
                                'data-turbolinks-track': 'reload' %>
+
     <!--[if lt IE 9]>
       <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
       </script>
@@ -18,9 +19,12 @@
   </head>
   <body>
   <%= render 'layouts/header' %>
+  
     <div class="container">
       <%= yield %>
       <%= debug(params) if Rails.env.development? %>
     </div>
   </body>
 </html>
+
+
