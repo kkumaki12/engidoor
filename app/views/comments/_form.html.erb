@@ -7,16 +7,5 @@
         <%= f.hidden_field :question_id, value: @question.id %>
         <%= f.submit "投稿" %>
         <% end %>
-　　　　　
-        <% @comments.each do |comment| %>
-        <% if @question.id == comment.question_id %>
-        <div class = "comment-box">
-        <%= image_tag comment.user.image.thumb.to_s %>
-        <%= comment.user.name %>
-        <%= comment.content %>
-        <%= time_ago_in_words(comment.created_at) %>前
-        </div>
-        <% end %>
-        <% end %>
-    </div>
-</div>
+        　　　　　
+      <%= render 'comments/list' %>

@@ -1,6 +1,4 @@
-<% if flash[:notice] %>
-   <div class="target"><%= flash[:notice] %></div>
-<% end %>
+
 
 <%= form_tag(search_path, :method => 'get') do %>
 <%= text_field_tag :search %>

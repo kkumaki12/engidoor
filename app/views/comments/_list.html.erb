@@ -1,0 +1,27 @@
+  <div id="a">
+  <% @comments.each do |comment| %>
+        <tr id="comment_<%= comment.id %>">
+        <% if @question.id == comment.question_id %>
+        <div class="comment-box">
+            <%= image_tag comment.user.image.thumb.to_s %>
+            <%= comment.user.name %>
+            <%= comment.content %>
+            <%= time_ago_in_words(comment.created_at) %>前
+            <div class="goods_buttons">
+                <% if logged_in? %>
+                <% if current_user.good_user?(comment.id) %>
+                <%= link_to comment_good_path(comment.id, current_user.goods.find_by(comment_id: comment.id).id), method: :delete, remote: true do %>
+                <p class="good-button"><i class="far fa-heart like-btn" style="color: #e82a2a;"></i><span style="color: #e82a2a"><%= comment.goods.count %></span></p>
+								<% end %>
+                <% else %>
+                <%= link_to comment_goods_path(comment_id:(comment.id)), method: :post, remote: true do %>
+                <p class="good-button"><i class="fas fa-heart unlike-btn" style="color: #e82a2a;"></i><span style="color: #e82a2a"><%= comment.goods.count %></span></p>
+								<% end %>
+                <% end %>
+                <% end %>
+            </div>
+        </div>
+        <% end %>
+        </tr>
+        <% end %>
+        </div>

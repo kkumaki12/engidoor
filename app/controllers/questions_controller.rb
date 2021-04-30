@@ -22,22 +22,21 @@ class QuestionsController < ApplicationController
     end
   end
 
-    def show
-      @question = Question.find(params[:id])
-      @comment = current_user.comments.build
-      @comments = Comment.all
-    end
+  def show
+    @question = Question.find(params[:id])
+    @comment = current_user.comments.build
+    @comments = Comment.all
+  end
 
-    def destroy
-      @question = Question.find(params[:id])
-      @question.destroy
-      redirect_to root_path
-    end
-  
+  def destroy
+    @question = Question.find(params[:id])
+    @question.destroy
+    redirect_to root_path
+  end
 
   private
 
   def question_params
-    params.require(:question).permit(:title, :content, tag:[:name])
+    params.require(:question).permit(:title, :content, tag: [:name])
   end
 end
