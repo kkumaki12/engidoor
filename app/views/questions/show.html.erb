@@ -14,9 +14,9 @@
   <li><%= tag.name %></li>
 <% end %>
 
-
+<% if current_user == @question.user %>
 <%= link_to '削除', @question, method: :delete, data: {confirm: '本当に削除しますか？'} %>
-
+<% end %>
 <p>
   <strong>コメント一覧</strong>
 </p>
