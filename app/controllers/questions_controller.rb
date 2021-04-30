@@ -9,7 +9,9 @@ class QuestionsController < ApplicationController
     @question = Question.new
   end
 
-  def list; end
+  def list
+    @questions = Question.search(params[:search]).page(params[:page]).per(7)
+  end
 
   def create
     @question = current_user.questions.build(question_params)

@@ -14,4 +14,12 @@ class Question < ApplicationRecord
       self.tags << question_tag
     end
   end
+
+  def self.search(search)
+    if search
+      Question.where(['content LIKE ?', "%#{search}%"])
+    else
+      Question.all
+    end
+end
 end
