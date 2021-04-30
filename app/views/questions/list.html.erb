@@ -1,2 +1,8 @@
-<h1>Questions#list</h1>
-<p>Find me in app/views/questions/list.html.erb</p>
+<h1>「<%= params[:search] %>」の検索結果</h1>
+<h2><%= Question.search(params[:search]).count %>件</h2>
+<% if Question.search(params[:search]).count == 0 %>
+お探しの質問はありませんでした
+<% else %>
+<%= render 'questions/question' %>
+<%= paginate @questions %>
+<% end %>
