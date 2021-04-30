@@ -8,15 +8,10 @@ class Question < ApplicationRecord
   validates :content, presence: true, length: { maximum: 2000 }
   default_scope -> { order(created_at: :desc) }
 
-
-
-def save_tags(savequestion_tags)
-  savequestion_tags.each do |new_name|
-    question_tag = Tag.find_or_create_by(name: new_name)
-    self.tags << question_tag
+  def save_tags(savequestion_tags)
+    savequestion_tags.each do |new_name|
+      question_tag = Tag.find_or_create_by(name: new_name)
+      self.tags << question_tag
+    end
+  end
 end
-end
-end
-
-
-
