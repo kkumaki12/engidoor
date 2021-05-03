@@ -1,5 +1,4 @@
 class CommentsController < ApplicationController
-  attr_accessor :comment
 
   def index
     @comments = Comment.all

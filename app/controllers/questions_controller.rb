@@ -10,7 +10,11 @@ class QuestionsController < ApplicationController
   end
 
   def new
+    if logged_in?
     @question = Question.new
+    else
+      redirect_to login_path
+    end
   end
 
   def list
