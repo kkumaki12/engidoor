@@ -11,11 +11,11 @@
         <%= f.label :email,"Eメール" %>
         <%= f.email_field :email, class: 'form-control' %>
 
-        <%= f.label :password,"パスワード" %>
-        <%= f.password_field :password, class: 'form-control' %>
+        <%= f.label :occupation,"職業" %>
+        <%= f.text_field :occupation, class: 'form-control' %>
 
-        <%= f.label :password_confirmation, "パスワード(確認)" %>
-        <%= f.password_field :password_confirmation, class: 'form-control' %>
+        <%= f.label :specialty, "得意分野" %>
+        <%= f.select :specialty,[["材料・素材","材料・素材"],["金型","金型"],["機械加工","機械加工"],["半導体","半導体"],["電子","電子"],["設計","設計"],["FA・自動化","FA・自動化"],["ロボット","ロボット"],["品質管理","品質管理"],["環境","環境"],["生産技術","生産技術"],["化学","化学"],["化学工学","化学工学"]],{} ,{include_blank: "選択してください",  class: 'form-control'}  %>
         <%= f.submit "更新する", class: "btn btn-primary" %>
         <% end %>
         
