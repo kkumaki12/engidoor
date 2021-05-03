@@ -21,5 +21,5 @@ class Question < ApplicationRecord
     else
       Question.all
     end
-end
+  end
 end

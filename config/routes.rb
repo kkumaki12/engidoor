@@ -15,7 +15,8 @@ Rails.application.routes.draw do
   resources :questions do
     resources :comments, only: %i[create destroy]
   end
+
   resources :comments do
-    resources :goods, only: %i[create destroy]
+    resource :goods, only: %i[create destroy]
   end
 end

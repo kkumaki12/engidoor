@@ -1,0 +1,10 @@
+
+<% if current_user.good_user?(comment.id) %>
+<%= link_to comment_goods_path((comment.id)), method: :delete, remote: true do %>
+<p id="good_<%= comment.id %>"><i class="fas fa-heart unlike-btn" style="color: #e82a2a;"></i><span style="color: #e82a2a"><%= comment.goods.count %></span></p>
+<% end %>
+<% else %>
+<%= link_to comment_goods_path((comment.id)), method: :post, remote: true do %>
+<p id="good_<%= comment.id %>"><i class="far fa-heart like-btn" style="color: #e82a2a;"></i><span style="color: #e82a2a"><%= comment.goods.count %></span></p>
+<% end %>
+<% end %>
