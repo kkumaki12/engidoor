@@ -1,6 +1,9 @@
 class CommentsController < ApplicationController
+  attr_accessor :comment
+
   def index
     @comments = Comment.all
+    @good = Good.new
   end
 
   def new

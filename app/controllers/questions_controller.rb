@@ -1,8 +1,12 @@
 class QuestionsController < ApplicationController
+  attr_accessor :good
+
   include QuestionsHelper
 
   def index
     @questions = Question.all
+    @comment = Comment.new
+    @good = Good.new
   end
 
   def new
@@ -26,7 +30,7 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
-    @comment = current_user.comments.build
+    @comment = Comment.new
     @comments = Comment.all
   end
 
