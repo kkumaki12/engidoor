@@ -27,8 +27,8 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    time = Time.now
-    name = time.strftime('%Y%m%d%H%M%S') + '.jpg'
+    time = Time.zone.now
+    name = "#{time.strftime('%Y%m%d%H%M%S')}.jpg"
     name.downcase
   end
   # Provide a default URL as a default if there hasn't been a file uploaded:

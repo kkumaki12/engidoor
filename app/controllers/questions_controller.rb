@@ -11,7 +11,7 @@ class QuestionsController < ApplicationController
 
   def new
     if logged_in?
-    @question = Question.new
+      @question = Question.new
     else
       redirect_to login_path
     end
