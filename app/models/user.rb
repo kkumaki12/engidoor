@@ -12,7 +12,14 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :goods, dependent: :destroy
 
+  join = User.joins({comments: :goods})
+  table = join.group(:id).order('count(users.id) desc').pluck(:id)
+
   def good_user?(comment_id)
     goods.exists?(comment_id: comment_id)
   end
+
+
+    
+
 end

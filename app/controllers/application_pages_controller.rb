@@ -3,6 +3,9 @@ class ApplicationPagesController < ApplicationController
   def home
     @questions = Question.page(params[:page]).per(7)
     @tags = Tag.all
+    join = User.joins({comments: :goods})
+    table = join.group(:id).order('count(users.id) desc').pluck(:id)
+    @rank = User.find(table)
   end
 
   def guest_sign_in
