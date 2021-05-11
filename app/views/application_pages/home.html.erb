@@ -12,9 +12,15 @@
     <li class="btn-tag"><%= tag.name %></li>
   <% end %>
 </ul>
+<div class="row">
 
+<div class="col-md-8">
 <h2>新着質問</h2>
 <%= render 'questions/question' %>
 <%= paginate @questions %>
-
 <%= javascript_pack_tag 'application_pages/home' %>
+</div>
+<div class="col-md-4">
+<%= render 'ranking' %>
+</div>
+</div>
