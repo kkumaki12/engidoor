@@ -7,7 +7,7 @@ require File.expand_path('../config/environment', __dir__)
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
-
+include SessionsHelper
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -46,7 +46,22 @@ RSpec.configure do |config|
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
   # `post` in specs under `spec/controllers`.
-  #
+  #RSpec.configure do |config|
+  # ...
+
+  # テストケース共通の事前処理
+  config.before(:each) do
+
+    # let(:rspec_session) で指定された値を セッションの初期値とします
+    session = defined?(rspec_session) ? rspec_session : {}
+
+    # destroyメソッドを実行してもエラーにならないようにします（必要であれば）
+    session.class_eval { def destroy; nil; end } 
+
+    # sessionメソッドを上書き
+    allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return(session)
+  end
+
   # You can disable this behaviour by removing the line below, and instead
   # explicitly tag your specs with their type, e.g.:
   #
@@ -62,4 +77,5 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+  
 end
