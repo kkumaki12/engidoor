@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_03_124136) do
+ActiveRecord::Schema.define(version: 2021_05_14_063658) do
+
+  create_table "best_answers", charset: "utf8", force: :cascade do |t|
+    t.bigint "question_id", null: false
+    t.bigint "comment_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["comment_id"], name: "index_best_answers_on_comment_id"
+    t.index ["question_id"], name: "index_best_answers_on_question_id"
+  end
 
   create_table "comments", charset: "utf8", force: :cascade do |t|
     t.text "content"
@@ -66,6 +75,8 @@ ActiveRecord::Schema.define(version: 2021_05_03_124136) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "best_answers", "comments"
+  add_foreign_key "best_answers", "questions"
   add_foreign_key "comments", "questions"
   add_foreign_key "comments", "users"
   add_foreign_key "questions", "users"
