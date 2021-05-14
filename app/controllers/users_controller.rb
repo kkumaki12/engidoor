@@ -23,6 +23,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    #いいね数の集計
+    @goods_count = 0
+@user_comments = @user.comments
+@user_comments.each do |comment|
+@goods_count += comment.goods.count
+end
   end
 
   def create
