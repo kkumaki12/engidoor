@@ -18,5 +18,6 @@ Rails.application.routes.draw do
 
   resources :comments do
     resource :goods, only: %i[create destroy]
+    resource :best_answers, only: %i[create]
   end
 end

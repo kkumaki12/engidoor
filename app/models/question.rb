@@ -3,6 +3,7 @@ class Question < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :tag_relationships, dependent: :destroy
   has_many :tags, through: :tag_relationships
+  has_one :best_answer
   validates :user_id, presence: true
   validates :title, presence: true, length: { maximum: 30 }
   validates :content, presence: true, length: { maximum: 2000 }

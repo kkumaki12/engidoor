@@ -11,6 +11,11 @@
     <span class="timestamp">
         <%= time_ago_in_words(question.created_at) %>前
     </span>
+    <% if question.best_answer %>
+    <span>解決済み</span>
+    <% else %>
+    <span>受付中</span>
+    <% end %>
 </li>
 
 <% end %>
