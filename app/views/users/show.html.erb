@@ -1,9 +1,39 @@
-    <% if @user.image? %>
-  <%= image_tag @user.image.to_s, class: "user-image" %>
-<% else %>
-  <%= image_tag "default.png", class: "user-image", alt:"ユーザーアイコン" %>
-<% end %>
-<%= @user.name %><%= @user.email %>
-<% if @user == current_user %>
-<%= link_to "編集", edit_user_path(current_user) %>
-<% end %>
+    <div class="container">
+        <div class="user_information">
+            <% if @user.image? %>
+            <%= image_tag @user.image.to_s, class: "user-image" %>
+            <% else %>
+            <%= image_tag "default.png", class: "user-image", alt:"ユーザーアイコン" %>
+            <% end %>
+            <div class="user_info">
+                <div class="info_inner"><span>名前:</span><%= @user.name %></div>
+                <div class="info_inner"><span>得意分野:</span><%= @user.specialty %></div>
+                <div class="info_inner"><span>職業:</span><%= @user.occupation %></div>
+                <div class="info_inner"><span>合計いいね数:</span><%= @goods_count %></div>
+                                            </div>
+                                        </div>
+
+
+                                        <% if @user == current_user %>
+                                        <%= link_to "編集", edit_user_path(current_user) %>
+                                        <% end %>
+                                        <h3>過去の質問</h3>
+                                        質問投稿数:<%= @user.questions.count %>回
+                                        <% @user.questions.each do |question| %>
+                                        <li id="question-board">
+                                            <% if question.user.image? %>
+                                            <%= link_to (image_tag question.user.image.thumb.to_s,class: "q-user-image"), user_path(question.user.id),method: :get  %>
+                                            <% else %>
+                                            <%= link_to (image_tag "default.png",class: "q-user-image"), user_path(question.user.id), method: :get,  alt:"ユーザーアイコン" %>
+                                            <% end %>
+
+                                            <span class="user"><%= link_to question.user.name,user_path(question.user.id) %></span>
+                                            <span class="title"><%= link_to question.title, question_path(question) %></span>
+                                            <span class="timestamp">
+                                                <%= time_ago_in_words(question.created_at) %>前
+                                            </span>
+                                        </li>
+
+                                        <% end %>
+                                        </div>
+          
