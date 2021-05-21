@@ -8,7 +8,7 @@ services:
             MYSQL_ROOT_PASSWORD: kumakiKENsuke28!
             MYSQL_PASSWORD: kumakiKENsuke28!
             
-            # 怪しい
+          
        
         ports:
             - "3306:3306"
@@ -17,12 +17,12 @@ services:
     web:
         build: .
         #コンテナ起動時に実行
-        command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+        command: bash -c "rm -f tmp/pids/server.pid && bundle exec puma -C config/puma.rb"
         volumes:
             - .:/myapp
             - gem_data:/usr/local/bundle
         ports:
-            - "3000:3000"
+            - "80:80"
         # webが起動する前にdbが起動
         depends_on:
             - db 

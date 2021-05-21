@@ -10,5 +10,14 @@ RUN gem install bundler
 RUN bundle install
 COPY . /myapp
 # Start the main process.
-CMD ["rails", "server", "-b", "0.0.0.0"]
+FROM nginx:1.16.1
+
+# インクルード用のディレクトリ内を削除
+RUN rm -f /etc/nginx/conf.d/*
+
+# Nginxの設定ファイルをコンテナにコピー
+ADD nginx/nginx.conf /etc/nginx/engidoor.conf
+
+# ビルド完了後にNginxを起動
+CMD /usr/sbin/nginx -g 'daemon off;' -c /etc/nginx/engidoor.conf
 
