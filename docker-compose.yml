@@ -7,27 +7,41 @@ services:
             MYSQL_USER: mysqluser
             MYSQL_ROOT_PASSWORD: kumakiKENsuke28!
             MYSQL_PASSWORD: kumakiKENsuke28!
-            
-          
-       
+            # 怪しい
+        volumes:
+            - ./db/mysql/volumes:/var/lib/mysql
         ports:
             - "3306:3306"
 
 
     web:
-        build: .
-        #コンテナ起動時に実行
-        command: bash -c "rm -f tmp/pids/server.pid && bundle exec puma -C config/puma.rb"
+        image: nginx:1.16.1
+        container_name: web
+        build: ./nginx
+        
         volumes:
-            - .:/myapp
-            - gem_data:/usr/local/bundle
+            - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+            - ./public:/engidoor/public
+            - .:/engidoor
         ports:
             - "80:80"
-        # webが起動する前にdbが起動
         depends_on:
-            - db 
+            - app
         tty: true
         stdin_open: true
 
+    app:
+      container_name: app
+      build: .
+      command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s"
+      volumes: 
+            - .:/engidoor
+            - gem_data:/usr/local/bundle
+      ports: 
+            - "3000:3000"
+      depends_on: 
+            - db
+
+
 volumes:
-  gem_data: {}
+  gem_data:
