@@ -5,8 +5,8 @@ services:
         image: mysql:8.0.23
         environment:
             MYSQL_USER: mysqluser
-            MYSQL_ROOT_PASSWORD: kumakiKENsuke28!
-            MYSQL_PASSWORD: kumakiKENsuke28!
+            MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+            MYSQL_PASSWORD: ${DATABASE_PASSWORD}
             # 怪しい
         volumes:
             - ./db/mysql/volumes:/var/lib/mysql
