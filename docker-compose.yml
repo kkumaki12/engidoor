@@ -9,7 +9,7 @@ services:
             MYSQL_PASSWORD: ${DATABASE_PASSWORD}
             # 怪しい
         volumes:
-            - ./db/mysql/volumes:/var/lib/mysql
+            - ./db/mysql/volumes:/var/lib/mysql:delegated
         ports:
             - "3306:3306"
 
@@ -20,8 +20,8 @@ services:
         build: ./nginx
         
         volumes:
-            - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
-            - ./public:/engidoor/public
+            - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:delegated
+            - ./public:/engidoor/public:delegated
             - .:/engidoor
         ports:
             - "80:80"
@@ -35,8 +35,8 @@ services:
       build: .
       command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s"
       volumes: 
-            - .:/engidoor
-            - gem_data:/usr/local/bundle
+            - .:/engidoor:delegated
+            - gem_data:/usr/local/bundle:delegated
       ports: 
             - "3000:3000"
       depends_on: 
