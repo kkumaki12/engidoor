@@ -1,5 +1,4 @@
-
-<div class = "target"><%= flash[:notice] %></div>
+<div class="target"><%= flash[:notice] %></div>
 <%= form_tag(search_path, :method => 'get') do %>
 <%= text_field_tag :search %>
 <%= submit_tag '検索', :name => nil %>
@@ -7,21 +6,21 @@
 
 <h2>タグから検索</h2>
 <ul class="tags-frame">
-  <% @tags.each do |tag| %>
+    <% @tags.each do |tag| %>
     <button class="px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-600 rounded-md dark:bg-gray-800 hover:bg-blue-500 dark:hover:bg-gray-700 focus:outline-none focus:bg-blue-500 dark:focus:bg-gray-700">
-    <%= tag.name %>
+        <%= tag.name %>
     </button>
-  <% end %>
+    <% end %>
 </ul>
 
-<div class="flex-row">
-<div class="grid-cols-8">
-<h2>新着質問</h2>
-<%= render 'questions/question' %>
-<%= paginate @questions %>
-<%= javascript_pack_tag 'application_pages/home' %>
-</div>
-<div class="grid-cols-4">
-<%= render 'ranking' %>
-</div>
+<div class="grid grid-cols-12 flex-row">
+    <div class="col-span-10">
+        <h2>新着質問</h2>
+        <%= render 'questions/question' %>
+        <%= paginate @questions %>
+        <%= javascript_pack_tag 'application_pages/home' %>
+    </div>
+    <div class="col-span-2">
+        <%= render 'ranking' %>
+    </div>
 </div>
