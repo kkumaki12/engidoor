@@ -1,4 +1,4 @@
-server '35.74.51.186', user: 'ec2-user', roles: %w{app db web}
+server '35.74.51.186', user: 'kensuke', roles: %w{app db web}
 
 
 # server-based syntax
@@ -44,11 +44,11 @@ server '35.74.51.186', user: 'ec2-user', roles: %w{app db web}
 #
 # Global options
 # --------------
-#  set :ssh_options, {
-#    keys: %w(/home/user_name/.ssh/id_rsa),
-#    forward_agent: false,
-#    auth_methods: %w(password)
-#  }
+  set :ssh_options, {
+    keys: %w(~/.ssh/engidoor_key_rsa),
+    forward_agent: false,
+    auth_methods: %w(publickey)
+  }
 #
 # The server-based syntax can be used to override options:
 # ------------------------------------

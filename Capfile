@@ -3,6 +3,8 @@ require "capistrano/setup"
 
 # Include default deployment tasks
 require "capistrano/deploy"
+require "capistrano/scm/git"
+install_plugin Capistrano::SCM::Git
 
 # Load the SCM plugin appropriate to your project:
 #
@@ -35,6 +37,7 @@ require "capistrano/rails/migrations"
 require 'capistrano/puma'
 install_plugin Capistrano::Puma
 install_plugin Capistrano::Puma::Daemon
+install_plugin Capistrano::Puma::Systemd
 
 # require "capistrano/passenger"
 

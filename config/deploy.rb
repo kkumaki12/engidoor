@@ -11,10 +11,11 @@ set :repo_url, "git@github.com:kkumaki12/engidoor.git"
 set :deploy_to, "/var/www/rails/engidoor"
 # バージョンが変わっても共通で参照するディレクトリ
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', '.bundle', 'public/system', 'public/uploads'
-append :linked_files, 'config/database.yml', 'config/secrets.yml'
+append :linked_files, 'config/database.yml', 'config/master.key'
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
 set :rbenv_type, :user
+set :rbenv_custom_path, '/home/kensuke/.rbenv'
 set :rbenv_ruby, '3.0.0'
 # You can configure the Airbrussh format using :format_options.
 # These are the defaults.
@@ -40,8 +41,9 @@ set :rbenv_ruby, '3.0.0'
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 set :ssh_options,  auth_methods: ['publickey'],
+                   keys: ['~/.ssh/engidoor_key_rsa'] 
 # プロセス番号を記載したファイルの場所
 set :puma_pid, "#{shared_path}/tmp/pids/puma.pid"
 # puma設定ファイルの場所
-set :puma_conf, "#{current_path}/config/puma/production.rb"
+set :puma_conf, "/var/www/rails/engidoor/config/puma/production.rb"
 
