@@ -62,3 +62,5 @@ server '35.74.51.186', user: 'kensuke', roles: %w{app db web}
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
+puts "Hello!! This is custom puma template!!"
+
