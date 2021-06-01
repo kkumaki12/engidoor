@@ -12,4 +12,10 @@ module.exports = {
 require('@tailwindcss/typography'),
 require('@tailwindcss/aspect-ratio'),
   ],
+    theme: {
+      container: {
+        center: true,
+      },
+    },
+  
 }

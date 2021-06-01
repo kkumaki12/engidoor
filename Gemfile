@@ -16,7 +16,7 @@ gem 'bootstrap-sass', '3.4.1'
 # Use mysql２ as the database for Active Record
 gem 'mysql2'
 # Use Puma as the app server
-gem 'puma', '~> 5.0'
+gem 'puma', '4.0.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
@@ -43,6 +43,7 @@ gem 'dotenv-rails'
 gem 'tailwindcss-rails'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
+gem 'sd_notify'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -79,4 +80,11 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
+  gem 'capistrano'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano3-puma'
+  gem 'ed25519'
+  gem 'bcrypt_pbkdf'
 end
