@@ -9,12 +9,17 @@ class CommentsController < ApplicationController
   end
 
   def create
+
+    if logged_in?
     @comment = current_user.comments.create(comment_params)
     if @comment.save!
       redirect_back(fallback_location: root_path)
     else
-      redirect_back(fallback_location: root_path)
+      redirect_to root_path
     end
+  else
+    redirect_to login_path
+  end
   end
 
   private
