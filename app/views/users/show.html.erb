@@ -1,14 +1,15 @@
-    <div class="container">
-        <div class="user_information">
+    <div class="container grid grid-cols-5">
+<div class="col-span-1 mt-56">
             <% if @user.image? %>
             <%= image_tag @user.image.to_s, class:"rounded-full",alt:"ユーザーアイコン" %>
             <% else %>
             <%= image_tag "default.png", class: "rounded-full", alt:"ユーザーアイコン" %>
             <% end %>
-        </div>
+            </div>
+   
 
 <!-- This is an example component -->
-<div class="min-h-screen flex items-center justify-center px-4">
+<div class="min-h-screen flex items-center justify-center px-4 col-span-4">
     
     <div class="max-w-4xl  bg-white w-full rounded-lg shadow-xl">
         <div class="p-4 border-b flex-row grid grid-cols-5">
@@ -112,7 +113,7 @@
 
 
 </div>
-
+</div>
  
 
 
@@ -134,4 +135,3 @@
         </li>
 
         <% end %>
-    </div>

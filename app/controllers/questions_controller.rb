@@ -36,6 +36,7 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @comment = Comment.new
     @comments = Comment.all
+    @user = User.new
   end
 
   def destroy
