@@ -2,10 +2,12 @@
 <% if @question.id == comment.question_id %>
 <div class="comment-box">
     <% if comment.user.image? %>
+    <div class="w-16 h-16 rounded-full">
     <%= link_to (image_tag comment.user.image.thumb.to_s),user_path(comment.user.id) %>
     <% else %>
     <%= link_to (image_tag "default.png",class: "q-user-image"), user_path(comment.user.id), method: :get,  alt:"ユーザーアイコン" %>
     <% end %>
+    </div>
     <%= comment.user.name %>
     <%= comment.content %>
     <%= time_ago_in_words(comment.created_at) %>前
