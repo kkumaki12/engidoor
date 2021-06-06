@@ -3,9 +3,9 @@
 <div class="comment-box">
     <% if comment.user.image? %>
     <div class="w-16 h-16 rounded-full">
-    <%= link_to (image_tag comment.user.image.thumb.to_s),user_path(comment.user.id) %>
+    <%= link_to (image_tag comment.user.image.thumb.to_s,class:"rounded-full w-12 h-12"),user_path(comment.user.id) %>
     <% else %>
-    <%= link_to (image_tag "default.png",class: "q-user-image"), user_path(comment.user.id), method: :get,  alt:"ユーザーアイコン" %>
+    <%= link_to (image_tag "default.png",class:"rounded-full w-12 h-12"), user_path(comment.user.id), method: :get,  alt:"ユーザーアイコン" %>
     <% end %>
     </div>
     <%= comment.user.name %>

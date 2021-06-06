@@ -37,7 +37,7 @@ gem 'mini_magick'
 gem 'devise'
 
 gem 'kaminari'
-gem 'kaminari-bootstrap'
+
 
 gem 'dotenv-rails'
 gem 'tailwindcss-rails'
