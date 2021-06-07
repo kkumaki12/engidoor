@@ -8,6 +8,7 @@ class Question < ApplicationRecord
   validates :title, presence: true, length: { maximum: 30 }
   validates :content, presence: true, length: { maximum: 2000 }
   default_scope -> { order(created_at: :desc) }
+  is_impressionable counter_cache: true
 
   def save_tags(savequestion_tags)
     savequestion_tags.each do |new_name|
