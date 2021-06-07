@@ -23,8 +23,5 @@ RSpec.describe User, type: :model do
     user2 = FactoryBot.create(:user)
     get edit_user_path, params: {id: @user.id}
     expect(response).redirect_to root
-
-
-
   end
 end

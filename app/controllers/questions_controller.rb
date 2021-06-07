@@ -3,10 +3,12 @@ class QuestionsController < ApplicationController
 
   include QuestionsHelper
 
+
   def index
     @questions = Question.all
     @comment = Comment.new
     @good = Good.new
+    
   end
 
   def new
@@ -36,6 +38,8 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @comment = Comment.new
     @comments = Comment.all
+    @user = User.new
+    impressionist(@question, nil, unique: [:ip_address])
   end
 
   def destroy

@@ -2,33 +2,33 @@
 <!-- Unicons -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@iconscout/unicons@3.0.6/css/line.css">
 
-<!-- Question Listing Item Card -->
+<!-- 質問カード -->
 <div class="bg-white rounded-lg shadow-sm hover:shadow-lg duration-500 px-2 sm:px-6 md:px-2 py-4 my-6">
     <div class="grid grid-cols-12 gap-3">
         <!-- Meta Column -->
         <div class="col-span-0 sm:col-span-2 text-center hidden sm:block">
 
 
-            <!-- Answer Counts -->
+            <!-- 回答数 -->
             <a href="#" class="grid grid-rows-2 mx-auto mb-3 py-1 w-4/5 2lg:w-3/5 rounded-md bg-green-400">
                 <div class="inline-block font-medium text-2xl text-white">
                     <%= question.comments.count %>
                 </div>
 
                 <div class="inline-block font-medium text-white mx-1 text-sm lg:text-md">
-                    Answers
+                    回答
                 </div>
             </a>
 
-            <!-- View Counts -->
+            <!-- 閲覧数 -->
             <div class="grid my-3">
                 <span class="inline-block font-bold text-xs">
-                    1213 Vews
+                    <%= question.impressions_count.to_i %>Views
                 </span>
             </div>
         </div>
 
-        <!-- Summary Column -->
+        <!-- レスポンシブル対応 -->
         <div class="col-span-12 sm:col-start-3 sm:col-end-13 px-3 sm:px-0">
             <div class="grid block sm:hidden">
                 <div class="flex flex-wrap">
@@ -36,7 +36,7 @@
                         <div class="inline-block font-light capitalize">
                             <i class="uil uil-check-circle mr-1"></i>
                             <span class="text-sm">
-                                <%= question.comments.count %>Answers
+                                <%= question.comments.count %>回答
                             </span>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                         <div class="inline-block">
                             <i class="uil uil-eye mr-1"></i>
                             <span class="text-sm capitalize font-light">
-                                21 Views
+                                <%= question.impressions_count.to_i %>Views
                             </span>
                         </div>
                     </div>
@@ -72,13 +72,13 @@
                 </div>
 
                 <p class="mt-2 text-gray-600 text-sm md:text-md">
-                    <%= question.content %>
+                    <%= question.content.truncate(50) %>
                 </p>
             </div>
 
             <!-- Question Labels -->
             <div class="grid grid-cols-2 mt-4 my-auto">
-                <!-- Categories  -->
+                <!-- ベストアンサー決定済み表示  -->
                 <div class="col-span-12 lg:col-span-8">
                 <% if question.best_answer %>
                     <div class="inline-block rounded-full text-white 
@@ -99,14 +99,14 @@
                     <% end %>
                 </div>
 
-                <!-- User -->
+                <!-- ユーザー情報 -->
                 <div class="col-none hidden mr-2 lg:block lg:col-start-9 lg:col-end-12">
                     <div class="flex items-center">
-                    <div class="w-16 h-16 rounded-full">
+                    <div class="w-16 h-16">
                         <% if question.user.image? %>
-                        <%= link_to (image_tag question.user.image.to_s,class: "q-user-image"), user_path(question.user.id),method: :get  %>
+                        <%= link_to (image_tag question.user.image.to_s,class: "q-user-image rounded-full"), user_path(question.user.id),method: :get  %>
                         <% else %>
-                        <%= link_to (image_tag "default.png",class: "q-user-image"), user_path(question.user.id), method: :get,  alt:"ユーザーアイコン" %>
+                        <%= link_to (image_tag "default.png",class: "q-user-image rounded-full"), user_path(question.user.id), method: :get,  alt:"ユーザーアイコン" %>
                         <% end %>
                     </div>
                         <div class="text-gray-600 font-bold text-sm hover:underline">
