@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+
+  let(:user) { build(:user) }
+
   it 'ユーザー名とメールアドレスとパスワードがある場合、有効である' do
     expect(FactoryBot.create(:user)).to be_valid
   end
@@ -24,4 +27,35 @@ RSpec.describe User, type: :model do
     get edit_user_path, params: {id: @user.id}
     expect(response).redirect_to root
   end
+
+  it 'メールアドレスが255文字で有効' do
+    expect(FactoryBot.build(:user, email: "#{'a' * 243}@example.com")).to be_valid
+  end
+
+  it 'メールアドレスが256文字で無効' do
+    expect(FactoryBot.build(:user, email: "#{'a' * 244}@example.com")).to_not be_valid
+  end
+
+  it 'メールアドレスが256文字で無効' do
+    user.email = "#{'a' * 244}@example.com"
+    user.valid?
+    expect(user.errors[:email]).to include("は256文字以内で入力してください")
+  end
+
+  it 'パスワードが6文字で有効' do
+    expect(FactoryBot.build(:user, password: 'a' * 6)).to be_valid
+  end
+
+  it 'パスワードが5文字で有効' do
+    expect(FactoryBot.build(:user, password: 'a' * 5)).to_not be_valid
+  end
+
+  it 'パスワードが5文字で有効' do
+    user.password = 'a' * 5
+    user.valid?
+    expect(user.errors[:password]).to include("は6文字以内で入力してください")
+  end
+
+  
 end
+
