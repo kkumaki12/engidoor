@@ -37,6 +37,10 @@ ja:
         other: "%{count}年以上"
 
   activerecord:
-  errors:
-    messages:
-      record_invalid: "バリデーションに失敗しました: %{errors}"
+    models:
+      user: "ユーザー"
+    attributes:
+      user:
+        email: "メールアドレス"
+        password: "パスワード"
+        name: "ユーザー名"
