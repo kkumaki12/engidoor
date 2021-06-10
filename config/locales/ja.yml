@@ -39,8 +39,12 @@ ja:
   activerecord:
     models:
       user: "ユーザー"
+      question: "質問"
     attributes:
       user:
         email: "メールアドレス"
         password: "パスワード"
         name: "ユーザー名"
+      question:
+        title: "タイトル"
+        content: "質問内容"

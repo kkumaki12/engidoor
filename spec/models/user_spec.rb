@@ -23,7 +23,7 @@ RSpec.describe User, type: :model do
 
   it 'ログイン中のユーザーと一致しない場合、編集ができない' do
     @user = FactoryBot.create(:user)
-    user2 = FactoryBot.create(:user)
+    @user2 = FactoryBot.create(:user)
     get edit_user_path, params: {id: @user.id}
     expect(response).redirect_to root
   end
@@ -47,6 +47,10 @@ RSpec.describe User, type: :model do
     user.valid?
     expect(user.errors[:password]).to include("は6文字以上で入力してください")
   end
+
+  it 'メールアドレスに@がない場合無効' do
+  expect(FactoryBot.build(:user, email: 'aaa.com')).to_not be_valid
+end
 
   
 end

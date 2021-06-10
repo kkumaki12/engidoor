@@ -1,5 +1,5 @@
 <div class="w-full max-w-xl container mt-24">
-  <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+  <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
 
     <%= form_for(:session, url: login_path) do |f| %>
 
@@ -16,5 +16,5 @@
     <% end %>
 
     <p>登録がまだの方 <%= link_to "新規登録", signup_path %></p>
-  </form>
+  </div>
   </div>

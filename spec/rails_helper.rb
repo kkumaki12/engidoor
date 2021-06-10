@@ -48,6 +48,7 @@ RSpec.configure do |config|
   # `post` in specs under `spec/controllers`.
   #RSpec.configure do |config|
   # ...
+  config.render_views
 
   # テストケース共通の事前処理
   config.before(:each) do

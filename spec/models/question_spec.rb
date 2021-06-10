@@ -14,6 +14,7 @@ context 'タイトル' do
     question.title = nil
     expect(question).to be_invalid
     expect(question.save).to be_falsey
+    expect(question.errors[:title]).to include("を入力してください")
   end
 
   it 'タイトルが30文字なら登録できること' do
@@ -25,6 +26,8 @@ context 'タイトル' do
     question.title = 'a' * 31
     expect(question).to be_invalid
     expect(question.save).to be_falsey
+    expect(question.errors[:title]).to include("は30文字以内で入力してください")
+
   end
 end
 context '内容' do
@@ -32,6 +35,8 @@ context '内容' do
     question.content = nil
     expect(question).to be_invalid
     expect(question.save).to be_falsey
+    expect(question.errors[:content]).to include("を入力してください")
+  end
   end
 
   it '内容が2000文字なら登録できること' do
@@ -42,7 +47,7 @@ context '内容' do
     question.content = 'a' * 2001
     expect(question).to be_invalid
     expect(question.save).to be_falsey
+    expect(question.errors[:content]).to include("は2000文字以内で入力してください")
   end
-end
-end
+  end
 end

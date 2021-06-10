@@ -9,17 +9,18 @@ class CommentsController < ApplicationController
   end
 
   def create
+    @user = User.new
 
     if logged_in?
-    @comment = current_user.comments.create(comment_params)
-    if @comment.save!
-      redirect_back(fallback_location: root_path)
+      @comment = current_user.comments.create(comment_params)
+      if @comment.save
+        redirect_back(fallback_location: root_path)
+      else
+        render "questions/show"
+      end
     else
-      redirect_to root_path
+      redirect_to login_path
     end
-  else
-    redirect_to login_path
-  end
   end
 
   private
