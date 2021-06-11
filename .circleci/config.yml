@@ -1,15 +1,24 @@
 version: 2.1
-orbs:
-  ruby: circleci/ruby@0.1.2 
 
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.6.3-stretch-node
-    executor: ruby/default
-    steps:
-      - checkout
-      - run:
-          name: Which bundler?
-          command: bundle -v
-      - ruby/bundle-install
+      - image: circleci/ruby:3.0.0-node
+        environment:
+            - RAILS_ENV: 'test'
+            - MYSQL_HOST: 127.0.0.1
+            - MYSQL_USERNAME: 'root'
+            - MYSQL_PASSWORD: ''
+            - MYSQL_PORT: 3306
+      - image: circleci/mysql:8.0.23
+        environment:
+            - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+            - MYSQL_ROOT_HOST: '%'
+  
+  working_directory: ~/work
+
+  steps:
+    - checkout
+    - run: bundle install
+    
+
