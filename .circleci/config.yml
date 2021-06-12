@@ -40,13 +40,11 @@ jobs:
       - run: bundle install --jobs=4 --retry=3 --path vendor/bundle
       - run: yarn install
       - run:
-          name: webpack installを実行
+          name: webpackをインストール
           command: bundle exec bin/webpack
-      - run:
-          name: データベースのセットアップ
-          command:
-            bundle exec rake db:create
-            bundle exec rake db:migrate
+      - run: mv config/database.yml.ci config/database.yml
+      - run: bundle exec rake db:create
+      - run: bundle exec rake db:schema:load
       - run:
           name: Rspecでのテスト
           command: bundle exec rspec
