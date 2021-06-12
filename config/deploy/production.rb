@@ -1,6 +1,6 @@
 server '35.74.51.186', user: 'kensuke', roles: %w{app db web}
 
-
+$app_dir = "/var/www/rails/engidoor/current"
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.
@@ -8,7 +8,7 @@ server '35.74.51.186', user: 'kensuke', roles: %w{app db web}
 
 # server "example.com", user: "deploy", roles: %w{app db web}, my_property: :my_value
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
-# server "db.example.com", user: "deploy", roles: %w{db}
+# server "db.example.du -sh * | sort", user: "deploy", roles: %w{db}
 
 
 

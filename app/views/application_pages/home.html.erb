@@ -1,8 +1,4 @@
-<div class="target"><%= flash[:notice] %></div>
-<%= form_tag(search_path, :method => 'get') do %>
-<%= text_field_tag :search %>
-<%= submit_tag '検索', :name => nil %>
-<% end %>
+
 
 <h2>タグから検索</h2>
 <ul class="tags-frame">
@@ -17,7 +13,10 @@
     <div class="col-span-10">
         <h2>新着質問</h2>
         <%= render 'questions/question' %>
+        <div class="mx-auto text-center my-4 container inline-block">
         <%= paginate @questions %>
+        </div>
+        
         <%= javascript_pack_tag 'application_pages/home' %>
     </div>
     <div class="col-span-2">

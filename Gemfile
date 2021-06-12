@@ -37,13 +37,16 @@ gem 'mini_magick'
 gem 'devise'
 
 gem 'kaminari'
-gem 'kaminari-bootstrap'
+
 
 gem 'dotenv-rails'
 gem 'tailwindcss-rails'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'sd_notify'
+
+#閲覧数
+gem 'impressionist'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

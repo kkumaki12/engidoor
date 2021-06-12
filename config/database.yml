@@ -8,6 +8,12 @@ default: &default
   host: <%= ENV['DATABASE_HOST'] %>
 
 
+test:
+  <<: *default
+  database: engineerQA_test
+  password: ''
+
+
 
 production:
   <<: *default
