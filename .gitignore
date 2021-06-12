@@ -41,3 +41,8 @@ yarn-debug.log*
 
 /.env
 db/mysql
+/shared
+/vendor
+/releases
+/repo
+/revisions.log
