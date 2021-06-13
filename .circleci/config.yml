@@ -36,7 +36,7 @@ jobs:
             - v1-dependencies-
 
       - run:
-          name: Wait for DB
+          name: DB待ち
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 3m
       - run: gem install bundler:2.2.15
       - run: bundle install --jobs=4 --retry=3 --path vendor/bundle
@@ -44,10 +44,28 @@ jobs:
       - run:
           name: webpackをインストール
           command: bundle exec bin/webpack
+
+      
+
       - run: mv config/database.yml.ci config/database.yml
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
+
+      - run:
+          name: Rubocop実行
+          command: bundle exec rubocop
+
       - run:
           name: Rspecでのテスト
           command: bundle exec rspec
+
+  deploy:
+    machine:
+      enabled: true
+    steps:
+      - add_ssh_keys:
+        fingerprints:
+          - 1b:0d:86:29:5e:72:1e:48:29:08:7d:7b:3d:ad:13:3a
+
+      
 
