@@ -48,3 +48,5 @@ db/mysql
 /repo
 /revisions.log
 node_modules
+/config/credentials
+deploy-me.sh
