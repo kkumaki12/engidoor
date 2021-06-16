@@ -40,6 +40,7 @@ ja:
     models:
       user: "ユーザー"
       question: "質問"
+      comment: "コメント"
     attributes:
       user:
         email: "メールアドレス"
