@@ -16,6 +16,7 @@
     <%= javascript_pack_tag 'application',
                                'data-turbolinks-track': 'reload' %>
                                 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
+                                
 
     <!--[if lt IE 9]>
       <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
@@ -24,6 +25,8 @@
   </head>
   <body>
   <%= render 'layouts/header' %>
+   <%= javascript_pack_tag 'hello_vue' %>
+  <%= stylesheet_pack_tag 'hello_vue'  %> 
   
     <div class="container">
       <%= yield %>
