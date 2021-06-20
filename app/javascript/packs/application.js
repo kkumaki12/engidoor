@@ -19,5 +19,3 @@ require("@rails/activestorage").start()
 require("channels")
 require("jquery")
 
-
-
