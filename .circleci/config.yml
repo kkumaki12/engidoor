@@ -43,6 +43,9 @@ jobs:
       - run: bundle install --jobs=4 --retry=3 --path vendor/bundle
       - run: yarn install
       - run:
+          name: npmをインストール
+          command: npm install
+      - run:
           name: webpackをインストール
           command: bundle exec bin/webpack
 
