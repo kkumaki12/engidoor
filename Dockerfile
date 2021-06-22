@@ -4,11 +4,11 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
 RUN apt-get update -qq && apt-get install -y build-essential nodejs yarn
 RUN mkdir /engidoor
 WORKDIR /engidoor
-COPY . /engidoor
 COPY Gemfile /engidoor/Gemfile
 COPY Gemfile.lock /engidoor/Gemfile.lock
 RUN gem install bundler
 RUN bundle install
+COPY . /engidoor
 RUN mkdir -p tmp/sockets
 # Start the main process.
 
