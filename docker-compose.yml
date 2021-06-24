@@ -2,17 +2,17 @@ version: '3'
 
 services:
     db:
-        image: mysql:8.0.23
+        image: mysql:5.7
         container_name: db
-        build: ./db
-        user: "1000:50"
+        
+
         environment:
             MYSQL_USER: mysqluser
             MYSQL_ROOT_PASSWORD: password
             MYSQL_PASSWORD: password
-        command: --default-authentication-plugin=mysql_native_password  
+        command: --innodb-use-native-aio=0
         volumes:
-            - ./db/mysql/volumes:/var/lib/mysql
+            - ./db/mysql/volumes:/var/lib/mysqldata
             - /usr/local/etc/my.cnf:/etc/mysql/conf.d/my.cnf
         ports:
             - "3306:3306"
