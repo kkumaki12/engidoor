@@ -3,12 +3,10 @@ class QuestionsController < ApplicationController
 
   include QuestionsHelper
 
-
   def index
     @questions = Question.all
     @comment = Comment.new
     @good = Good.new
-    
   end
 
   def new
@@ -28,9 +26,9 @@ class QuestionsController < ApplicationController
     tag_list = params[:question][:name].split(/[[:blank:]]+/)
     if @question.save
       @question.save_tags(tag_list)
-      redirect_to @question
+      render json: @review
     else
-      render 'new'
+      render "new"
     end
   end
 
