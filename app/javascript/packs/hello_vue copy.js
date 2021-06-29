@@ -1,11 +1,11 @@
 
 
  import Vue from 'vue/dist/vue.esm'
- import App from '../app.vue'
+ import App from '../question.vue'
 
  document.addEventListener('DOMContentLoaded', () => {
    const app = new Vue({
-     el: '#hello2',
+     el: '#question',
      data: {
        message: "Can you say hello?"
      },
