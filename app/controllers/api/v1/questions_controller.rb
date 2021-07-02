@@ -1,12 +1,16 @@
-class QuestionsController < ApplicationController
+class Api::V1::QuestionsController < ApiController
+
   attr_accessor :good
 
   include QuestionsHelper
 
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    render json: { error: '404 not found' }, status: 404
+  end
+
   def index
-    @questions = Question.all
-    @comment = Comment.new
-    @good = Good.new
+    questions = Question.all
+    render json: questions
   end
 
   def new
@@ -23,13 +27,13 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = current_user.questions.build(question_params)
+    question = current_user.questions.build(question_params)
     tag_list = params[:question][:name].split(/[[:blank:]]+/)
-    if @question.save
-      @question.save_tags(tag_list)
-      render json: @review
+    if question.save
+      question.save_tags(tag_list)
+      render json: { status: 'SUCCESS', data: post }
     else
-      render "new"
+      render json: { status: 'ERROR', data: post.errors }
     end
   end
 

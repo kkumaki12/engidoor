@@ -20,4 +20,10 @@ Rails.application.routes.draw do
     resource :goods, only: %i[create destroy]
     resource :best_answers, only: %i[create]
   end
+  namespace 'api' do
+    namespace 'v1' do
+      resources :questions
+      resources :users
+    end
+  end
 end
