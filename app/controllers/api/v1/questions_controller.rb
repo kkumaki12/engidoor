@@ -39,8 +39,10 @@ class Api::V1::QuestionsController < ApiController
 
   def show
     @question = Question.find(params[:id])
+    render json: @question
     @comment = Comment.new
     @comments = Comment.all
+    render json: @comments
     @user = User.new
     impressionist(@question, nil, unique: [:ip_address])
   end
