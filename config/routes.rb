@@ -20,8 +20,9 @@ Rails.application.routes.draw do
     resource :goods, only: %i[create destroy]
     resource :best_answers, only: %i[create]
   end
-  namespace 'api' do
+  namespace 'api', {format: 'json'} do
     namespace 'v1' do
+      get '/list', to: 'questions#list'
       resources :questions
       resources :users
     end

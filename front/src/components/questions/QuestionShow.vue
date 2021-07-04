@@ -1,10 +1,11 @@
 <template>
   <main class="w-full flex justify-center mt-24">
     <div class="flex flex-col md:w-3/5 p-3 space-y-5 rounded-xl border border-black bg-white shadow-md">
+    <div v-for='question in questions' :key="question.id">
         <section class="font-bold text-lg text-blue-900">
             <div class="w-16 h-16 rounded-full">
             </div>
-            さん
+            <div>{{question.title}}さん</div>
             <div class="text-right mr-5">
                 回答数
             </div>
@@ -30,6 +31,7 @@
             </button>
         </section>
     </div>
+    </div>
 </main>
 </template>
 
@@ -43,9 +45,10 @@ export default {
     };
   },
   created() {
-    axios.get('/api/v1/questions', {questions: this.questions})
+    axios.get('/api/v1/questions')
     .then(response => {
-      console.log(response);
+      this.questions = response.data;
+      console.log(response.data);
     });
   }
 }

@@ -4,7 +4,7 @@ module.exports = {
     port: 8080,
     // 特定のパス以下をrailsに転送する設定
     proxy: {
-      "^/api": {
+      "*": {
         target: "http://localhost:3000",
       },
     },
