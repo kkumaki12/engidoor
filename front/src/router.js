@@ -5,12 +5,14 @@ import Users from './views/Users.vue'
 import QuestionCreate from './components/questions/QuestionCreate.vue'
 import QuestionShow from './components/questions/QuestionShow.vue'
 import QuestionList from './components/questions/QuestionList.vue'
+import Login from './views/Login.vue'
+import Register from './views/Register.vue'
 
 
 Vue.use(Router);
 
 export default new Router({
   mode: "history",
-  routes: [{path: '/', component: Home },{path: '/users', component: Users},{path: '/question', component: QuestionCreate},{path: '/question/show', component: QuestionShow},{path: '/question/list',component: QuestionList}]
+  routes: [{path: '/', component: Home },{path: '/users', component: Users},{path: '/question', component: QuestionCreate},{path: '/question/show', component: QuestionShow},{path: '/question/list',component: QuestionList},{path: '/login', component: Login},{path: '/register', component: Register}]
 });
 
