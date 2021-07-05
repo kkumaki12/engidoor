@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import axios from 'axios'
 import './index.css'
+import store from './store';
 
 Vue.config.productionTip = false
 
@@ -19,6 +20,7 @@ axios.interceptors.request.use(
 
 new Vue({
   router,
+  store,
   render: h => h(App),
 }).$mount('#app');
 
