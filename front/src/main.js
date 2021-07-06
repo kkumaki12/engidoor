@@ -5,7 +5,10 @@ import axios from 'axios'
 import './index.css'
 import store from './store.js';
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+
+axios.defaults.baseURL =
+'http://localhost:3000/'
 
 axios.interceptors.request.use(
   config => {
