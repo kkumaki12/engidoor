@@ -17,19 +17,16 @@ class Api::V1::UsersController < ApiController
 
   def show
     user = User.find(params[:id])
-    render json: @user
-    @goods_count = 0
-    @user_comments = @user.comments
-    @user_comments.each do |comment|
-    @goods_count += comment.goods.count
+    render json: user
+   
     end
-  end
+
 
   def create
-    @user = User.new(user_params)
-    if @user.save
-      log_in @user
-      render json: { status: :creared, user: @user }
+    user = User.new(user_params)
+    if user.save!
+      log_in user
+      render json: user, status: created
     else
       render json: { message: '登録できませんでした'}
     end

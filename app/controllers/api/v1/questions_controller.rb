@@ -22,7 +22,8 @@ class Api::V1::QuestionsController < ApiController
   end
 
   def list
-    questions = Question.search(params[:search]).page(params[:page]).per(7)
+    qq = Question.search(params[:search]).page(params[:page]).per(7)
+    questions = qq.joins(:comments,:best_answer)
     render json:questions
   end
 
@@ -39,6 +40,7 @@ class Api::V1::QuestionsController < ApiController
 
   def show
     @question = Question.find(params[:id])
+    render json: @question
     @comment = Comment.new
     @comments = Comment.all
     @user = User.new

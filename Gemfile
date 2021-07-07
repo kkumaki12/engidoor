@@ -47,6 +47,9 @@ gem 'sd_notify'
 
 #閲覧数
 gem 'impressionist'
+#CORS設定
+gem 'rack-cors'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
