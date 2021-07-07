@@ -8,7 +8,7 @@ class Api::V1::SessionsController < ApiController
   end
 
   def create
-    user = User.find_by(email: params[:session][:email].downcase)
+    user = User.find_by(email: params[:session][:email])
     
     if user&.authenticate(params[:session][:password])
       log_in user

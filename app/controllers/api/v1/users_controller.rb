@@ -18,12 +18,9 @@ class Api::V1::UsersController < ApiController
   def show
     user = User.find(params[:id])
     render json: user
-    @goods_count = 0
-    @user_comments = @user.comments
-    @user_comments.each do |comment|
-    @goods_count += comment.goods.count
+   
     end
-  end
+
 
   def create
     user = User.new(user_params)
