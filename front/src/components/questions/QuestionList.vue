@@ -181,7 +181,7 @@
                  
                 </div>
                 <div class="text-gray-600 font-bold text-sm hover:underline">
-                  
+                  {{ question.name }}
                 </div>
               </div>
             </div>
@@ -199,6 +199,7 @@ export default {
   data() {
     return {
       questions: [],
+      user: [],
     };
   },
   created() {

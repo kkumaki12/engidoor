@@ -22,9 +22,8 @@ class Api::V1::QuestionsController < ApiController
   end
 
   def list
-    qq = Question.search(params[:search]).page(params[:page]).per(7)
-    questions = qq.joins(:comments,:best_answer)
-    render json:questions
+    questions = Question.joins(:user).select("questions.*, users.*").page(params[:page]).per(7)
+    render json: questions
   end
 
   def create
