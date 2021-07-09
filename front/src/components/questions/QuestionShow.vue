@@ -5,7 +5,7 @@
         <section class="font-bold text-lg text-blue-900">
             <div class="w-16 h-16 rounded-full">
             </div>
-            <div>{{question.title}}さん</div>
+            <div>{{question.name}}さん</div>
             <div class="text-right mr-5">
                 回答数
             </div>
@@ -27,7 +27,7 @@
 
         <section class="flex justify-end">
             <button type="button" class="bg-red-600 text-white px-3 py-1 rounded-md">
-
+削除
             </button>
         </section>
     </div>

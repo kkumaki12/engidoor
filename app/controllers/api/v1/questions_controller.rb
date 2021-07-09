@@ -9,7 +9,7 @@ class Api::V1::QuestionsController < ApiController
   end
 
   def index
-    questions = Question.all
+    questions = Question.joins(:user).select("questions.*, users.*").all
     render json: questions
   end
 
@@ -42,7 +42,6 @@ class Api::V1::QuestionsController < ApiController
     render json: @question
     @comment = Comment.new
     @comments = Comment.all
-    @user = User.new
     impressionist(@question, nil, unique: [:ip_address])
   end
 
