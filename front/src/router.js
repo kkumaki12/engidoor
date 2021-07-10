@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from './views/Home.vue'
+import Home from './components/layouts/Home.vue'
 import Users from './views/Users.vue'
 import QuestionCreate from './components/Questions/QuestionCreate.vue'
 import QuestionShow from './components/Questions/QuestionShow.vue'
@@ -8,6 +8,7 @@ import QuestionList from './components/Questions/QuestionList.vue'
 import Login from './views/Login.vue'
 import Register from './views/Register.vue'
 import UserShow from './components/Users/UsersShow.vue'
+import UserRanking from './components/Users/UsersRanking.vue'
 
 
 Vue.use(Router);
@@ -17,11 +18,12 @@ export default new Router({
     { path: '/', component: Home },
     { path: '/users', component: Users }, 
     { path: '/question', component: QuestionCreate }, 
-    { path: '/question/show', component: QuestionShow }, 
+    { path: '/question/show/:id', component: QuestionShow }, 
     { path: '/question/list', component: QuestionList }, 
     { path: '/login', component: Login }, 
     { path: '/register', component: Register },
     { path: '/users/:id', component: UserShow },
+    { path: '/ranking', component: UserRanking },
   ]
 });
 

@@ -8,23 +8,21 @@
 
     <!-- 質問カード -->
     <div v-for="question in questions" :key="question.id">
-    <div
-      class="
-        bg-white
-        rounded-lg
-        shadow-sm
-        hover:shadow-lg
-        duration-500
-        px-2
-        sm:px-6
-        md:px-2
-        py-4
-        my-6
-      "
-    >
-     
-      <div class="grid grid-cols-12 gap-3">
-       
+      <div
+        class="
+          bg-white
+          rounded-lg
+          shadow-sm
+          hover:shadow-lg
+          duration-500
+          px-2
+          sm:px-6
+          md:px-2
+          py-4
+          my-6
+        "
+      >
+        <div class="grid grid-cols-12 gap-3">
           <!-- Meta Column -->
           <div class="col-span-0 sm:col-span-2 text-center hidden sm:block">
             <!-- 回答数 -->
@@ -42,7 +40,7 @@
               "
             >
               <div class="inline-block font-medium text-2xl text-white">
-             {{ question.comments }}
+                {{ question.comments }}
               </div>
               <div
                 class="
@@ -101,7 +99,7 @@
             </div>
 
             <div class="mt-2">
-              <div
+              <router-link to="question/show/"
                 class="
                   sm:text-sm
                   md:text-md
@@ -112,7 +110,7 @@
                 "
               >
                 {{ question.title }}
-              </div>
+              </router-link>
 
               <p class="mt-2 text-gray-600 text-sm md:text-md">
                 {{ question.content }}
@@ -122,9 +120,9 @@
             <!-- Question Labels -->
             <div class="grid grid-cols-2 mt-4 my-auto">
               <!-- ベストアンサー決定済み表示  -->
-              <div  class="col-span-12 lg:col-span-8">
-                <div v-if="question.best_answer"
-                  
+              <div class="col-span-12 lg:col-span-8">
+                <div
+                  v-if="question.best_answer"
                   class="
                     inline-block
                     rounded-full
@@ -144,8 +142,8 @@
                 >
                   解決済
                 </div>
-                <div v-else
-                  
+                <div
+                  v-else
                   href="#"
                   class="
                     inline-block
@@ -170,40 +168,30 @@
             </div>
 
             <!-- ユーザー情報 -->
-            <div
-              class="col-none hidden mr-2 lg:block lg:col-start-9 lg:col-end-12"
-            >
-              <div class="flex items-center">
-                <div class="w-16 h-16">
-                 
-                    
-                  </div>
-                 
-                </div>
-                <div class="text-gray-600 font-bold text-sm hover:underline">
-                  {{ question.name }}
-                </div>
-              </div>
-            </div>
+            <QuestionUser :question="question"></QuestionUser>
           </div>
         </div>
       </div>
     </div>
-
+  </div>
 </template>
 
 <script>
 import axios from "axios";
-
+import QuestionUser from "./QuestionUser.vue";
 export default {
+  components: {
+    QuestionUser,
+  },
   data() {
+    
     return {
       questions: [],
       user: [],
     };
   },
   created() {
-    axios.get("/api/v1/list").then((response) => {
+    axios.get("api/v1/questions/list").then((response) => {
       this.questions = response.data;
       console.log(response.data);
     });
