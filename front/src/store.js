@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
+import router from './router';
 
 Vue.use(Vuex);
 
@@ -9,11 +10,11 @@ export default new Vuex.Store({
     token: null
   },
   getters: {
-    // ここにゲッターを記述
+    token: state => state.token
   },
   mutations: {
-    updateToken(state, token){
-    state.token = token;
+    updateToken(state, token) {
+      state.token = token;
     }
   },
   actions: {
@@ -25,16 +26,11 @@ export default new Vuex.Store({
             password: authData.password,
           },
         })
-
         .then((response) => {
           commit('updateToken', response.data.token);
-          console.log(response);
+          router.push('/')
         })
-        .catch((error) => {
-          console.log(error);
-        });
-
-    }
+    },
   },
   modules: {
     // ここにモジュールを記述

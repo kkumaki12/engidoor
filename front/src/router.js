@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import store from './store.js';
 import Home from './components/layouts/Home.vue'
 import Users from './views/Users.vue'
 import QuestionCreate from './components/Questions/QuestionCreate.vue'
@@ -17,11 +18,32 @@ export default new Router({
   routes: [
     { path: '/', component: Home },
     { path: '/users', component: Users }, 
-    { path: '/question', component: QuestionCreate }, 
+    { path: '/question', component: QuestionCreate, beforeEnter(to, from, next) {
+      if (store.getters.token){
+        next();
+      } else {
+        next('/login');
+      }
+    }
+  }, 
     { path: '/question/show/:id', component: QuestionShow, name: 'QuestionShow' }, 
     { path: '/question/list', component: QuestionList }, 
-    { path: '/login', component: Login }, 
-    { path: '/register', component: Register },
+    { path: '/login', component: Login, beforeEnter(to, from, next) {
+      if (store.getters.token){
+        console.log('yes');
+        next('/');
+      } else {
+        console.log('no');
+        next();
+      }
+    } }, 
+    { path: '/register', component: Register, beforeEnter(to, from, next) {
+      if (store.getters.token){
+        next('/');
+      } else {
+        next();
+      }
+    } },
     { path: '/users/:id', component: UserShow, name: 'UserShow' },
     { path: 'ranking', component: UserRanking },
   ]
