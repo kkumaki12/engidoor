@@ -99,7 +99,7 @@
             </div>
 
             <div class="mt-2">
-              <router-link to="question/show/"
+              <router-link :to="{name: 'QuestionShow', params: {id: question.id}}"
                 class="
                   sm:text-sm
                   md:text-md
@@ -110,6 +110,7 @@
                 "
               >
                 {{ question.title }}
+                
               </router-link>
 
               <p class="mt-2 text-gray-600 text-sm md:text-md">

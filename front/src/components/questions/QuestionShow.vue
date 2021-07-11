@@ -16,6 +16,7 @@
         <section class="font-bold text-lg text-blue-900">
           <div class="w-16 h-16 rounded-full"></div>
           <div>{{ question.name }}さん</div>
+          <div>{{ this.$route.params }}</div>
           <div class="text-right mr-5">回答数</div>
         </section>
         <section class="text-sm font-thin text-orange-400"></section>
@@ -46,11 +47,12 @@ export default {
  
   data() {
     return {
+
       question: [],
     };
   },
   created() {
-    axios.get("/api/v1/questions/show/:id").then((response) => {
+    axios.get("/api/v1/questions/show/").then((response) => {
       this.questions = response.data;
       console.log(response.data);
       console.log("id");

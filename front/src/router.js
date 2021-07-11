@@ -18,12 +18,12 @@ export default new Router({
     { path: '/', component: Home },
     { path: '/users', component: Users }, 
     { path: '/question', component: QuestionCreate }, 
-    { path: '/question/show/:id', component: QuestionShow }, 
+    { path: '/question/show/:id', component: QuestionShow, name: 'QuestionShow' }, 
     { path: '/question/list', component: QuestionList }, 
     { path: '/login', component: Login }, 
     { path: '/register', component: Register },
     { path: '/users/:id', component: UserShow },
-    { path: '/ranking', component: UserRanking },
+    { path: 'ranking', component: UserRanking },
   ]
 });
 
