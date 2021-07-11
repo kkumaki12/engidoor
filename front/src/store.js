@@ -6,25 +6,35 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    questions: [],
+    token: null
   },
   getters: {
     // ここにゲッターを記述
   },
   mutations: {
-    fetchQuestions(state) {
-      state.questions = [];
-      axios.get('/api/v1/questions/list').then((response) => {
-        
-          state.questions.push(response.data.questions);
-        
-      }, (error) => {
-        console.log(error);
-      });
+    updateToken(state, token){
+    state.token = token;
     }
   },
   actions: {
-    // ここにアクションを記述
+    login({ commit }, authData) {
+      axios
+        .post("api/v1/login", {
+          user: {
+            email: authData.email,
+            password: authData.password,
+          },
+        })
+
+        .then((response) => {
+          commit('updateToken', response.data.token);
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+    }
   },
   modules: {
     // ここにモジュールを記述

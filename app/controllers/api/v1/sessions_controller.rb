@@ -1,9 +1,9 @@
 class Api::V1::SessionsController < ApiController
 
   def log_in
-    login_user = User.find(2)
+    login_user = User.find_by(email: params[:user][:email])
     if login_user != nil
-      render plain: login_user.token
+      render json: login_user
     else
       render plain: 'no auth'
     end
