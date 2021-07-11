@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   namespace 'api', {format: 'json'} do
     namespace 'v1' do
       get '/questions/list', to: 'questions#list'
-      post '/login', to: 'sessions#create'
+      post '/login', to: 'sessions#log_in'
       get '/ranking', to: 'users#ranking'
       resources :questions
       resources :users

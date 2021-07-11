@@ -38,11 +38,8 @@ class Api::V1::QuestionsController < ApiController
   end
 
   def show
-    @question = Question.find(params[:id])
-    render json: @question
-    @comment = Comment.new
-    @comments = Comment.all
-    impressionist(@question, nil, unique: [:ip_address])
+    question = Question.joins(:user).select("questions.*, users.*").find(params[:id])
+    render json: question
   end
 
   def destroy

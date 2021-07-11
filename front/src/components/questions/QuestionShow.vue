@@ -19,9 +19,9 @@
           <div>{{ this.$route.params }}</div>
           <div class="text-right mr-5">回答数</div>
         </section>
-        <section class="text-sm font-thin text-orange-400"></section>
-        <section class="text-3xl font-bold"></section>
-        <section class="font-normal text-md text-gray-700"></section>
+        <section class="text-sm font-thin text-orange-400">{{ question.created_at }}</section>
+        <section class="text-3xl font-bold">{{ question.title }}</section>
+        <section class="font-normal text-md text-gray-700">{{ question.content }}</section>
         <section class="font-normal text-md text-gray800">
           <ul></ul>
         </section>
@@ -52,8 +52,8 @@ export default {
     };
   },
   created() {
-    axios.get("/api/v1/questions/show/").then((response) => {
-      this.questions = response.data;
+    axios.get(`/api/v1/questions/${this.$route.params.id}`).then((response) => {
+      this.question = response.data;
       console.log(response.data);
       console.log("id");
     });

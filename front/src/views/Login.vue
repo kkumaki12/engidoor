@@ -68,6 +68,7 @@
 <!-- Vue側でメールアドレスを小文字にする -->
 <script>
 import axios from "axios";
+const qs = require("qs");
 export default {
   data() {
     return {
@@ -77,12 +78,15 @@ export default {
   },
   methods: {
     login() {
-      axios
+      const result = axios
         .post("api/v1/login", {
           user: {
             email: this.email,
             password: this.password,
           },
+           paramsSerializer: function (params) {
+              return qs.stringify(params, { arrayFormat: "brackets" });
+            },
         })
 
         .then((response) => {
@@ -91,7 +95,46 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+    
+            if (result.data.state) {
+          //結果を基にページ遷移
+          this.$router.push("/");
+        }
     },
   },
 };
 </script>
+
+    methods: {
+      async login() {
+        const self = this;
+        const result = await axios
+          .post("/api/login", {
+            account: {
+              email: this.email,
+              password: this.password,
+            },
+            paramsSerializer: function (params) {
+              return qs.stringify(params, { arrayFormat: "brackets" });
+            },
+          })
+          .catch((e) => {
+            console.error(e);
+          });
+
+        if (!result) {
+          this.message = "エラー";
+          return;
+        }
+        if (!result.data) {
+          this.message = "エラー";
+          return;
+        }
+
+        if (result.data.state) {
+          //結果を基にページ遷移
+          this.$router.push("/home");
+        }
+      },
+    },
+  };

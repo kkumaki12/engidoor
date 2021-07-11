@@ -99,7 +99,8 @@
             </div>
 
             <div class="mt-2">
-              <router-link :to="{name: 'QuestionShow', params: {id: question.id}}"
+              <router-link
+                :to="{ name: 'QuestionShow', params: { id: question.id } }"
                 class="
                   sm:text-sm
                   md:text-md
@@ -110,7 +111,6 @@
                 "
               >
                 {{ question.title }}
-                
               </router-link>
 
               <p class="mt-2 text-gray-600 text-sm md:text-md">
@@ -169,7 +169,10 @@
             </div>
 
             <!-- ユーザー情報 -->
+           <router-link
+                :to="{ name: 'UserShow', params: { id: question.user_id } }">
             <QuestionUser :question="question"></QuestionUser>
+           </router-link>
           </div>
         </div>
       </div>
@@ -185,7 +188,6 @@ export default {
     QuestionUser,
   },
   data() {
-    
     return {
       questions: [],
       user: [],

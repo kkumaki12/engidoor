@@ -22,7 +22,7 @@ export default new Router({
     { path: '/question/list', component: QuestionList }, 
     { path: '/login', component: Login }, 
     { path: '/register', component: Register },
-    { path: '/users/:id', component: UserShow },
+    { path: '/users/:id', component: UserShow, name: 'UserShow' },
     { path: 'ranking', component: UserRanking },
   ]
 });
