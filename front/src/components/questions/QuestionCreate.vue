@@ -116,6 +116,11 @@ export default {
       },
     };
   },
+  computed: {
+    token() {
+      return this.$store.getters.token;
+    }
+  },
   methods: {
     createQuestion() {
       axios
