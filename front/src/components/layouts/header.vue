@@ -45,20 +45,24 @@
       <nav
         class="md:ml-auto flex flex-wrap items-center text-base justify-center"
       >
-      <template v-if="isAuthenticated">
-        <router-link to="/question" class="mr-5 hover:text-gray-900">質問する</router-link>
-        <a class="mr-5 hover:text-gray-900">マイページ</a>
-        <a v-if="login" class="mr-5 hover:text-gray-900">ログアウト</a>
-      </template>
-      <template v-if="!isAuthenticated">
-        <router-link class="mr-5 hover:text-gray-900" to="/register"
-          >登録</router-link
-        >
-        <router-link class="mr-5 hover:text-gray-900" to="/login"
-          >ログイン</router-link
-        >
-      </template>
-        
+        <template v-if="isAuthenticated">
+          <router-link to="/question" class="mr-5 hover:text-gray-900"
+            >質問する</router-link
+          >
+          <router-link to="/users" class="mr-5 hover:text-gray-900"
+            >マイページ</router-link
+          >
+          <button @click='logout()' class="mr-5 hover:text-gray-900">ログアウト</button>
+        </template>
+        <template v-if="!isAuthenticated">
+          <router-link class="mr-5 hover:text-gray-900" to="/register"
+            >登録</router-link
+          >
+          <router-link class="mr-5 hover:text-gray-900" to="/login"
+            >ログイン</router-link
+          >
+          
+        </template>
       </nav>
       <button
         class="
@@ -98,8 +102,13 @@ export default {
   computed: {
     isAuthenticated() {
       return this.$store.getters.token != null;
+    },
+  },
+  methods: {
+    logout() {
+      return this.$store.dispatch('logout');
     }
   }
-}
+};
 </script>
 

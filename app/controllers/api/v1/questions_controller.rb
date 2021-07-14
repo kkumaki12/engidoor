@@ -22,7 +22,7 @@ class Api::V1::QuestionsController < ApiController
   end
 
   def list
-    questions = Question.joins(:user,:comments).select("questions.*, users.*,comments.*").page(params[:page]).per(7)
+    questions = Question.joins(:user,).select("questions.*,users.*").page(params[:page]).per(7)
     render json: questions
   end
 
@@ -48,6 +48,10 @@ class Api::V1::QuestionsController < ApiController
     redirect_to root_path
   end
 
+  def best
+    question = Question.joins(:best_answer).select('questions.*,best_answers.*')
+    render json: question
+  end
   private
 
   def question_params

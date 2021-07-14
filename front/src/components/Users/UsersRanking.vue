@@ -6,7 +6,7 @@
     <b>{{ users.indexOf(user)+1 }}位</b>
 
     {{ user.name }}さん
-    <div class="w-16 h-16 rounded-full">image</div>
+    <img src="../../assets/default.png" class="w-16 h-16 rounded-full">
   </li>
   </div>
 </div>

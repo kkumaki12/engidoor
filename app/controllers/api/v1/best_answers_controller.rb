@@ -7,4 +7,9 @@ class Api::V1::BestAnswersController < ApiController
     @best_answer.save
     redirect_to root_path
 end
+
+def show
+  best_answers = BestAnswer.joins(:question).select('best_answers.*,questions.*')
+  render json:best_answers
+end
 end

@@ -16,7 +16,7 @@ export default new Vuex.Store({
   mutations: {
     updateToken(state, token) {
       state.token = token;
-    }
+    },
   },
   actions: {
     login({ commit }, authData) {
@@ -29,8 +29,12 @@ export default new Vuex.Store({
         })
         .then((response) => {
           commit('updateToken', response.data.token);
-          router.push('/')
+          router.push('/');
         })
+    },
+    logout({ commit }) {
+      commit('updateToken', null);
+      router.push('/login');
     },
   },
   modules: {
