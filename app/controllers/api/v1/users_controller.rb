@@ -32,6 +32,13 @@ class Api::V1::UsersController < ApiController
     end
   end
 
+  def ranking 
+    join = User.joins({comments: :goods})
+    table = join.group(:id).order('count(users.id) desc').pluck(:id)
+    rank = User.find(table)
+    render json:rank
+  end
+
   private
 
   def user_params

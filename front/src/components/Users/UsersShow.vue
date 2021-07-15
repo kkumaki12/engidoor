@@ -206,7 +206,7 @@ export default {
   },
   created() {
 
-    axios.get('api/v1/users/${this.$route.params.id}')
+    axios.get(`api/v1/users/${this.$route.params.id}`)
     .then(response => {
       this.user = response.data;
       console.log(response.data);

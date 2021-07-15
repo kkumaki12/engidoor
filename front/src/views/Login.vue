@@ -67,7 +67,6 @@
 
 <!-- Vue側でメールアドレスを小文字にする -->
 <script>
-import axios from "axios";
 export default {
   data() {
     return {
@@ -77,20 +76,10 @@ export default {
   },
   methods: {
     login() {
-      axios
-        .post("api/v1/login", {
-          user: {
-            email: this.email,
-            password: this.password,
-          },
-        })
-
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      this.$store.dispatch("login", {
+        email: this.email,
+        password: this.password,
+      });
     },
   },
 };

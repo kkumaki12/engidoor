@@ -9,7 +9,7 @@ class Api::V1::QuestionsController < ApiController
   end
 
   def index
-    questions = Question.all
+    questions = Question.joins(:user).select("questions.*, users.*").all
     render json: questions
   end
 
@@ -22,9 +22,8 @@ class Api::V1::QuestionsController < ApiController
   end
 
   def list
-    qq = Question.search(params[:search]).page(params[:page]).per(7)
-    questions = qq.joins(:comments,:best_answer)
-    render json:questions
+    questions = Question.joins(:user,).select("questions.*,users.*").page(params[:page]).per(7)
+    render json: questions
   end
 
   def create
@@ -39,12 +38,8 @@ class Api::V1::QuestionsController < ApiController
   end
 
   def show
-    @question = Question.find(params[:id])
-    render json: @question
-    @comment = Comment.new
-    @comments = Comment.all
-    @user = User.new
-    impressionist(@question, nil, unique: [:ip_address])
+    question = Question.joins(:user).select("questions.*, users.*").find(params[:id])
+    render json: question
   end
 
   def destroy
@@ -53,6 +48,10 @@ class Api::V1::QuestionsController < ApiController
     redirect_to root_path
   end
 
+  def best
+    question = Question.joins(:best_answer).select('questions.*,best_answers.*')
+    render json: question
+  end
   private
 
   def question_params

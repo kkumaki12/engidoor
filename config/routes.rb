@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   post '/application_pages/guest_sign_in', to: 'application_pages#guest_sign_in'
 
+
   resources :users
   resources :questions do
     resources :comments, only: %i[create destroy]
@@ -22,8 +23,10 @@ Rails.application.routes.draw do
   end
   namespace 'api', {format: 'json'} do
     namespace 'v1' do
-      get '/list', to: 'questions#list'
-      post '/login', to: 'sessions#create'
+      get '/questions/list', to: 'questions#list'
+      post '/login', to: 'sessions#log_in'
+      get '/ranking', to: 'users#ranking'
+      get '/bestanswer', to: 'questions#best'
       resources :questions
       resources :users
     end

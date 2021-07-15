@@ -1,30 +1,37 @@
 <template>
   <div>
-    <!-- Unicons -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@iconscout/unicons@3.0.6/css/line.css"
-    />
 
     <!-- 質問カード -->
+
+    <div class="tabs flex">
+
+      <button class="text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none text-blue-500 border-b-2 font-medium border-blue-500" v-on:click="isActive = '1'">新着質問</button>
+
+      <button class="text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none text-blue-500 border-b-2 font-medium border-blue-500" v-on:click="isActive = '2'">解決済み質問</button>
+
+      <button class="text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none text-blue-500 border-b-2 font-medium border-blue-500" v-on:click="isActive = '3'" >何か</button>
+    </div>
+    <ul class="contents">
+        <li v-if="isActive === '1'">コンテンツ1コンテンツ1コンテンツ1コンテンツ1</li>
+        <li v-else-if="isActive === '2'">コンテンツ2コンテンツ2コンテンツ2コンテンツ2</li>
+        <li v-else-if="isActive === '3'">コンテンツ3コンテンツ3コンテンツ3コンテンツ3</li>
+      </ul>
     <div v-for="question in questions" :key="question.id">
-    <div
-      class="
-        bg-white
-        rounded-lg
-        shadow-sm
-        hover:shadow-lg
-        duration-500
-        px-2
-        sm:px-6
-        md:px-2
-        py-4
-        my-6
-      "
-    >
-     
-      <div class="grid grid-cols-12 gap-3">
-       
+      <div
+        class="
+          bg-white
+          rounded-lg
+          shadow-sm
+          hover:shadow-lg
+          duration-500
+          px-2
+          sm:px-6
+          md:px-2
+          py-4
+          my-6
+        "
+      >
+        <div class="grid grid-cols-12 gap-3">
           <!-- Meta Column -->
           <div class="col-span-0 sm:col-span-2 text-center hidden sm:block">
             <!-- 回答数 -->
@@ -42,7 +49,7 @@
               "
             >
               <div class="inline-block font-medium text-2xl text-white">
-             {{ question.comments }}
+                {{ question.comments }}
               </div>
               <div
                 class="
@@ -101,7 +108,8 @@
             </div>
 
             <div class="mt-2">
-              <div
+              <router-link
+                :to="{ name: 'QuestionShow', params: { id: question.id } }"
                 class="
                   sm:text-sm
                   md:text-md
@@ -112,7 +120,7 @@
                 "
               >
                 {{ question.title }}
-              </div>
+              </router-link>
 
               <p class="mt-2 text-gray-600 text-sm md:text-md">
                 {{ question.content }}
@@ -122,9 +130,9 @@
             <!-- Question Labels -->
             <div class="grid grid-cols-2 mt-4 my-auto">
               <!-- ベストアンサー決定済み表示  -->
-              <div  class="col-span-12 lg:col-span-8">
-                <div v-if="question.best_answer"
-                  
+              <div class="col-span-12 lg:col-span-8">
+                <div
+                  v-if="question.best_answer"
                   class="
                     inline-block
                     rounded-full
@@ -144,8 +152,8 @@
                 >
                   解決済
                 </div>
-                <div v-else
-                  
+                <div
+                  v-else
                   href="#"
                   class="
                     inline-block
@@ -170,42 +178,38 @@
             </div>
 
             <!-- ユーザー情報 -->
-            <div
-              class="col-none hidden mr-2 lg:block lg:col-start-9 lg:col-end-12"
+            <router-link
+              :to="{ name: 'UserShow', params: { id: question.user_id } }"
             >
-              <div class="flex items-center">
-                <div class="w-16 h-16">
-                 
-                    
-                  </div>
-                 
-                </div>
-                <div class="text-gray-600 font-bold text-sm hover:underline">
-                  
-                </div>
-              </div>
-            </div>
+              <QuestionUser :question="question"></QuestionUser>
+            </router-link>
           </div>
         </div>
       </div>
     </div>
-
+  </div>
 </template>
 
 <script>
 import axios from "axios";
-
+import QuestionUser from "./QuestionUser.vue";
 export default {
+  components: {
+    QuestionUser,
+  },
   data() {
     return {
       questions: [],
+      user: [],
+      isActive: '1'
     };
   },
   created() {
-    axios.get("/api/v1/list").then((response) => {
+    axios.get("api/v1/questions/list").then((response) => {
       this.questions = response.data;
       console.log(response.data);
     });
   },
+
 };
 </script>

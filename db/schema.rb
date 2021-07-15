@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_07_131305) do
+ActiveRecord::Schema.define(version: 2021_07_11_103556) do
 
   create_table "best_answers", charset: "utf8", force: :cascade do |t|
     t.bigint "question_id", null: false
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 2021_06_07_131305) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "impressions_count", default: 0
+    t.integer "impressions_count"
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
@@ -99,7 +99,9 @@ ActiveRecord::Schema.define(version: 2021_06_07_131305) do
     t.string "image"
     t.string "specialty"
     t.string "occupation"
+    t.string "token"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["token"], name: "index_users_on_token", unique: true
   end
 
   add_foreign_key "best_answers", "comments"
