@@ -1,12 +1,21 @@
 <template>
   <div>
-    <!-- Unicons -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@iconscout/unicons@3.0.6/css/line.css"
-    />
 
     <!-- 質問カード -->
+
+    <div class="tabs flex">
+
+      <button class="text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none text-blue-500 border-b-2 font-medium border-blue-500" v-on:click="isActive = '1'">新着質問</button>
+
+      <button class="text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none text-blue-500 border-b-2 font-medium border-blue-500" v-on:click="isActive = '2'">解決済み質問</button>
+
+      <button class="text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none text-blue-500 border-b-2 font-medium border-blue-500" v-on:click="isActive = '3'" >何か</button>
+    </div>
+    <ul class="contents">
+        <li v-if="isActive === '1'">コンテンツ1コンテンツ1コンテンツ1コンテンツ1</li>
+        <li v-else-if="isActive === '2'">コンテンツ2コンテンツ2コンテンツ2コンテンツ2</li>
+        <li v-else-if="isActive === '3'">コンテンツ3コンテンツ3コンテンツ3コンテンツ3</li>
+      </ul>
     <div v-for="question in questions" :key="question.id">
       <div
         class="
@@ -169,10 +178,11 @@
             </div>
 
             <!-- ユーザー情報 -->
-           <router-link
-                :to="{ name: 'UserShow', params: { id: question.user_id } }">
-            <QuestionUser :question="question"></QuestionUser>
-           </router-link>
+            <router-link
+              :to="{ name: 'UserShow', params: { id: question.user_id } }"
+            >
+              <QuestionUser :question="question"></QuestionUser>
+            </router-link>
           </div>
         </div>
       </div>
@@ -191,6 +201,7 @@ export default {
     return {
       questions: [],
       user: [],
+      isActive: '1'
     };
   },
   created() {
@@ -199,5 +210,6 @@ export default {
       console.log(response.data);
     });
   },
+
 };
 </script>

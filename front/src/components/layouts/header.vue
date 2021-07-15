@@ -40,7 +40,7 @@
       </a>
       <div class="mx-auto">
         <input />
-        <button>検索</button>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">検索</button>
       </div>
       <nav
         class="md:ml-auto flex flex-wrap items-center text-base justify-center"
