@@ -49,7 +49,7 @@
           <router-link to="/question" class="mr-5 hover:text-gray-900"
             >質問する</router-link
           >
-          <router-link to="/users" class="mr-5 hover:text-gray-900"
+          <router-link :to="{ name: 'UserShow', params: { id: this.$store.state.userId }}" class="mr-5 hover:text-gray-900"
             >マイページ</router-link
           >
           <button @click='logout()' class="mr-5 hover:text-gray-900">ログアウト</button>

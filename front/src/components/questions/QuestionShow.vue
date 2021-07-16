@@ -1,4 +1,5 @@
 <template>
+<div>
   <main class="w-full flex justify-center mt-24">
     <div
       class="
@@ -37,13 +38,17 @@
       </div>
     </div>
   </main>
+  <comment-form></comment-form>
+  </div>
 </template>
 
 <script>
 import axios from "axios";
+import CommentForm from '../Comments/CommentForm.vue';
 
 
 export default {
+  components: { CommentForm },
  
   data() {
     return {

@@ -8,14 +8,19 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    token: null
+    token: null,
+    userId: null
   },
   getters: {
-    token: state => state.token
+    token: state => state.token,
+    userId: state => state.id
   },
   mutations: {
     updateToken(state, token) {
       state.token = token;
+    },
+    updateUserId(state, userId) {
+      state.userId = userId;
     },
   },
   actions: {
@@ -28,12 +33,15 @@ export default new Vuex.Store({
           },
         })
         .then((response) => {
+          console.log(response);
           commit('updateToken', response.data.token);
+          commit('updateUserId', response.data.id);
           router.push('/');
         })
     },
     logout({ commit }) {
       commit('updateToken', null);
+      commit('updateUserId', null);
       router.push('/login');
     },
   },

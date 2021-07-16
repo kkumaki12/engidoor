@@ -13,6 +13,7 @@
           <div class="col-span-1">
             <!--<% if @user == current_user %>-->
             <button
+            v-if="this.$store.state.userId === user.id"
               class="
                 px-4
                 py-2
@@ -33,9 +34,8 @@
                 dark:focus:bg-gray-700
               "
             >
-              <!--<%= link_to "編集", edit_user_path(current_user) %>-->
+              編集
             </button>
-            <!--<% end %>-->
           </div>
         </div>
 

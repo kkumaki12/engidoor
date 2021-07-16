@@ -2,7 +2,6 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import store from './store.js';
 import Home from './components/layouts/Home.vue'
-import Users from './views/Users.vue'
 import QuestionCreate from './components/Questions/QuestionCreate.vue'
 import QuestionShow from './components/Questions/QuestionShow.vue'
 import QuestionList from './components/Questions/QuestionList.vue'
@@ -17,7 +16,6 @@ Vue.use(Router);
 export default new Router({
   routes: [
     { path: '/', component: Home },
-    { path: '/users', component: Users }, 
     { path: '/question', component: QuestionCreate, beforeEnter(to, from, next) {
       if (store.getters.token){
         next();
