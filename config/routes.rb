@@ -29,6 +29,11 @@ Rails.application.routes.draw do
       get '/bestanswer', to: 'questions#best'
       resources :questions
       resources :users
+      resources :comments do
+        resource :goods, only: %i[create destroy]
+        resource :best_answers, only: %i[create]
+      end
+      
     end
   end
 end
