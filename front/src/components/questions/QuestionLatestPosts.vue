@@ -107,7 +107,7 @@
               </router-link>
 
               <p class="mt-2 text-gray-600 text-sm md:text-md">
-                {{ question.content }}
+                {{ question.content.substring(0,50) }}
               </p>
             </div>
 

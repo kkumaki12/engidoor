@@ -2,7 +2,6 @@
 <div id="app">
   <div class="grid grid-cols-12 flex-row">
     <div class="col-span-10">
-      <h2>新着質問</h2>
   <QuestionList></QuestionList>
     </div>
     

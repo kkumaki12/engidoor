@@ -17,12 +17,12 @@ class Api::V1::QuestionsController < ApiController
     if logged_in?
       @question = Question.new
     else
-      redirect_to login_path
+      redirect_to login_pat
     end
   end
 
   def list
-    questions = Question.joins(:user).select("questions.*").page(params[:page]).per(7)
+    questions = Question.joins(:user).select("questions.*,users.name").page(params[:page]).per(7)
     render json: questions
   end
 
@@ -51,6 +51,8 @@ class Api::V1::QuestionsController < ApiController
     question = Question.joins(:best_answer).select('questions.*,best_answers.*')
     render json: question
   end
+
+
   private
 
   def question_params

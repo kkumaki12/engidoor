@@ -21,7 +21,8 @@ class Api::V1::CommentsController < ApiController
   end
 
   def show
-    comments = Comment.where(question_id: params[:id])
+    comments = Comment.where(question_id: params[:id]).joins(:user).select("comments.*, users.name")
+    
     render json: comments
     end
 

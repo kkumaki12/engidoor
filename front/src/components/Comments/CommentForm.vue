@@ -1,4 +1,5 @@
 <template>
+<div>
   <div class="w-full flex justify-center mt-24">
     <textarea
       v-model="content"
@@ -37,18 +38,45 @@
       投稿する
     </button>
   </div>
+  <div>
+    <div v-for="comment in comments" :key="comment.id">
+      <div class="w-16 h-16 rounded-full">
+        <img
+          src="../../assets/default.png"
+          class="rounded-full w-12 h-12"
+          alt="ユーザーアイコン"
+        />
+      </div>
+
+
+    <p>{{ comment.content }}</p>
+    <p>{{  comment.created_at }}</p>
+    <p>{{ comment.name }}さん</p>
+
+    </div>
+  </div>
+  </div>
 </template>
 
 <script>
 import axios from "axios";
 export default {
   props: ["question"],
+
   data: function () {
     return {
       content: "",
       question_id: "",
       user_id: this.$store.state.userId,
+      comments: []
     };
+  },
+    created() {
+    axios.get(`/api/v1/comments/${this.$route.params.id}`).then((response) => {
+      this.comments = response.data;
+      console.log(response.data);
+      console.log(this.comments);
+    });
   },
   methods: {
     createComment() {
@@ -60,10 +88,14 @@ export default {
         })
         .then((response) => {
           console.log(response);
+          axios.get(`/api/v1/comments/${this.$route.params.id}`).then((response) => {
+      this.comments = response.data;
+    });
         })
         .catch((error) => {
           console.log(error);
         });
+        this.content = '';
     },
   },
 };

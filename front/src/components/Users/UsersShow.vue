@@ -12,6 +12,8 @@
           </div>
           <div class="col-span-1">
             <!--<% if @user == current_user %>-->
+            <router-link
+                :to="{ name: 'UserEdit', params: { id: user.id } }">
             <button
             v-if="this.$store.state.userId === user.id"
               class="
@@ -36,6 +38,7 @@
             >
               編集
             </button>
+            </router-link>
           </div>
         </div>
 

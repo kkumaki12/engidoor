@@ -9,13 +9,14 @@
           py-4
           px-6
           block
-          hover:text-green-500
+          hover:text-green-900
           focus:outline-none
           text-green-500
           border-b-2
           font-medium
           border-green-500
           w-1/3
+          
         "
         v-on:click="isActive = '1'"
       >
@@ -28,13 +29,14 @@
           py-4
           px-6
           block
-          hover:text-green-500
+          hover:text-green-900
           focus:outline-none
           text-green-500
           border-b-2
           font-medium
           border-green-500
           w-1/3
+          
         "
         v-on:click="isActive = '2'"
       >
@@ -47,13 +49,14 @@
           py-4
           px-6
           block
-          hover:text-green-500
+          hover:text-green-900
           focus:outline-none
           text-green-500
           border-b-2
           font-medium
           border-green-500
           w-1/3
+          
         "
         v-on:click="isActive = '3'"
       >

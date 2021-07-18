@@ -9,6 +9,7 @@ import Login from './views/Login.vue'
 import Register from './views/Register.vue'
 import UserShow from './components/Users/UsersShow.vue'
 import UserRanking from './components/Users/UsersRanking.vue'
+import UserEdit from './components/Users/UsersEdit.vue'
 
 
 Vue.use(Router);
@@ -43,7 +44,9 @@ export default new Router({
       }
     } },
     { path: '/users/:id', component: UserShow, name: 'UserShow' },
-    { path: 'ranking', component: UserRanking },
+    { path: '/users/edit/:id', component: UserEdit, name: 'UserEdit' },
+    { path: 'ranking', component: UserRanking, },
+
   ]
 });
 
