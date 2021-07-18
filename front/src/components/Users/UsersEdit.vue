@@ -89,10 +89,11 @@
 <script>
 import axios from "axios";
 export default {
+  props: ["user"],
   
   data: function () {
     return {
-      user: [],
+
       name: this.user.name,
       occupation: "",
       content: "",
@@ -115,14 +116,7 @@ export default {
       ],
     };
   },
-    beforeCreated() {
-
-    axios.get(`/api/v1/users/${this.$route.params.id}`)
-    .then(response => {
-      this.user = response.data;
-      console.log(response.data);
-    });
-  },
+   
     methods: {
     updateUser() {
       axios

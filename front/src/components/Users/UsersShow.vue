@@ -1,5 +1,6 @@
 <template>
   <div class="container grid grid-cols-5">
+
     <div class="col-span-1 mt-56"></div>
 
     <!-- This is an example component -->
@@ -12,33 +13,34 @@
           </div>
           <div class="col-span-1">
             <!--<% if @user == current_user %>-->
-            <router-link
-                :to="{ name: 'UserEdit', params: { id: user.id } }">
-            <button
-            v-if="this.$store.state.userId === user.id"
-              class="
-                px-4
-                py-2
-                font-medium
-                tracking-wide
-                text-white
-                capitalize
-                transition-colors
-                duration-200
-                transform
-                bg-green-600
-                rounded-md
-                dark:bg-gray-800
-                hover:bg-green-500
-                dark:hover:bg-gray-700
-                focus:outline-none
-                focus:bg-blue-500
-                dark:focus:bg-gray-700
-              "
-            >
-              編集
-            </button>
+
+            <router-link :to="{ name: 'UserEdit', params: { id: user.id } }">
+              <button
+                v-if="this.$store.state.userId === user.id"
+                class="
+                  px-4
+                  py-2
+                  font-medium
+                  tracking-wide
+                  text-white
+                  capitalize
+                  transition-colors
+                  duration-200
+                  transform
+                  bg-green-600
+                  rounded-md
+                  dark:bg-gray-800
+                  hover:bg-green-500
+                  dark:hover:bg-gray-700
+                  focus:outline-none
+                  focus:bg-blue-500
+                  dark:focus:bg-gray-700
+                "
+              >
+                編集
+              </button>
             </router-link>
+            <div id="overlay"></div>
           </div>
         </div>
 
@@ -199,22 +201,24 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
+
+
 
 export default {
+
   data() {
-    return{
-      user: []
+    return {
+      user: [],
     };
   },
   created() {
-
-    axios.get(`api/v1/users/${this.$route.params.id}`)
-    .then(response => {
+    axios.get(`api/v1/users/${this.$route.params.id}`).then((response) => {
       this.user = response.data;
       console.log(response.data);
     });
-  }
-}
+  },
+};
 </script>
+
 

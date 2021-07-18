@@ -48,7 +48,7 @@ class Api::V1::QuestionsController < ApiController
   end
 
   def best
-    question = Question.joins(:best_answer).select('questions.*,best_answers.*')
+    question = Question.joins(:best_answer).select('questions.*,best_answers.*').find(params[:id])
     render json: question
   end
 

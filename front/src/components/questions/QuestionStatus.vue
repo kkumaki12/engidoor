@@ -1,7 +1,7 @@
 <template>
   <div class="col-span-12 lg:col-span-8">
                 <div
-                  v-if="question.best_answer"
+                  v-if="bestAnswer"
                   class="
                     inline-block
                     rounded-full
@@ -44,19 +44,23 @@
                   回答受付中
                 </div>
               </div>
-            </div>
+            
 </template>
 
 <script>
 import axios from "axios";
 export default {
+  props: ["question"],
   data() {
     return {
-      bestAnswer
+      bestAnswer: ''
     };
   },
   created() {
-  axios.get('/bestanswer')
-
+  axios.get(`/api/v1/bestanswer/${this.question.id}`).then((response) => {
+      this.bestAnswer = response.data;
+      console.log(response.data);
+    });
+  }
 }
 </script>

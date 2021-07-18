@@ -114,53 +114,7 @@
             <!-- Question Labels -->
             <div class="grid grid-cols-2 mt-4 my-auto">
               <!-- ベストアンサー決定済み表示  -->
-              <div class="col-span-12 lg:col-span-8">
-                <div
-                  v-if="question.best_answer"
-                  class="
-                    inline-block
-                    rounded-full
-                    text-white
-                    bg-red-400
-                    duration-300
-                    text-xs
-                    font-bold
-                    mr-1
-                    md:mr-2
-                    mb-2
-                    px-2
-                    md:px-4
-                    py-1
-                    opacity-90
-                  "
-                >
-                  解決済
-                </div>
-                <div
-                  v-else
-                  href="#"
-                  class="
-                    inline-block
-                    rounded-full
-                    text-white
-                    bg-blue-400
-                    duration-300
-                    text-xs
-                    font-bold
-                    mr-1
-                    md:mr-2
-                    mb-2
-                    px-2
-                    md:px-4
-                    py-1
-                    opacity-90
-                  "
-                >
-                  回答受付中
-                </div>
-              </div>
-            </div>
-
+            <question-status :question="question"></question-status>
             <!-- ユーザー情報 -->
             <router-link
               :to="{ name: 'UserShow', params: { id: question.user_id } }"
@@ -172,14 +126,16 @@
       </div>
     </div>
     </div>
+</div>
 </template>
 
 <script>
 import QuestionUser from "./QuestionUser.vue";
+import QuestionStatus from "./QuestionStatus.vue";
 export default {
   props: ["questions"],
   components: {
-    QuestionUser,
+    QuestionUser,QuestionStatus
   },
 }
 </script>
