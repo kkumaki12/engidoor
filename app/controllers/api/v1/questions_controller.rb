@@ -27,13 +27,12 @@ class Api::V1::QuestionsController < ApiController
   end
 
   def create
-    question = current_user.questions.build(question_params)
-    tag_list = params[:question][:name].split(/[[:blank:]]+/)
-    if question.save
-      question.save_tags(tag_list)
-      render json: { status: 'SUCCESS', data: post }
+    question = Question.create(question_params)
+    puts(question_params)
+    if question.save!
+      render json: question
     else
-      render json: { status: 'ERROR', data: post.errors }
+      render json: { status: 'ERROR', data: question.errors }
     end
   end
 
@@ -55,6 +54,6 @@ class Api::V1::QuestionsController < ApiController
   private
 
   def question_params
-    params.require(:question).permit(:title, :content, tag: [:name])
+    params.permit(:title, :content,:tag,:user_id)
   end
 end

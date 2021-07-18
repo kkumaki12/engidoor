@@ -12,7 +12,7 @@
               タイトル
             </label>
             <input
-              v-model="postTitle"
+              v-model="title"
               type="text"
               class="
                 bg-gray-100
@@ -37,7 +37,7 @@
               タグ
             </label>
             <input
-              v-model="postTag"
+              v-model="tag"
               placeholder="複数タグ付けする場合はスペースを開けてください"
               class="
                 bg-gray-100
@@ -63,7 +63,7 @@
               内容
             </label>
             <textarea
-              v-model="postContent"
+              v-model="content"
               class="
                 bg-gray-100
                 p-1
@@ -109,22 +109,24 @@ import axios from "axios";
 export default {
   data: function () {
     return {
-      question: {
-        postTitle: "",
-        postTag: "",
-        postContent: "",
-      },
+      title: "",
+      tag: "",
+      content: "",
     };
   },
   computed: {
     token() {
       return this.$store.getters.token;
-    }
+    },
   },
   methods: {
     createQuestion() {
       axios
-        .post("/api/v1/questions", this.question)
+        .post("/api/v1/questions", {
+          title: this.title,
+          content: this.content,
+          user_id: this.$store.state.userId
+        })
         .then((response) => {
           console.log(response);
         })

@@ -1,9 +1,9 @@
 class Api::V1::CommentsController < ApiController
+  def current_user
+    @current_user ||= User.find_by(id: session[:user_id])
+  end
 
   def index
-    @comments = Comment.all
-    render json: @comments
-    @good = Good.new
   end
 
   def new
@@ -11,23 +11,23 @@ class Api::V1::CommentsController < ApiController
   end
 
   def create
-
-    if logged_in?
-    @comment = current_user.comments.create(comment_params)
-    if @comment.save!
-      redirect_back(fallback_location: root_path)
+    comment = Comment.create(comment_params)
+    puts(comment_params)
+    if comment.save!
+      render json: comment
     else
-      redirect_to root_path
+      render json: { status: "ERROR", data: comment.errors }
     end
-  else
-    redirect_to login_path
   end
-  end
+
+  def show
+    comments = Comment.where(question_id: params[:id])
+    render json: comments
+    end
 
   private
 
   def comment_params
-    params.require(:comment).permit(:content, :question_id)
+    params.permit(:content, :question_id, :user_id)
   end
 end
-

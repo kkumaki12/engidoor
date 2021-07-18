@@ -1,7 +1,7 @@
 <template>
   <div class="w-full flex justify-center mt-24">
     <textarea
-      v-model="postComment"
+      v-model="content"
       type="text"
       rows="3"
       class="
@@ -42,15 +42,22 @@
 <script>
 import axios from "axios";
 export default {
+  props: ["question"],
   data: function () {
     return {
-      postComment: "",
+      content: "",
+      question_id: "",
+      user_id: this.$store.state.userId,
     };
   },
   methods: {
     createComment() {
       axios
-        .post("/api/v1/comments", this.comment)
+        .post("/api/v1/comments", {
+          content: this.content,
+          question_id: 36,
+          user_id: this.$store.state.userId,
+        })
         .then((response) => {
           console.log(response);
         })
