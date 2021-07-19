@@ -60,7 +60,7 @@
         "
         v-on:click="isActive = '3'"
       >
-        何か
+      未解決
       </button>
     </div>
     <ul class="contents">

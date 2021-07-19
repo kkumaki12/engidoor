@@ -1,4 +1,4 @@
-<template>
+<template v-if="user">
   <div class="w-full max-w-xl container mt-24 mx-auto">
     <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
       <label for="image">画像</label>
@@ -89,14 +89,14 @@
 <script>
 import axios from "axios";
 export default {
-  props: ["user"],
+  props: {
+    user: Object
+  },
   
   data: function () {
     return {
-
       name: this.user.name,
       occupation: "",
-      content: "",
       specialty: "",
       locations: [
         "選択して下さい",
@@ -120,15 +120,18 @@ export default {
     methods: {
     updateUser() {
       axios
-        .post("/api/v1/questions", {
-          title: this.title,
-          content: this.content,
-          user_id: this.$store.state.userId
+        .put(`/api/v1/users/${this.$route.params.id}`, {
+          name: this.name,
+          occupation: this.occupation,
+          user_id: this.$store.state.userId,
+          specialty: this.specialty
         })
         .then((response) => {
+          alert("更新しました");
           console.log(response);
         })
         .catch((error) => {
+          alert("更新に失敗しました");
           console.log(error);
         });
     },

@@ -44,7 +44,7 @@ export default new Router({
       }
     } },
     { path: '/users/:id', component: UserShow, name: 'UserShow' },
-    { path: '/users/edit/:id', component: UserEdit, name: 'UserEdit' },
+    { path: '/users/edit/:id', component: UserEdit, name: 'UserEdit'},
     { path: 'ranking', component: UserRanking, },
 
   ]
