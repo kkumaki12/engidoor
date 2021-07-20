@@ -43,11 +43,7 @@
         "
       />
       <label for="UserSpecialty">得意分野</label>
-      <select v-model="specialty">
-        <option
-          v-for="location in locations"
-          :key="location"
-          class="
+      <select v-model="specialty" class="
             'shadow
             appearance-none
             border
@@ -60,8 +56,11 @@
             leading-tight
             focus:outline-none
             focus:shadow-outline'
-          "
-        >{{ location }}</option>
+          ">
+        <option
+          v-for="specialty in specialtys"
+          :key="specialty" 
+        >{{ specialty }}</option>
       </select>
 
       <button
@@ -98,7 +97,7 @@ export default {
       name: this.user.name,
       occupation: "",
       specialty: "",
-      locations: [
+      specialtys: [
         "選択して下さい",
         "材料・素材",
         "金型",
@@ -129,11 +128,14 @@ export default {
         .then((response) => {
           alert("更新しました");
           console.log(response);
+          this.$router.push(`/users/${this.$route.params.id}`);
         })
         .catch((error) => {
           alert("更新に失敗しました");
           console.log(error);
+          this.$router.push(`/users/${this.$route.params.id}`);
         });
+
     },
   },
 };

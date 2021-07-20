@@ -1,4 +1,5 @@
 <template>
+<div>
   <div class="container grid grid-cols-5">
 
     <div class="col-span-1 mt-56"></div>
@@ -198,14 +199,18 @@
       </div>
     </div>
   </div>
+    <user-tab :user="user"></user-tab>
+  </div>
 </template>
 
 <script>
 import axios from "axios";
+import UserTab from "./UserTab.vue"
 
 
 
 export default {
+  components: { UserTab },
 
   data() {
     return {

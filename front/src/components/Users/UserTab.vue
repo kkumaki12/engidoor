@@ -1,6 +1,5 @@
-<template>
+  <template>
   <div>
-    <!-- 質問カード -->
 
     <div class="tabs flex">
       <button
@@ -64,34 +63,23 @@
       </button>
     </div>
     <ul class="contents">
-      <li v-if="isActive === '1'"><question-latest-posts :questions="questions"></question-latest-posts></li>
+      <li v-if="isActive === '1'">s</li>
       <li v-else-if="isActive === '2'">コンテンツ2</li>
       <li v-else-if="isActive === '3'">コンテンツ3</li>
     </ul>
 
   </div>
-</template>
-
-<script>
-import axios from "axios";
-import QuestionLatestPosts from "./QuestionLatestPosts.vue";
-export default {
-  components: {
-    QuestionLatestPosts,
-  },
-  data() {
+ 
+  </template>
+  
+  <script>
+  export default {
+     data() {
     return {
-      questions: [],
       user: [],
-      isActive: "1",
+      isActive: '1',
     };
   },
-  created() {
-    axios.get("api/v1/questions/list").then((response) => {
-      this.questions = response.data;
-      console.log(response.data);
-      console.log(new Date());
-    });
-  },
-};
-</script>
+  
+  }
+  </script>

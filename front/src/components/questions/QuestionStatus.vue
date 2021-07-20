@@ -1,5 +1,6 @@
 <template>
-  <div class="col-span-12 lg:col-span-8">
+<!-- v-if="craeted" -->
+  <div class="col-span-12 lg:col-span-8" >
                 <div
                   v-if="bestAnswer"
                   class="
@@ -53,7 +54,8 @@ export default {
   props: ["question"],
   data() {
     return {
-      bestAnswer: ''
+      bestAnswer: '',
+      
     };
   },
   created() {
