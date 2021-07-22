@@ -37,8 +37,8 @@ class Api::V1::QuestionsController < ApiController
   end
 
   def show
-    question = Question.joins(:user).select("questions.*, users.*").find(params[:id])
-    render json: question
+    qq=Question.find_by(params[:id])
+    render json: qq
   end
 
   def destroy
@@ -52,6 +52,10 @@ class Api::V1::QuestionsController < ApiController
     render json: question
   end
 
+  def comments_count
+    comments_count = Question.find_by(params[:id]).joins(:comments).select("comment.id")
+    render json:comments_count
+  end
 
   private
 

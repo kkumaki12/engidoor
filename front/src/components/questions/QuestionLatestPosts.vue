@@ -19,36 +19,7 @@
           <!-- Meta Column -->
           <div class="col-span-0 sm:col-span-2 text-center hidden sm:block">
             <!-- 回答数 -->
-            <a
-              href="#"
-              class="
-                grid grid-rows-2
-                mx-auto
-                mb-3
-                py-1
-                w-4/5
-                2lg:w-3/5
-                rounded-md
-                bg-green-400
-              "
-            >
-              <div class="inline-block font-medium text-2xl text-white">
-                {{ question.comments }}
-              </div>
-              <div
-                class="
-                  inline-block
-                  font-medium
-                  text-white
-                  mx-1
-                  text-sm
-                  lg:text-md
-                "
-              >
-                回答
-              </div>
-            </a>
-
+            <question-comments-count :question="question.id"></question-comments-count>
             <!-- 閲覧数 -->
             <div class="grid my-3">
               <span class="inline-block font-bold text-xs">
@@ -132,10 +103,11 @@
 <script>
 import QuestionUser from "./QuestionUser.vue";
 import QuestionStatus from "./QuestionStatus.vue";
+import QuestionCommentsCount from "./QuestionCommentsCount.vue";
 export default {
   props: ["questions"],
   components: {
-    QuestionUser,QuestionStatus
+    QuestionUser,QuestionStatus,QuestionCommentsCount
   },
   methods: {
    timeSince: function(date) {//date:UTC
