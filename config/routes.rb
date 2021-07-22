@@ -30,7 +30,7 @@ Rails.application.routes.draw do
 
      
       resources :users do
-        resource :comments, only: %i[index]
+        resources :questions
       end
       resources :comments do
         resource :goods, only: %i[create destroy]

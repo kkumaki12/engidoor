@@ -199,18 +199,19 @@
       </div>
     </div>
   </div>
-    <user-tab :user="user"></user-tab>
+    <users-tab :user="user"></users-tab>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import UserTab from "./UserTab.vue"
+import UsersTab from "./UsersTab.vue"
+
 
 
 
 export default {
-  components: { UserTab },
+  components: { UsersTab },
 
   data() {
     return {

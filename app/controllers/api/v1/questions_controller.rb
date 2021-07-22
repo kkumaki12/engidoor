@@ -9,7 +9,7 @@ class Api::V1::QuestionsController < ApiController
   end
 
   def index
-    questions = Question.joins(:user).select("questions.*, users.*").all
+    questions = Question.joins(:user).where(user_id: params[:user_id])
     render json: questions
   end
 

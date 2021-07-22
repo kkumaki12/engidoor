@@ -17,7 +17,7 @@
           w-1/3
           
         "
-        v-on:click="isActive = '1'"
+        v-on:click="isActives = '1'"
       >
         新着質問
       </button>
@@ -37,7 +37,7 @@
           w-1/3
           
         "
-        v-on:click="isActive = '2'"
+        v-on:click="isActives = '2'"
       >
         解決済み質問
       </button>
@@ -57,29 +57,30 @@
           w-1/3
           
         "
-        v-on:click="isActive = '3'"
+        v-on:click="isActives = '3'"
       >
       未解決
       </button>
     </div>
     <ul class="contents">
-      <li v-if="isActive === '1'">s</li>
-      <li v-else-if="isActive === '2'">コンテンツ2</li>
-      <li v-else-if="isActive === '3'">コンテンツ3</li>
+      <li v-if="isActives === '1'"><users-questions v-on:questions="$event"></users-questions></li>
+      <li v-else-if="isActives === '2'">コンテンツ2</li>
+      <li v-else-if="isActives === '3'">コンテンツ3</li>
     </ul>
 
   </div>
  
   </template>
-  
-  <script>
-  export default {
-     data() {
+
+<script>
+import UsersQuestions from "./UsersQuestions.vue";
+export default {
+  components: { UsersQuestions },
+  data() {
     return {
-      user: [],
-      isActive: '1',
+      questions: [],
+      isActives: '1'
     };
   },
-  
-  }
-  </script>
+}
+</script>

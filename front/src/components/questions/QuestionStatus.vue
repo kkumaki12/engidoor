@@ -62,7 +62,10 @@ export default {
   axios.get(`/api/v1/bestanswer/${this.question.id}`).then((response) => {
       this.bestAnswer = response.data;
       console.log(response.data);
-    });
+    }).catch((error) => {
+          console.log(error);
+        });
+    
   }
 }
 </script>
