@@ -23,7 +23,7 @@
             <!-- 閲覧数 -->
             <div class="grid my-3">
               <span class="inline-block font-bold text-xs">
-                {{ question.impressions_count }}Views
+                {{ questionViewsCount(question.impressions_count) }}     Views
               </span>
             </div>
           </div>
@@ -49,7 +49,7 @@
                   <div class="inline-block">
                     <i class="uil uil-clock mr-1"></i>
                     <span class="text-sm font-light">
-                      {{ timeSince(question.created_at) }}前
+                      {{ question.created_at }}前
                     </span>
                   </div>
                 </div>
@@ -109,38 +109,21 @@ export default {
   components: {
     QuestionUser,QuestionStatus,QuestionCommentsCount
   },
+  data: function () {
+    return { 
+    count: ''
+  }
+  },
   methods: {
-   timeSince: function(date) {//date:UTC
-  const aa = date
-  console.log(aa);
-  console.log(date);
-  console.log(new Date());
-  var seconds = Math.floor((new Date() - aa) / 1000);
-  console.log(seconds);
-
-  var interval = seconds / 31536000;
-
-  if (interval > 1) {
-    return Math.floor(interval) + " years";
-  }
-  interval = seconds / 2592000;
-  if (interval > 1) {
-    return Math.floor(interval) + " months";
-  }
-  interval = seconds / 86400;
-  if (interval > 1) {
-    return Math.floor(interval) + " days";
-  }
-  interval = seconds / 3600;
-  if (interval > 1) {
-    return Math.floor(interval) + " hours";
-  }
-  interval = seconds / 60;
-  if (interval > 1) {
-    return Math.floor(interval) + " minutes";
-  }
-  return Math.floor(seconds) + " seconds";
-},
+   questionViewsCount: function(view){
+     let count;
+     if(view > 0){
+       count = view;
+     }else{
+       count = 0;
+     }
+     return count;
+   }
 
   }
 }
