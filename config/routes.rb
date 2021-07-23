@@ -26,9 +26,19 @@ Rails.application.routes.draw do
       get '/questions/list', to: 'questions#list'
       post '/login', to: 'sessions#log_in'
       get '/ranking', to: 'users#ranking'
-      get '/bestanswer', to: 'questions#best'
-      resources :questions
-      resources :users
+      get '/bestanswer/:id', to: 'questions#best'
+      get '/comments_count/:id', to: 'comments#comments_count'
+      get '/questions/search/:search', to: 'questions#search'
+
+     resources :questions
+      resources :users do
+        resources :questions
+      end
+      resources :comments do
+        resource :goods, only: %i[create destroy]
+        resource :best_answers, only: %i[create]
+      end
+      
     end
   end
 end

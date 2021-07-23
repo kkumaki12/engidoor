@@ -9,9 +9,9 @@ class Api::V1::UsersController < ApiController
   end
 
   def update
-    @user = User.find(params[:id])
-    @user.update(user_params)
-    render json: @user
+    user = User.find(params[:id])
+    user.update(user_params)
+    render json: user
   end
 
 
@@ -56,8 +56,12 @@ class Api::V1::UsersController < ApiController
     @user = User.find(params[:id])
     redirect_to(root_url) unless current_user == @user
   end
-end
 
+  def current_user
+    user = User.find_by(params[:token])
+    
+end
+end
 
 
 

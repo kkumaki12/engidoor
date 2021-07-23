@@ -39,8 +39,21 @@
         <router-link to="/" class="ml-3 text-xl">ENGIDOOR</router-link>
       </a>
       <div class="mx-auto">
-        <input />
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">検索</button>
+        <input type="text" v-model="keyword" class="py-2 px-3" />
+        <button
+          @click="search()"
+          class="
+            bg-blue-500
+            hover:bg-blue-700
+            text-white
+            font-bold
+            py-2
+            px-4
+            rounded
+          "
+        >
+          検索
+        </button>
       </div>
       <nav
         class="md:ml-auto flex flex-wrap items-center text-base justify-center"
@@ -49,10 +62,14 @@
           <router-link to="/question" class="mr-5 hover:text-gray-900"
             >質問する</router-link
           >
-          <router-link to="/users" class="mr-5 hover:text-gray-900"
+          <router-link
+            :to="{ name: 'UserShow', params: { id: this.$store.state.userId } }"
+            class="mr-5 hover:text-gray-900"
             >マイページ</router-link
           >
-          <button @click='logout()' class="mr-5 hover:text-gray-900">ログアウト</button>
+          <button @click="logout()" class="mr-5 hover:text-gray-900">
+            ログアウト
+          </button>
         </template>
         <template v-if="!isAuthenticated">
           <router-link class="mr-5 hover:text-gray-900" to="/register"
@@ -61,7 +78,6 @@
           <router-link class="mr-5 hover:text-gray-900" to="/login"
             >ログイン</router-link
           >
-          
         </template>
       </nav>
       <button
@@ -99,6 +115,11 @@
 
 <script>
 export default {
+  data: function () {
+    return {
+      keyword: "",
+    };
+  },
   computed: {
     isAuthenticated() {
       return this.$store.getters.token != null;
@@ -106,9 +127,14 @@ export default {
   },
   methods: {
     logout() {
-      return this.$store.dispatch('logout');
-    }
-  }
+      return this.$store.dispatch("logout");
+    },
+    search() {
+      return this.$store.dispatch("search", {
+        searchWord: this.keyword,
+      });
+    },
+  },
 };
 </script>
 

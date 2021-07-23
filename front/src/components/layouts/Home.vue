@@ -1,8 +1,8 @@
 <template>
 <div id="app">
   <div class="grid grid-cols-12 flex-row">
-    <div class="col-span-10">
-      <h2>新着質問</h2>
+    <div class="col-span-1"></div>
+    <div class="col-span-9">
   <QuestionList></QuestionList>
     </div>
     

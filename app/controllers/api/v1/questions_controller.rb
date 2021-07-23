@@ -9,7 +9,7 @@ class Api::V1::QuestionsController < ApiController
   end
 
   def index
-    questions = Question.joins(:user).select("questions.*, users.*").all
+    questions = Question.all
     render json: questions
   end
 
@@ -17,28 +17,27 @@ class Api::V1::QuestionsController < ApiController
     if logged_in?
       @question = Question.new
     else
-      redirect_to login_path
+      redirect_to login_pat
     end
   end
 
   def list
-    questions = Question.joins(:user,).select("questions.*,users.*").page(params[:page]).per(7)
+    questions = Question.joins(:user).select("questions.*,users.name").page(params[:page]).per(7)
     render json: questions
   end
 
   def create
-    question = current_user.questions.build(question_params)
-    tag_list = params[:question][:name].split(/[[:blank:]]+/)
-    if question.save
-      question.save_tags(tag_list)
-      render json: { status: 'SUCCESS', data: post }
+    question = Question.create(question_params)
+    puts(question_params)
+    if question.save!
+      render json: question
     else
-      render json: { status: 'ERROR', data: post.errors }
+      render json: { status: 'ERROR', data: question.errors }
     end
   end
 
   def show
-    question = Question.joins(:user).select("questions.*, users.*").find(params[:id])
+    question=Question.eager_load(:user).find_by(params[:id])
     render json: question
   end
 
@@ -49,12 +48,20 @@ class Api::V1::QuestionsController < ApiController
   end
 
   def best
-    question = Question.joins(:best_answer).select('questions.*,best_answers.*')
+    question = Question.joins(:best_answer).select('questions.*,best_answers.*').find(params[:id])
     render json: question
   end
+
+  def search
+      questions = Question.search(params[:search]).page(params[:page]).per(7)
+      render json:questions
+  end
+
+
+
   private
 
   def question_params
-    params.require(:question).permit(:title, :content, tag: [:name])
+    params.permit(:title, :content,:tag,:user_id)
   end
 end

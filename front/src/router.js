@@ -2,7 +2,6 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import store from './store.js';
 import Home from './components/layouts/Home.vue'
-import Users from './views/Users.vue'
 import QuestionCreate from './components/Questions/QuestionCreate.vue'
 import QuestionShow from './components/Questions/QuestionShow.vue'
 import QuestionList from './components/Questions/QuestionList.vue'
@@ -10,6 +9,8 @@ import Login from './views/Login.vue'
 import Register from './views/Register.vue'
 import UserShow from './components/Users/UsersShow.vue'
 import UserRanking from './components/Users/UsersRanking.vue'
+import UserEdit from './components/Users/UsersEdit.vue'
+import QuestionSearchResult from './components/Questions/QuestionSearchResult.vue'
 
 
 Vue.use(Router);
@@ -17,7 +18,6 @@ Vue.use(Router);
 export default new Router({
   routes: [
     { path: '/', component: Home },
-    { path: '/users', component: Users }, 
     { path: '/question', component: QuestionCreate, beforeEnter(to, from, next) {
       if (store.getters.token){
         next();
@@ -45,7 +45,10 @@ export default new Router({
       }
     } },
     { path: '/users/:id', component: UserShow, name: 'UserShow' },
-    { path: 'ranking', component: UserRanking },
+    { path: '/users/edit/:id', component: UserEdit, name: 'UserEdit'},
+    { path: 'ranking', component: UserRanking, },
+    { path: '/question/search/:params', component: QuestionSearchResult, name: 'QuestionSearchResult' }, 
+
   ]
 });
 
