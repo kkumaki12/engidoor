@@ -1,17 +1,17 @@
 
 
- import Vue from 'vue/dist/vue.esm'
- import App from '../question.vue'
+ //import Vue from 'vue/dist/vue.esm'
+ //import App from '../question.vue'
 
- document.addEventListener('DOMContentLoaded', () => {
-   const app = new Vue({
-     el: '#question',
-     data: {
-       message: "Can you say hello?"
-     },
-     components: { App }
-   })
- })
+ //document.addEventListener('DOMContentLoaded', () => {
+  // const app = new Vue({
+    // el: '#question',
+     //data: {
+       //message: "Can you say hello?"
+     //},
+     //components: { App }
+   //})
+ //})
 //
 //
 //
