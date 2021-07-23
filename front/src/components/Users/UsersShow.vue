@@ -1,8 +1,10 @@
 <template>
 <div>
-  <div class="container grid grid-cols-5">
-
-    <div class="col-span-1 mt-56"></div>
+  <div class="container mx-auto grid grid-cols-5">
+<div class="col-span-1 mt-56">
+            <img
+              src="../../assets/default.png" class="rounded-full">
+</div>
 
     <!-- This is an example component -->
     <div class="min-h-screen flex items-center justify-center px-4 col-span-4">

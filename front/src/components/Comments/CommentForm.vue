@@ -83,7 +83,7 @@ export default {
       axios
         .post("/api/v1/comments", {
           content: this.content,
-          question_id: 36,
+          question_id: this.question,
           user_id: this.$store.state.userId,
         })
         .then((response) => {
@@ -94,6 +94,7 @@ export default {
         })
         .catch((error) => {
           console.log(error);
+          alert("コメントの投稿に失敗しました");
         });
         this.content = '';
     },

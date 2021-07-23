@@ -32,7 +32,6 @@ export default {
     axios.get(`/api/v1/comments/${this.$route.params.id}`).then((response) => {
       this.comments = response.data;
       console.log(response.data);
-      console.log(this.comments);
     });
   },
 };

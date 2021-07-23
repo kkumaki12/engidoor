@@ -79,7 +79,7 @@ export default {
   components: {
     QuestionLatestPosts,
   },
-  data() {
+  data: function () {
     return {
       questions: [],
       user: [],

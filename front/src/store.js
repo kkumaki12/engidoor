@@ -9,11 +9,13 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     token: null,
-    userId: null
+    userId: null,
+    searchWord: null
   },
   getters: {
     token: state => state.token,
-    userId: state => state.id
+    userId: state => state.id,
+    searchWord: state => state.keyword
   },
   mutations: {
     updateToken(state, token) {
@@ -22,6 +24,9 @@ export default new Vuex.Store({
     updateUserId(state, userId) {
       state.userId = userId;
     },
+    updateSearchWord(state, searchword) {
+      state.searchWord = searchword;
+    }
   },
   actions: {
     login({ commit }, authData) {
@@ -44,6 +49,12 @@ export default new Vuex.Store({
       commit('updateUserId', null);
       router.push('/login');
     },
+    search({ commit }, searchWord) {
+      console.log(searchWord);
+      commit('updateSearchWord', searchWord.searchWord);
+      this.keyword= '';
+      router.push(`/question/search/${searchWord.searchWord}`)
+    }
   },
   modules: {
     // ここにモジュールを記述

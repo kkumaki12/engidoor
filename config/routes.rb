@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       get '/ranking', to: 'users#ranking'
       get '/bestanswer/:id', to: 'questions#best'
       get '/comments_count/:id', to: 'comments#comments_count'
+      get '/questions/search/:search', to: 'questions#search'
 
      resources :questions
       resources :users do

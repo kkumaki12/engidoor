@@ -10,6 +10,7 @@ import Register from './views/Register.vue'
 import UserShow from './components/Users/UsersShow.vue'
 import UserRanking from './components/Users/UsersRanking.vue'
 import UserEdit from './components/Users/UsersEdit.vue'
+import QuestionSearchResult from './components/Questions/QuestionSearchResult.vue'
 
 
 Vue.use(Router);
@@ -46,6 +47,7 @@ export default new Router({
     { path: '/users/:id', component: UserShow, name: 'UserShow' },
     { path: '/users/edit/:id', component: UserEdit, name: 'UserEdit'},
     { path: 'ranking', component: UserRanking, },
+    { path: '/question/search/:params', component: QuestionSearchResult, name: 'QuestionSearchResult' }, 
 
   ]
 });

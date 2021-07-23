@@ -52,7 +52,7 @@
 import axios from "axios";
 export default {
   props: ["question"],
-  data() {
+  data: function () {
     return {
       bestAnswer: '',
       

@@ -9,7 +9,7 @@ class Api::V1::QuestionsController < ApiController
   end
 
   def index
-    questions = Question.joins(:user).where(user_id: params[:user_id])
+    questions = Question.all
     render json: questions
   end
 
@@ -37,8 +37,8 @@ class Api::V1::QuestionsController < ApiController
   end
 
   def show
-    qq=Question.find_by(params[:id])
-    render json: qq
+    question=Question.eager_load(:user).find_by(params[:id])
+    render json: question
   end
 
   def destroy
@@ -52,10 +52,12 @@ class Api::V1::QuestionsController < ApiController
     render json: question
   end
 
-  def comments_count
-    comments_count = Question.find_by(params[:id]).joins(:comments).select("comment.id")
-    render json:comments_count
+  def search
+      questions = Question.search(params[:search]).page(params[:page]).per(7)
+      render json:questions
   end
+
+
 
   private
 

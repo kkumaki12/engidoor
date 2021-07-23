@@ -15,10 +15,13 @@
       >
         <div>
           <section class="font-bold text-lg text-blue-900">
-            <div class="w-16 h-16 rounded-full"></div>
+            <img
+              src="../../assets/default.png"
+              class="w-16 h-16 rounded-full"
+            />
             <div>{{ question.name }}さん</div>
             <div>{{ this.$route.params }}</div>
-            <div class="text-right mr-5">回答数</div>
+            <div class="text-right mr-5">回答数{{ count }}</div>
           </section>
           <section class="text-sm font-thin text-orange-400">
             {{ question.created_at }}
@@ -42,24 +45,23 @@
         </div>
       </div>
     </main>
-    <comment-form :question="question"></comment-form>
-    <comments-list></comments-list>
+    <comment-form :question="question.id"></comment-form>
+    <comments-list :question="question.id"></comments-list>
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import CommentForm from "../Comments/CommentForm.vue";
-import CommentsList from "../Comments/CommentsList.vue"
-
-
+import CommentsList from "../Comments/CommentsList.vue";
 
 export default {
   components: { CommentForm, CommentsList },
 
-  data() {
+  data: function () {
     return {
       question: [],
+      count: "",
     };
   },
   created() {
@@ -67,6 +69,12 @@ export default {
       this.question = response.data;
       console.log(response.data);
     });
+    axios
+      .get(`/api/v1/comments_count/${this.$route.params.id}`)
+      .then((response) => {
+        this.count = response.data;
+        console.log(response.data);
+      });
   },
 };
 </script>
