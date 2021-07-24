@@ -13,6 +13,8 @@
     <p>{{ comment.content }}</p>
     <p>{{  comment.created_at }}</p>
     <p>{{ comment.name }}さん</p>
+    <good-button :questionID="question.id"></good-button>
+    
 
     </div>
   </div>
@@ -20,8 +22,10 @@
 
 <script>
 import axios from "axios";
+import GoodButton from '../Good/GoodButton.vue';
 
 export default {
+  components: { GoodButton },
   props: ["question"],
   data() {
     return {
