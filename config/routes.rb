@@ -29,13 +29,16 @@ Rails.application.routes.draw do
       get '/bestanswer/:id', to: 'questions#best'
       get '/comments_count/:id', to: 'comments#comments_count'
       get '/questions/search/:search', to: 'questions#search'
+      get 'questions/solved', to: 'questions#solved_answers'
+
+      resources :goods
 
      resources :questions
       resources :users do
         resources :questions
       end
       resources :comments do
-        resource :goods, only: %i[create destroy]
+        resource :goods, only: %i[show index create destroy]
         resource :best_answers, only: %i[create]
       end
       

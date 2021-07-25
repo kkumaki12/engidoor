@@ -9,7 +9,7 @@ class Api::V1::QuestionsController < ApiController
   end
 
   def index
-    questions = Question.all
+    questions = Question.where(user_id: params[:user_id])
     render json: questions
   end
 
@@ -37,7 +37,7 @@ class Api::V1::QuestionsController < ApiController
   end
 
   def show
-    question=Question.eager_load(:user).find_by(params[:id])
+    question=Question.includes(:user).find(params[:id])
     render json: question
   end
 
@@ -55,6 +55,11 @@ class Api::V1::QuestionsController < ApiController
   def search
       questions = Question.search(params[:search]).page(params[:page]).per(7)
       render json:questions
+  end
+
+  def solved_answers
+    questions = BestAnswer.joins(:question).select('*')
+    render json: questions
   end
 
 

@@ -13,7 +13,7 @@
     <p>{{ comment.content }}</p>
     <p>{{  comment.created_at }}</p>
     <p>{{ comment.name }}さん</p>
-    <good-button :questionID="question.id"></good-button>
+    <good-button :questionId="question.id" :commentId="comment.id"></good-button>
     
 
     </div>

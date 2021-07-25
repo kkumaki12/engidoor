@@ -36,6 +36,7 @@
 
           <section class="flex justify-end">
             <button
+            v-if="question.user_id=== this.$store.state.userId"
               type="button"
               class="bg-red-600 text-white px-3 py-1 rounded-md"
             >

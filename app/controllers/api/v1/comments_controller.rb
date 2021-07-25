@@ -21,7 +21,7 @@ class Api::V1::CommentsController < ApiController
   end
 
   def show
-    comments = Comment.eager_load(:user).where(question_id: params[:id]).select("*")
+    comments = Comment.includes(:user).where(question_id: params[:id]).select('*')
     render json: comments
   end
 

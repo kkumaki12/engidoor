@@ -65,7 +65,7 @@
     </div>
     <ul class="contents">
       <li v-if="isActive === '1'"><question-latest-posts :questions="questions"></question-latest-posts></li>
-      <li v-else-if="isActive === '2'">コンテンツ2</li>
+      <li v-else-if="isActive === '2'"><question-solved-posts></question-solved-posts></li>
       <li v-else-if="isActive === '3'">コンテンツ3</li>
     </ul>
 
@@ -75,9 +75,10 @@
 <script>
 import axios from "axios";
 import QuestionLatestPosts from "./QuestionLatestPosts.vue";
+import QuestionSolvedPosts from "./QuestionSolvedPosts.vue"
 export default {
   components: {
-    QuestionLatestPosts,
+    QuestionLatestPosts,QuestionSolvedPosts
   },
   data: function () {
     return {
