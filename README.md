@@ -1,24 +1,36 @@
-# README
+# ENGIDOOR
+リンク:
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 概要
+企業の垣根を超えて技術に関する質問ができるQ＆Aサイトです。
+社内に相談できる相手がいない問題に直面した際に、一人で悩むのではなく
 
-Things you may want to cover:
+## 制作背景
+自分が会社で仕事の相談ができる相手がなかなか見つからず困った経験からこのサービスを作ろうと思いました。
+現在、自分は化学メーカーに勤めております。しかし、大学時代の専攻は機械工学で仕事内容も機械を扱う機会が多いです。
+しかし、化学メーカーなだけあって、周りに機械工学に詳しい人はなかなかおらず、自分一人で悩んでしまうことが多々ありました。
+そういった質問のしづらい環境にいる技術者の悩みを解決できればと思っております。
 
-* Ruby version
+## 使用技術
+| フロントエンド  | バックエンド  | インフラ |
+| :--- | :--- | :--- |
+| HTML / CSS / JavaScript | Ruby 3.0.0 | Docker |
+| Vue.js + TailwindCSS | Rails 6.1.3 | CircleCI |
+| Jest / ESLint / Prettier | RSpec / Rubocop | AWS  |
 
-* System dependencies
+## 機能一覧
+ユーザー機能
+・ユーザー登録機能
+・ログイン機能(ゲストログイン機能含む)
+・プロフィール編集機能
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+質問機能
+・質問投稿、削除機能
+・質問一覧表示機能
+・質問詳細表示機能
+・コメント機能
+・ページネーション機能
+・いいね機能
+・ランキング機能（質問回答数,いいね数）
+・画像ファイルアップロード機能
+・質問検索機能

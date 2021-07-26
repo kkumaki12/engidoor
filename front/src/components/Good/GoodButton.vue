@@ -1,6 +1,5 @@
 <template>
   <div>
-    aa
     <!-- The solid style is implicit -->
     <div v-if="isGood">
       <font-awesome-icon

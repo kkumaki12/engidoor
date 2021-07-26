@@ -1,5 +1,6 @@
 <template>
   <div class="w-full max-w-xl container mt-24 mx-auto">
+    <h1>ENGIDOOR</h1>
     <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
       <label for="email">email</label>
       <input
@@ -62,6 +63,11 @@
         ログイン
       </button>
     </div>
+    <p>
+      未登録の方は<router-link to="/register" class="font-bold text-blue-600"
+        >こちら</router-link
+      >
+    </p>
   </div>
 </template>
 
