@@ -12,8 +12,8 @@ end
   end
 
   def show
-    @good = Good.find_by(user_id: params[:user_id], comment_id: params[:comment_id])
-    render json: @good
+    @goods = Good.where(comment_id: params[:comment_id])
+    render json: @goods
   end
 
 

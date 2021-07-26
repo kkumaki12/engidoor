@@ -16,6 +16,12 @@ class ImageUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
+  def presigned_url(file_name = nil)
+    file_name ||= self.model.attributes[mounted_as.to_s]
+    object = S3_BUCKET.object([store_dir, file_name].join('/'))
+    object.presigned_url(:put, expires_in: 10.minutes.to_i, acl: 'private')
+  end
+
   def extension_whitelist
     %w[jpg jpeg gif png]
   end

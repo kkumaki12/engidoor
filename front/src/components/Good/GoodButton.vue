@@ -71,6 +71,7 @@ export default {
         comment_id: this.commentId,
         user_id: this.$store.state.userId,
       });
+      console.log(res);
       if (res.status !== 201) {
         process.exit();
       }
@@ -84,7 +85,11 @@ export default {
     deleteGood: async function () {
       const goodId = this.findGoodId();
       const res = await axios.delete(
-        `/api/v1/comments/${this.commentId}/goods`
+        `/api/v1/users/${this.$store.state.userId}/comments/${this.commentId}/goods`,
+        {
+          comment_id: this.commentId,
+          user_id: this.$store.state.userId,
+        }
       );
       if (res.status !== 200) {
         process.exit();
