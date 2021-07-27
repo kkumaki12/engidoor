@@ -22,7 +22,7 @@ class Api::V1::QuestionsController < ApiController
   end
 
   def list
-    questions = Question.joins(:user).select("questions.*,users.name").page(params[:page]).per(7)
+    questions = Question.joins(:user).select("questions.*,users.name")
     render json: questions
   end
 

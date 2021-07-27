@@ -1,6 +1,6 @@
 <template>
-<div>
-      <div v-for="question in questions" :key="question.id">
+  <div>
+    <div v-for="question in getLists" :key="question.id">
       <div
         class="
           bg-white
@@ -19,11 +19,13 @@
           <!-- Meta Column -->
           <div class="col-span-0 sm:col-span-2 text-center hidden sm:block">
             <!-- 回答数 -->
-            <question-comments-count :question="question.id"></question-comments-count>
+            <question-comments-count
+              :question="question.id"
+            ></question-comments-count>
             <!-- 閲覧数 -->
             <div class="grid my-3">
               <span class="inline-block font-bold text-xs">
-                {{ questionViewsCount(question.impressions_count) }}     Views
+                {{ questionViewsCount(question.impressions_count) }} Views
               </span>
             </div>
           </div>
@@ -78,53 +80,94 @@
               </router-link>
 
               <p class="mt-2 text-gray-600 text-sm md:text-md">
-                {{ question.content.substring(0,50) }}
+                {{ question.content.substring(0, 50) }}
               </p>
             </div>
 
             <!-- Question Labels -->
             <div class="grid grid-cols-2 mt-4 my-auto">
               <!-- ベストアンサー決定済み表示  -->
-            <question-status :question="question"></question-status>
-            <!-- ユーザー情報 -->
-            <router-link
-              :to="{ name: 'UserShow', params: { id: question.user_id } }"
-            >
-              <QuestionUser :question="question"></QuestionUser>
-            </router-link>
+              <question-status :question="question"></question-status>
+              <!-- ユーザー情報 -->
+              <router-link
+                :to="{ name: 'UserShow', params: { id: question.user_id } }"
+              >
+                <QuestionUser :question="question"></QuestionUser>
+              </router-link>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    </div>
-</div>
+    <paginate
+      :v-model="currentPage"
+      :page-count="20"
+      :page-range="3"
+      :margin-pages="2"
+      :click-handler="clickCallback"
+      :prev-text="'Prev'"
+      :next-text="'Next'"
+      :container-class="'pagination'"
+      :page-class="'page-item'"
+    >
+    </paginate>
+  </div>
 </template>
 
 <script>
 import QuestionUser from "./QuestionUser.vue";
 import QuestionStatus from "./QuestionStatus.vue";
 import QuestionCommentsCount from "./QuestionCommentsCount.vue";
+import axios from "axios";
+
 export default {
-  props: ["questions"],
+
   components: {
-    QuestionUser,QuestionStatus,QuestionCommentsCount
+    QuestionUser,
+    QuestionStatus,
+    QuestionCommentsCount,
   },
   data: function () {
-    return { 
-    count: ''
-  }
+    return {
+      count: "",
+      currentPage: 1,
+      perPage: 5,
+      questions: []
+    };
+  },
+   created() {
+    axios.get("api/v1/questions/list").then((response) => {
+      this.questions = response.data;
+      console.log(response.data);
+    });
+    
   },
   methods: {
-   questionViewsCount: function(view){
-     let count;
-     if(view > 0){
-       count = view;
-     }else{
-       count = 0;
-     }
-     return count;
-   }
-
+    questionViewsCount: function (view) {
+      let count;
+      if (view > 0) {
+        count = view;
+      } else {
+        count = 0;
+      }
+      return count;
+    },
+    clickCallback: function (pageNum) {
+      this.currentPage = Number(pageNum);
+      console.log(this.currentPage);
+    },
+  },
+  computed: {
+    getLists: function(){
+      let current = this.currentPage * this.perPage; 
+      console.log(current);
+       let start = current - this.perPage;
+       console.log(start);
+       return this.questions.slice(start, current);
+    },
+    getPageCount: function() {
+       return Math.ceil(this.questions.length / this.parPage); //全部で何ページ必要か
+     },
   }
-}
+};
 </script>

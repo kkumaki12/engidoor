@@ -64,7 +64,7 @@
       </button>
     </div>
     <ul class="contents">
-      <li v-if="isActive === '1'"><question-latest-posts :questions="questions"></question-latest-posts></li>
+      <li v-if="isActive === '1'"><question-latest-posts></question-latest-posts></li>
       <li v-else-if="isActive === '2'"><question-solved-posts></question-solved-posts></li>
       <li v-else-if="isActive === '3'">コンテンツ3</li>
     </ul>
@@ -73,7 +73,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import QuestionLatestPosts from "./QuestionLatestPosts.vue";
 import QuestionSolvedPosts from "./QuestionSolvedPosts.vue"
 export default {
@@ -86,13 +85,6 @@ export default {
       user: [],
       isActive: "1",
     };
-  },
-  created() {
-    axios.get("api/v1/questions/list").then((response) => {
-      this.questions = response.data;
-      console.log(response.data);
-      console.log(new Date());
-    });
   },
 };
 </script>
