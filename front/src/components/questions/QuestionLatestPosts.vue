@@ -1,5 +1,6 @@
 <template>
   <div>
+    
     <div v-for="question in getLists" :key="question.id">
       <div
         class="
@@ -101,14 +102,18 @@
     </div>
     <paginate
       :v-model="currentPage"
-      :page-count="20"
-      :page-range="3"
-      :margin-pages="2"
+      :page-count="getPageCount"
+      :page-range="2"
+      :margin-pages="1"
       :click-handler="clickCallback"
-      :prev-text="'Prev'"
-      :next-text="'Next'"
-      :container-class="'pagination'"
-      :page-class="'page-item'"
+      :prev-text="'<'"
+      :prev-class="'inline-block w-12 h-12  mx-0.5 text-center'"
+      :next-text="'>'"
+      :next-class="'inline-block w-12 h-12  mx-0.5 text-center'"
+      :container-class="'pagination justify-center mx-auto'"  
+      :page-class="'inline-block w-12 h-12 leading-10 mx-0.5 box-border text-center rounded-2xl text-black hover:bg-gray-300 '"
+      :active-class="'bg-green-600 text-white hover:none'"
+      :page-link-class="''"
     >
     </paginate>
   </div>
@@ -121,7 +126,6 @@ import QuestionCommentsCount from "./QuestionCommentsCount.vue";
 import axios from "axios";
 
 export default {
-
   components: {
     QuestionUser,
     QuestionStatus,
@@ -132,15 +136,14 @@ export default {
       count: "",
       currentPage: 1,
       perPage: 5,
-      questions: []
+      questions: [],
     };
   },
-   created() {
+  created() {
     axios.get("api/v1/questions/list").then((response) => {
       this.questions = response.data;
       console.log(response.data);
     });
-    
   },
   methods: {
     questionViewsCount: function (view) {
@@ -158,16 +161,16 @@ export default {
     },
   },
   computed: {
-    getLists: function(){
-      let current = this.currentPage * this.perPage; 
+    getLists: function () {
+      let current = this.currentPage * this.perPage;
       console.log(current);
-       let start = current - this.perPage;
-       console.log(start);
-       return this.questions.slice(start, current);
+      let start = current - this.perPage;
+      console.log(start);
+      return this.questions.slice(start, current);
     },
-    getPageCount: function() {
-       return Math.ceil(this.questions.length / this.parPage); //全部で何ページ必要か
-     },
-  }
+    getPageCount: function () {
+      return Math.ceil(this.questions.length / this.perPage);
+    },
+  },
 };
 </script>

@@ -39,6 +39,7 @@
             v-if="question.user_id=== this.$store.state.userId"
               type="button"
               class="bg-red-600 text-white px-3 py-1 rounded-md"
+              @click="deleteQuestion()"
             >
               削除
             </button>
@@ -77,6 +78,22 @@ export default {
         console.log(response.data);
       });
   },
+  methods: {
+    deleteQuestion() {
+      if(confirm('削除しますか？')){
+      axios
+        .delete(`/api/v1/questions/${this.$route.params.id}`)
+        .then((response) => {
+          console.log(response);
+          this.$router.push("/");
+        })
+        .catch((error) => {
+          console.log(error);
+          alert('失敗しました');
+        });
+      }
+    },
+  }, 
 };
 </script>
 

@@ -62,6 +62,24 @@
       >
         ログイン
       </button>
+      <button
+        @click="guestLogin()"
+        class="
+          bg-blue-500
+          hover:bg-blue-700
+          text-white
+          font-bold
+          py-2
+          px-4
+          rounded
+          focus:outline-none
+          focus:shadow-outline
+          w-full
+          block
+        "
+      >
+        ゲストログイン
+      </button>
     </div>
     <p>
       未登録の方は<router-link to="/register" class="font-bold text-blue-600"
@@ -87,6 +105,12 @@ export default {
         password: this.password,
       });
     },
+  guestLogin() {
+    this.$store.dispatch("login", {
+      email: 'guest12@example.com',
+      password: 'guestpassword',
+    });
   },
-};
+}
+}
 </script>
