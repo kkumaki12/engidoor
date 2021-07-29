@@ -19,7 +19,7 @@
               src="../../assets/default.png"
               class="w-16 h-16 rounded-full"
             />
-            <div>{{ question.name }}さん</div>
+            <div>{{ question.user.name }}さん</div>
             <div>{{ this.$route.params }}</div>
             <div class="text-right mr-5">回答数{{ count }}</div>
           </section>

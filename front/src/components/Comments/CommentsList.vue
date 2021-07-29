@@ -13,7 +13,7 @@
                     alt="ユーザーアイコン"
                   />
                 </div>
-                <span class="mt-1 text-gray-500 text-sm">さん</span>
+                <span class="mt-1 text-gray-500 text-sm">{{ comment.user.name }}さん</span>
               </div>
               <div class="md:flex-grow">
                 <p class="leading-relaxed"></p>
@@ -38,6 +38,27 @@
                     <path d="M12 5l7 7-7 7"></path>
                   </svg>
                 </a>
+                <button @click="openCommentBox(comment.id)">コメント返信</button>
+                <div v-bind:class="`{is-active: activeItem === ${comment.id}}`" v-if="activeItem === comment.id">
+                  <input v-model="content"
+        type="text"
+        rows="3"
+        class="
+          bg-gray-100
+          appearance-none
+          border
+          rounded
+          flex flex-col
+          md:w-3/5
+          justify-center
+          py-2
+          px-3
+          text-gray-700
+          leading-tight
+          focus:outline-none
+          focus:shadow-outline
+        "/>
+                </div>
                 
               </div>
             </div>
@@ -58,6 +79,7 @@ export default {
   data() {
     return {
       comments: [],
+      activeItem: null
     };
   },
   created() {
@@ -66,5 +88,17 @@ export default {
       console.log(response.data);
     });
   },
+  methods :{
+    openCommentBox(comment_id) {
+      if(this.activeItem === comment_id){
+        this.activeItem = null;
+      }else{
+        this.activeItem = comment_id;
+      }
+      console.log(this.activeItem);
+      console.log(comment_id);
+    }
+  }
 };
 </script>
+

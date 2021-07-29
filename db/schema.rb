@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_11_103556) do
+ActiveRecord::Schema.define(version: 2021_07_28_133609) do
 
   create_table "best_answers", charset: "utf8", force: :cascade do |t|
     t.bigint "question_id", null: false
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2021_07_11_103556) do
     t.bigint "question_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "reply_comment"
     t.index ["question_id"], name: "index_comments_on_question_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end

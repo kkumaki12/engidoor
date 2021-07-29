@@ -22,7 +22,7 @@ class Api::V1::CommentsController < ApiController
 
   def show
     comments = Comment.includes(:user).where(question_id: params[:id]).select('*')
-    render json: comments
+    render json: comments.as_json(include: :user)
   end
 
   def comments_count
@@ -33,6 +33,6 @@ class Api::V1::CommentsController < ApiController
   private
 
   def comment_params
-    params.permit(:content, :question_id, :user_id)
+    params.permit(:content, :question_id, :user_id, :reply_comment)
   end
 end

@@ -37,8 +37,8 @@ class Api::V1::QuestionsController < ApiController
   end
 
   def show
-    question=Question.includes(:user).find(params[:id])
-    render json: question
+    question=Question.find(params[:id])
+    render json: question.as_json(include: :user)
   end
 
   def destroy
