@@ -86,18 +86,20 @@ export default {
         })
         .then((response) => {
           console.log(response);
-          axios
-            .get(`/api/v1/comments/${this.$route.params.id}`)
-            .then((response) => {
-              this.comments = response.data;
-            });
-        })
+          this.renderComments();
+            })
         .catch((error) => {
           console.log(error);
           alert("コメントの投稿に失敗しました");
         });
       this.content = "";
     },
+    renderComments() {
+      axios.get(`/api/v1/comments/${this.$route.params.id}`).then((response) => {
+      this.comments = response.data;
+      console.log(response.data);
+    });
+    }
   },
 };
 </script>

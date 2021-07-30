@@ -25,7 +25,7 @@
                   :commentId="comment.id"
                 ></good-button>
                 <p>{{ comment.created_at }}</p>
-                <comments-replys :comment="comment.id"></comments-replys>
+                <comments-replys :comment="comment.id" :question="question"></comments-replys>
                 
                 
    
