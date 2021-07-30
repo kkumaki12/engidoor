@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       get '/comments_count/:id', to: 'comments#comments_count'
       get '/questions/search/:search', to: 'questions#search'
       get 'questions/solved', to: 'questions#solved_answers'
+      get 'comments/reply/:id', to: 'comments#reply'
 
       resources :users do
         resources :comments do

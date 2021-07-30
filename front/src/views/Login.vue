@@ -58,6 +58,7 @@
           focus:shadow-outline
           w-full
           block
+          mb-2
         "
       >
         ログイン
@@ -65,8 +66,8 @@
       <button
         @click="guestLogin()"
         class="
-          bg-blue-500
-          hover:bg-blue-700
+          bg-red-500
+          hover:bg-red-700
           text-white
           font-bold
           py-2
