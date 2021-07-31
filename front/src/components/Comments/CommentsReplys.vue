@@ -80,7 +80,7 @@
           focus:shadow-outline
         "
       />
-      <button @click="createReply(comment)">投稿</button>
+      <button @click="createReply(comment)" class="bg-blue-600 text-white px-3 py-1 rounded-md">投稿</button>
     </div>
   </div>
 </template>
@@ -164,11 +164,11 @@ export default {
   transition-timing-function: ease-in;
 }
 .slide-enter-to {
-  max-height: 100px;
+  max-height: 150px;
   overflow: hidden;
 }
 .slide-leave {
-  max-height: 100px;
+  max-height: 150px;
   overflow: hidden;
 }
 .slide-leave-active {
@@ -186,7 +186,7 @@ export default {
   max-height: 0;
 }
 .ap {
-  height: 100px;
+  height: 150px;
   overflow: hidden;
 }
 </style>
