@@ -19,6 +19,7 @@ Vue.component('paginate', Paginate)
 
 Vue.config.productionTip = false
 
+
 axios.defaults.baseURL =
 'http://localhost:3000/'
 

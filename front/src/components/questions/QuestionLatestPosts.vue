@@ -52,7 +52,7 @@
                   <div class="inline-block">
                     <i class="uil uil-clock mr-1"></i>
                     <span class="text-sm font-light">
-                      {{ question.created_at }}前
+                      {{ question.created_at | moment }}
                     </span>
                   </div>
                 </div>
@@ -61,7 +61,7 @@
 
             <div class="flex justify-between items-center hidden sm:block">
               <span class="font-light text-gray-600">
-                {{ question.created_at }}前
+                {{ question.created_at | moment }}
               </span>
             </div>
 
@@ -124,6 +124,7 @@ import QuestionUser from "./QuestionUser.vue";
 import QuestionStatus from "./QuestionStatus.vue";
 import QuestionCommentsCount from "./QuestionCommentsCount.vue";
 import axios from "axios";
+import moment from "moment";
 
 export default {
   components: {
@@ -131,6 +132,12 @@ export default {
     QuestionStatus,
     QuestionCommentsCount,
   },
+   filters: {
+      moment: function(date) {
+         moment.locale("ja");
+        return moment(date).fromNow();
+      },
+    },
   data: function () {
     return {
       count: "",
