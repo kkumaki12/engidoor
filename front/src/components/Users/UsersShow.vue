@@ -104,7 +104,7 @@
             "
           >
             <p class="text-gray-600">合計いいね数</p>
-            <p><!-- @goods_count --></p>
+            <p>{{ goods.length }}</p>
           </div>
           <div
             class="
@@ -218,14 +218,24 @@ export default {
   data() {
     return {
       user: [],
+      goods: []
     };
   },
   created() {
     axios.get(`api/v1/users/${this.$route.params.id}`).then((response) => {
       this.user = response.data;
-      console.log(response.data);
+      console.log(response);
     });
+    this.usersGoodsCount();
   },
+  methods: {
+    usersGoodsCount: function(){
+      axios.get(`api/v1/users/${this.$route.params.id}/goods`).then((response) => {
+      this.goods = response.data;
+      console.log(response);
+    })
+    }
+    }
 };
 </script>
 

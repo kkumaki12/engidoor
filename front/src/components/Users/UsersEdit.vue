@@ -2,7 +2,9 @@
   <div class="w-full max-w-xl container mt-24 mx-auto">
     <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
       <label for="image">画像</label>
-      <input type="file" class="rounded w-full py-2 px-3 mb-3" />
+      <input   type="file"
+  name="products[image]"
+  ref="productImage" class="rounded w-full py-2 px-3 mb-3" />
       <label for="UserName">ユーザー名</label>
       
       <input
@@ -23,6 +25,23 @@
         "
         id="UserName"
       />
+      <input
+  class="custom-file-input"
+  type="file"
+  name="products[image]"
+  ref="productImage"
+>
+
+<div class="form-group">
+  <input
+    type="submit"
+    name="commit"
+    value="アップロード"
+    class="btn btn-success submit"
+    data-disable-with="アップロード"
+    @click="postProduct"
+  >
+</div>
 
       <label for="UserOccupation">職業</label>
       <input
@@ -117,8 +136,10 @@ export default {
   },
    
     methods: {
+
     updateUser() {
-      axios
+      console.log(this.uploadFile)
+        axios
         .put(`/api/v1/users/${this.$route.params.id}`, {
           name: this.name,
           occupation: this.occupation,

@@ -21,8 +21,8 @@ class Api::V1::CommentsController < ApiController
   end
 
   def show
-    comments = Comment.eager_load(:user).where(question_id: params[:id]).select("*")
-    render json: comments
+    comments = Comment.includes(:user).where(question_id: params[:id], reply_comment: [nil, '']).select('*')
+    render json: comments.as_json(include: :user)
   end
 
   def comments_count
@@ -30,9 +30,15 @@ class Api::V1::CommentsController < ApiController
     render json: comments_count
   end
 
+  def reply
+    comments = Comment.includes(:user).where(reply_comment: params[:id]).select('*')
+    render json: comments.as_json(include: :user)
+  end
+
+
   private
 
   def comment_params
-    params.permit(:content, :question_id, :user_id)
+    params.permit(:content, :question_id, :user_id, :reply_comment)
   end
 end

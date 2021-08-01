@@ -18,36 +18,41 @@ Vue.use(Router);
 export default new Router({
   routes: [
     { path: '/', component: Home },
-    { path: '/question', component: QuestionCreate, beforeEnter(to, from, next) {
-      if (store.getters.token){
-        next();
-      } else {
-        next('/login');
+    {
+      path: '/question', component: QuestionCreate, beforeEnter(to, from, next) {
+        if (store.getters.token) {
+          next();
+        } else {
+          next('/login');
+        }
       }
-    }
-  }, 
-    { path: '/question/show/:id', component: QuestionShow, name: 'QuestionShow' }, 
-    { path: '/question/list', component: QuestionList }, 
-    { path: '/login', component: Login, beforeEnter(to, from, next) {
-      if (store.getters.token){
-        console.log('yes');
-        next('/');
-      } else {
-        console.log('no');
-        next();
+    },
+    { path: '/question/show/:id', component: QuestionShow, name: 'QuestionShow' },
+    { path: '/question/list', component: QuestionList },
+    {
+      path: '/login', component: Login, beforeEnter(to, from, next) {
+        if (store.getters.token) {
+          console.log('yes');
+          next('/');
+        } else {
+          console.log('no');
+          next();
+        }
       }
-    } }, 
-    { path: '/register', component: Register, beforeEnter(to, from, next) {
-      if (store.getters.token){
-        next('/');
-      } else {
-        next();
+    },
+    {
+      path: '/register', component: Register, beforeEnter(to, from, next) {
+        if (store.getters.token) {
+          next('/');
+        } else {
+          next();
+        }
       }
-    } },
+    },
     { path: '/users/:id', component: UserShow, name: 'UserShow' },
-    { path: '/users/edit/:id', component: UserEdit, name: 'UserEdit'},
+    { path: '/users/edit/:id', component: UserEdit, name: 'UserEdit' },
     { path: 'ranking', component: UserRanking, },
-    { path: '/question/search/:params', component: QuestionSearchResult, name: 'QuestionSearchResult' }, 
+    { path: '/question/search/:params', component: QuestionSearchResult, name: 'QuestionSearchResult' },
 
   ]
 });

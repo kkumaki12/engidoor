@@ -1,6 +1,6 @@
 <template>
-<div>
-      <div v-for="question in questions" :key="question.id">
+  <div>
+    <div v-for="question in questions" :key="question.id">
       <div
         class="
           bg-white
@@ -19,40 +19,13 @@
           <!-- Meta Column -->
           <div class="col-span-0 sm:col-span-2 text-center hidden sm:block">
             <!-- 回答数 -->
-            <a
-              href="#"
-              class="
-                grid grid-rows-2
-                mx-auto
-                mb-3
-                py-1
-                w-4/5
-                2lg:w-3/5
-                rounded-md
-                bg-green-400
-              "
-            >
-              <div class="inline-block font-medium text-2xl text-white">
-                {{ question.comments }}
-              </div>
-              <div
-                class="
-                  inline-block
-                  font-medium
-                  text-white
-                  mx-1
-                  text-sm
-                  lg:text-md
-                "
-              >
-                回答
-              </div>
-            </a>
-
+            <question-comments-count
+              :question="question.id"
+            ></question-comments-count>
             <!-- 閲覧数 -->
             <div class="grid my-3">
               <span class="inline-block font-bold text-xs">
-                {{ question.impressions_count }}Views
+                {{ questionViewsCount(question.impressions_count) }}Views
               </span>
             </div>
           </div>
@@ -78,7 +51,7 @@
                   <div class="inline-block">
                     <i class="uil uil-clock mr-1"></i>
                     <span class="text-sm font-light">
-                      {{ (question.created_at) }}前
+                      {{ question.created_at }}前
                     </span>
                   </div>
                 </div>
@@ -107,40 +80,55 @@
               </router-link>
 
               <p class="mt-2 text-gray-600 text-sm md:text-md">
-                {{ question.content.substring(0,50) }}
+                {{ question.content.substring(0, 50) }}
               </p>
             </div>
 
             <!-- Question Labels -->
             <div class="grid grid-cols-2 mt-4 my-auto">
               <!-- ベストアンサー決定済み表示  -->
-     
-            <!-- ユーザー情報 -->
 
+              <!-- ユーザー情報 -->
+            </div>
           </div>
         </div>
       </div>
     </div>
-    </div>
-</div>
+  </div>
 </template>
 
 <script>
-
-import axios from "axios"
+import axios from "axios";
+import QuestionCommentsCount from "../Questions/QuestionCommentsCount.vue";
 export default {
+  components: {
+    QuestionCommentsCount,
+  },
 
   data() {
     return {
       questions: [],
     };
   },
-created() {
-    axios.get(`api/v1/users/${this.$route.params.id}/questions/`).then((response) => {
-      this.questions = response.data;
-      console.log(response.data);
-      this.$emit("questions", this.questions);
-    });
+  created() {
+    axios
+      .get(`api/v1/users/${this.$route.params.id}/questions/`)
+      .then((response) => {
+        this.questions = response.data;
+        console.log(response.data);
+        this.$emit("questions", this.questions);
+      });
   },
-}
+  methods: {
+    questionViewsCount: function (view) {
+      let count;
+      if (view > 0) {
+        count = view;
+      } else {
+        count = 0;
+      }
+      return count;
+    },
+  },
+};
 </script>

@@ -1,16 +1,15 @@
 Rails.application.routes.draw do
-  get '/home', to: 'application_pages#home'
-  root 'application_pages#home'
-  get '/signup', to: 'users#new'
-  get 'questions/new'
-  get 'questions/create'
-  get 'questions/edit'
-  get '/search', to: 'questions#list'
-  get '/login', to: 'sessions#new'
-  post '/login', to: 'sessions#create'
-  delete '/logout', to: 'sessions#destroy'
-  post '/application_pages/guest_sign_in', to: 'application_pages#guest_sign_in'
-
+  get "/home", to: "application_pages#home"
+  root "application_pages#home"
+  get "/signup", to: "users#new"
+  get "questions/new"
+  get "questions/create"
+  get "questions/edit"
+  get "/search", to: "questions#list"
+  get "/login", to: "sessions#new"
+  post "/login", to: "sessions#create"
+  delete "/logout", to: "sessions#destroy"
+  post "/application_pages/guest_sign_in", to: "application_pages#guest_sign_in"
 
   resources :users
   resources :questions do
@@ -21,24 +20,32 @@ Rails.application.routes.draw do
     resource :goods, only: %i[create destroy]
     resource :best_answers, only: %i[create]
   end
-  namespace 'api', {format: 'json'} do
-    namespace 'v1' do
-      get '/questions/list', to: 'questions#list'
-      post '/login', to: 'sessions#log_in'
-      get '/ranking', to: 'users#ranking'
-      get '/bestanswer/:id', to: 'questions#best'
-      get '/comments_count/:id', to: 'comments#comments_count'
-      get '/questions/search/:search', to: 'questions#search'
+  namespace "api", { format: "json" } do
+    namespace "v1" do
+      get "/questions/list", to: "questions#list"
+      post "/login", to: "sessions#log_in"
+      get "/ranking", to: "users#ranking"
+      get "/bestanswer/:id", to: "questions#best"
+      get "/comments_count/:id", to: "comments#comments_count"
+      get "/questions/search/:search", to: "questions#search"
+      get "questions/solved", to: "questions#solved_answers"
+      get "comments/reply/:id", to: "comments#reply"
 
-     resources :questions
+      resources :users do
+        resources :goods, only: %i[ index ] 
+        resources :comments do
+          resource :goods, only: %i[ destroy ]
+        end
+      end
+
+      resources :questions
       resources :users do
         resources :questions
       end
       resources :comments do
-        resource :goods, only: %i[create destroy]
+        resource :goods, only: %i[show create destroy]
         resource :best_answers, only: %i[create]
       end
-      
     end
   end
 end

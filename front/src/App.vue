@@ -6,7 +6,10 @@
 </template>
 
 <script>
-import Header from "./components/layouts/header.vue";
+import Header from "./components/layouts/TheHeading.vue";
+
+
+
 export default {
   name: "app",
   components: {

@@ -42,6 +42,9 @@ export default new Vuex.Store({
           commit('updateToken', response.data.token);
           commit('updateUserId', response.data.id);
           router.push('/');
+        }).catch((error) => {
+          console.log(error);
+          alert("入力内容に誤りがあります");
         })
     },
     logout({ commit }) {

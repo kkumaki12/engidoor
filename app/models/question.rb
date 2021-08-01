@@ -1,6 +1,8 @@
 class Question < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
+  has_many :replies, class_name: 'Comment', foreign_key: :reply_comment, dependent: :destroy
+
   has_many :tag_relationships, dependent: :destroy
   has_many :tags, through: :tag_relationships
   has_one :best_answer

@@ -1,5 +1,6 @@
 <template>
   <div class="w-full max-w-xl container mt-24 mx-auto">
+    <h1>ENGIDOOR</h1>
     <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
       <label for="email">email</label>
       <input
@@ -57,11 +58,35 @@
           focus:shadow-outline
           w-full
           block
+          mb-2
         "
       >
         ログイン
       </button>
+      <button
+        @click="guestLogin()"
+        class="
+          bg-red-500
+          hover:bg-red-700
+          text-white
+          font-bold
+          py-2
+          px-4
+          rounded
+          focus:outline-none
+          focus:shadow-outline
+          w-full
+          block
+        "
+      >
+        ゲストログイン
+      </button>
     </div>
+    <p>
+      未登録の方は<router-link to="/register" class="font-bold text-blue-600"
+        >こちら</router-link
+      >
+    </p>
   </div>
 </template>
 
@@ -81,6 +106,12 @@ export default {
         password: this.password,
       });
     },
+  guestLogin() {
+    this.$store.dispatch("login", {
+      email: 'guest12@example.com',
+      password: 'guestpassword',
+    });
   },
-};
+}
+}
 </script>
