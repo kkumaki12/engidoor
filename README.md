@@ -12,11 +12,26 @@
 そういった質問のしづらい環境にいる技術者の悩みを解決できればと思っております。
 
 ## 使用技術
-| フロントエンド  | バックエンド  | インフラ |
-| :--- | :--- | :--- |
-| HTML / CSS / JavaScript | Ruby 3.0.0 | Docker |
-| Vue.js + TailwindCSS | Rails 6.1.3 | CircleCI |
-| Jest / ESLint / Prettier | RSpec / Rubocop | AWS  |
+* フロントエンド  
+  * HTML/CSS
+  * Javascript
+  * Vue.js（SPA）
+  * TailwindCSS（UIフレームワーク）
+  * Jest（テスト）
+  * ESLint/Prettier（コード解析ツール）
+* バックエンド  
+  * Ruby 3.0.0
+  * Ruby on Rails 6.1.3 （API）
+  * Rubocop（コード解析ツール）
+  * RSpec（テスト）
+* インフラ・開発環境  
+  * Docker/Docker-compose
+  * AWS（ECR,EC2,VPC,S3,Route53,ALB,RDS,ACM,SSM）
+  * CircleCI（CI/CD）
+
+## インフラ構成図
+
+<img src="app/assets/images/aws.png">
 
 ## 機能一覧
 ユーザー機能

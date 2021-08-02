@@ -33,8 +33,8 @@
               <template v-if="bestAnswer">
               <best-answer-button :comment="comment.id"></best-answer-button>
               </template>
-              <div v-else class="bg-yellow-600 block">
-                ベストアンサーです
+              <div v-else class="text-red-600">
+                ベストアンサー
               </div>
        
 

@@ -12,6 +12,7 @@
       rounded
       focus:outline-none
       focus:shadow-outline
+      h-10
     "
   >
     ベストアンサー
