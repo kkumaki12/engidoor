@@ -30,6 +30,14 @@
                 
    
               </div>
+              <template v-if="bestAnswer">
+              <best-answer-button :comment="comment.id"></best-answer-button>
+              </template>
+              <div v-else class="bg-yellow-600 block">
+                ベストアンサーです
+              </div>
+       
+
             </div>
           </div>
         </div>
@@ -41,10 +49,11 @@
 <script>
 import axios from "axios";
 import GoodButton from "../Good/GoodButton.vue";
-import CommentsReplys from "./CommentsReplys.vue"
+import CommentsReplys from "./CommentsReplys.vue";
+import BestAnswerButton from "../BestAnswer/BestAnswerButton.vue"
 
 export default {
-  components: { GoodButton, CommentsReplys },
+  components: { GoodButton, CommentsReplys,BestAnswerButton },
   props: ["question"],
   data() {
     return {
@@ -53,7 +62,8 @@ export default {
       content: "",
       question_id: "",
       reply_comment: "",
-      comment: []
+      comment: [],
+      bestAnswer: "true"
     };
   },
   created() {
@@ -61,7 +71,8 @@ export default {
       this.comments = response.data;
       console.log(response.data);
     });
-    this.replyCatch()
+    this.replyCatch();
+    this.statusBestAnswer();
   },
   methods: {
     openCommentBox(comment_id) {
@@ -93,6 +104,14 @@ export default {
       this.replys = response.data;
       console.log(response.data);
     });
+    },
+    statusBestAnswer() {
+      axios.get(`/api/v1/bestanswer/${this.$route.params.id}`).then(() => {
+      this.bestAnswer = false;
+      console.log(this.bestAnswer);
+    }).catch((error) => {
+          console.log(error);
+        });
     }
   },
 };
