@@ -90,11 +90,23 @@
               <!-- ベストアンサー決定済み表示  -->
               <question-status :question="question"></question-status>
               <!-- ユーザー情報 -->
-              <router-link
+
+              
+                              <div class="col-none hidden mr-2 lg:block lg:col-start-9 lg:col-end-12">
+                    <div class="flex items-center">
+                    <div class="w-16 h-16">
+                        <img src="../../assets/default.png" class="rounded-full">
+                    </div>
+                        <div class="text-gray-600 font-bold text-sm hover:underline">
+                                          <router-link
                 :to="{ name: 'UserShow', params: { id: question.user_id } }"
               >
                 <QuestionUser :question="question"></QuestionUser>
               </router-link>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
           </div>
         </div>

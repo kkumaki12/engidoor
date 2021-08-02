@@ -35,7 +35,7 @@
           focus:shadow-outline
         "
       >
-        投稿する
+        投稿
       </button>
     </div>
     <div>

@@ -74,10 +74,11 @@
 
 <script>
 import QuestionLatestPosts from "./QuestionLatestPosts.vue";
-import QuestionSolvedPosts from "./QuestionSolvedPosts.vue"
+import QuestionSolvedPosts from "./QuestionSolvedPosts.vue";
+
 export default {
   components: {
-    QuestionLatestPosts,QuestionSolvedPosts
+    QuestionLatestPosts,QuestionSolvedPosts,
   },
   data: function () {
     return {
