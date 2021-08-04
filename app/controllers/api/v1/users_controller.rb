@@ -42,7 +42,7 @@ class Api::V1::UsersController < ApiController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :image, :occupation, :specialty)
+    params.permit(:name, :email, :password, :password_confirmation, :image, :occupation, :specialty)
   end
 
   def logged_in_user
