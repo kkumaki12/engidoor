@@ -3,9 +3,9 @@
     <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
       <label for="image">画像</label>
       <input
+       @change="setImage"
         type="file"
-        name="products[image]"
-        ref="productImage"
+        accept="image/png, image/jpeg, image/bmp"
         class="rounded w-full py-2 px-3 mb-3"
       />
       <label for="UserName">ユーザー名</label>
@@ -37,6 +37,7 @@
 
       <div class="form-group">
         <input
+       
           type="submit"
           name="commit"
           value="アップロード"
@@ -82,7 +83,7 @@
       ></v-select>
 
       <button
-        @click="updateUser()"
+        @click="updateImage()"
         class="
           bg-blue-500
           hover:bg-blue-700
@@ -120,6 +121,7 @@ export default {
       name: "",
       occupation: "",
       specialty: "",
+      image: "",
       options: [
         "選択して下さい",
         "材料・素材",
@@ -140,8 +142,13 @@ export default {
   },
 
   methods: {
+    setImage(file){
+    this.image = file;
+    console.log(this.image);
+   },
     updateUser() {
-      console.log(this.uploadFile);
+      
+     
       axios
         .put(`/api/v1/users/${this.$route.params.id}`, {
           name: this.name,
@@ -149,6 +156,28 @@ export default {
           user_id: this.$store.state.userId,
           specialty: this.specialty,
         })
+        .then((response) => {
+          alert("更新しました");
+          console.log(response);
+          this.$router.push(`/users/${this.$route.params.id}`);
+        })
+        .catch((error) => {
+          alert("更新に失敗しました");
+          console.log(error);
+          this.$router.push(`/users/${this.$route.params.id}`);
+        });
+    },
+    updateImage() {
+      const formData = new FormData();
+    formData.append("image", this.image);
+    const config = {
+     headers: {
+      "content-type": "multipart/form-data",
+     }
+    };
+     
+      axios
+        .put(`/api/v1/users/${this.$route.params.id}`, formData,config)
         .then((response) => {
           alert("更新しました");
           console.log(response);
