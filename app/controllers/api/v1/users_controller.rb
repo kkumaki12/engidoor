@@ -34,7 +34,7 @@ class Api::V1::UsersController < ApiController
 
   def ranking 
     join = User.joins({comments: :goods})
-    table = join.group(:id).order('count(users.id) desc').pluck(:id)
+    table = join.group(:id).order('count(users.id) desc').limit(5).pluck(:id)
     rank = User.find(table)
     render json:rank
   end
