@@ -1,7 +1,7 @@
 <template>
   <div id="app" v-cloak>
     <Header></Header>
-    <router-view></router-view>
+    <router-view class="bg-green-100 bg-opacity-50"></router-view>
   </div>
 </template>
 

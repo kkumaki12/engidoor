@@ -8,8 +8,10 @@ class Api::V1::GoodsController < ApiController
 end
 
   def index
-    comments = Comment.where(user_id: params[:user_id]).joins(:goods)
-    render json: comments
+    goods = Good.where(user_id: params[:user_id])
+    comment_id = goods.map { |good| good.comment_id }
+    comments = Comment.includes(:user).where(id: comment_id)
+    render json: comments.as_json(include: :user)
   end
 
   def show
