@@ -31,6 +31,9 @@ Rails.application.routes.draw do
       get "questions/solved", to: "questions#solved_answers"
       get "comments/reply/:id", to: "comments#reply"
 
+      resources :tags do
+      end
+
       resources :users do
         resources :goods, only: %i[ index ] 
         resources :comments do

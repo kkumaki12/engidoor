@@ -1,5 +1,18 @@
 <template>
   <div class="w-full max-w-xl container mt-24 mx-auto">
+      <div v-if="alertOpen" class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-red-500">
+    <span class="text-xl inline-block mr-5 align-middle">
+      <font-awesome-icon
+        :icon="['fas', 'bell']"
+      />
+    </span>
+    <span class="inline-block align-middle mr-8">
+      <b class="capitalize">エラー</b> 登録に失敗しました
+    </span>
+      </div>
+    <button class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none" v-on:click="closeAlert()">
+      <span>×</span>
+    </button>
     <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
       <label for="email">ユーザー名</label>
       <input
@@ -109,6 +122,12 @@
 
 <script>
 import axios from "axios";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { far } from "@fortawesome/free-regular-svg-icons";
+
+library.add(fas, far);
+
 export default {
   data() {
     return {
@@ -116,6 +135,7 @@ export default {
       email: "",
       password: "",
       password_confirmation: "",
+      alertOpen: false
     };
   },
   methods: {
@@ -132,7 +152,11 @@ export default {
         })
         .catch((error) => {
           console.log(error);
+          this.alertOpen = true;
         });
+    },
+     closeAlert: function(){
+      this.alertOpen = false;
     },
   },
 };

@@ -1,5 +1,7 @@
 <template>
   <div class="w-full max-w-xl container mt-24 mx-auto">
+    
+
     <h1>ENGIDOOR</h1>
     <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
       <label for="email">email</label>
@@ -97,6 +99,7 @@ export default {
     return {
       email: "",
       password: "",
+      
     };
   },
   methods: {
@@ -104,7 +107,7 @@ export default {
       this.$store.dispatch("login", {
         email: this.email,
         password: this.password,
-      });
+      })
     },
   guestLogin() {
     this.$store.dispatch("login", {
@@ -112,6 +115,7 @@ export default {
       password: 'guestpassword',
     });
   },
+ 
 }
 }
 </script>
