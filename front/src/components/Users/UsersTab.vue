@@ -1,6 +1,5 @@
   <template>
   <div>
-
     <div class="tabs flex">
       <button
         class="
@@ -13,13 +12,12 @@
           text-green-500
           border-b-2
           font-medium
-          border-green-500
           w-1/3
-          
         "
+        :class="{ 'border-green-500': isActives === '1' }"
         v-on:click="isActives = '1'"
       >
-        新着質問
+        投稿した質問
       </button>
 
       <button
@@ -33,13 +31,12 @@
           text-green-500
           border-b-2
           font-medium
-          border-green-500
           w-1/3
-          
         "
+        :class="{ 'border-green-500': isActives === '2' }"
         v-on:click="isActives = '2'"
       >
-        解決済み質問
+        いいねした回答
       </button>
 
       <button
@@ -53,34 +50,37 @@
           text-green-500
           border-b-2
           font-medium
-          border-green-500
           w-1/3
-          
         "
+        :class="{ 'border-green-500': isActives === '3' }"
         v-on:click="isActives = '3'"
       >
-      未解決
+        未解決
       </button>
     </div>
     <ul class="contents">
-      <li v-if="isActives === '1'"><users-questions v-on:questions="$event"></users-questions></li>
-      <li v-else-if="isActives === '2'">コンテンツ2</li>
+      <li v-if="isActives === '1'">
+        <users-questions v-on:questions="$event"></users-questions>
+      </li>
+      <li v-else-if="isActives === '2'">
+        <users-goods-comments></users-goods-comments>
+      </li>
       <li v-else-if="isActives === '3'">コンテンツ3</li>
     </ul>
-
   </div>
- 
-  </template>
+</template>
 
 <script>
 import UsersQuestions from "./UsersQuestions.vue";
+import UsersGoodsComments from "./UsersGoodsComment.vue";
+
 export default {
-  components: { UsersQuestions },
+  components: { UsersQuestions, UsersGoodsComments },
   data() {
     return {
       questions: [],
-      isActives: '1'
+      isActives: "1",
     };
   },
-}
+};
 </script>

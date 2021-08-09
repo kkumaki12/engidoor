@@ -9,6 +9,7 @@ Bundler.require(*Rails.groups)
 module EngineerQA
   class Application < Rails::Application
     config.i18n.default_locale = :ja
+    config.api_only = true
 
 
 

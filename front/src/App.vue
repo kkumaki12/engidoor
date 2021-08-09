@@ -1,14 +1,13 @@
 <template>
   <div id="app" v-cloak>
     <Header></Header>
+
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 import Header from "./components/layouts/TheHeading.vue";
-
-
 
 export default {
   name: "app",
@@ -21,5 +20,8 @@ export default {
 <style>
 [v-cloak] {
   display: none;
+}
+body{
+  background-color: #F4F5F7;
 }
 </style>

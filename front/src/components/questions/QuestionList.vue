@@ -14,10 +14,11 @@
           text-green-500
           border-b-2
           font-medium
-          border-green-500
+      
           w-1/3
           
         "
+        :class="{ 'border-green-500': isActive === '1' }"
         v-on:click="isActive = '1'"
       >
         新着質問
@@ -34,10 +35,10 @@
           text-green-500
           border-b-2
           font-medium
-          border-green-500
-          w-1/3
           
+          w-1/3
         "
+         :class="{ 'border-green-500': isActive === '2' }"
         v-on:click="isActive = '2'"
       >
         解決済み質問
@@ -54,10 +55,11 @@
           text-green-500
           border-b-2
           font-medium
-          border-green-500
+
           w-1/3
           
         "
+        :class="{ 'border-green-500': isActive === '3' }"
         v-on:click="isActive = '3'"
       >
       未解決

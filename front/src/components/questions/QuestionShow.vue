@@ -48,17 +48,17 @@
       </div>
     </main>
     <comment-form :question="question.id"></comment-form>
-    <comments-list :question="question.id"></comments-list>
+
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import CommentForm from "../Comments/CommentForm.vue";
-import CommentsList from "../Comments/CommentsList.vue";
+
 
 export default {
-  components: { CommentForm, CommentsList },
+  components: { CommentForm},
 
   data: function () {
     return {
