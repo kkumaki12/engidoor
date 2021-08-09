@@ -1,9 +1,0 @@
-
-        <%= form_with(model: [@comment],method: :post, local: true) do |f| %>
-        <%= f.text_area :content,placeholder: "コメント" %>
-        <%= f.hidden_field :question_id, value: @question.id %>
-        <%= f.submit "投稿" %>
-        <% end %>
-        　　　　　
-
-
