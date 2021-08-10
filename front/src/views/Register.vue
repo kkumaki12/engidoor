@@ -141,12 +141,12 @@ export default {
   methods: {
     register() {
       axios
-        .post("/api/v1/users", {user:{
+        .post("/api/v1/users", {
           name: this.name,
           email: this.email,
           password: this.password,
           password_confirmation: this.password_confirmation,
-        }})
+        })
         .then((response) => {
           console.log(response);
         })

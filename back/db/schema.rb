@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 2021_07_28_133609) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "impressions_count"
+    t.integer "impressions_count", default: 0
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
