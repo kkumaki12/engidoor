@@ -6,6 +6,6 @@ WORKDIR /front
 COPY package*.json ./
 RUN apk update && npm install -g @vue/cli
 COPY . .
+RUN npm run build
 
-
-EXPOSE 8080
+CMD ["npm", "run", "serve"]
