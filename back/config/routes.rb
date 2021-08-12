@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       get "/questions/search/:search", to: "questions#search"
       get "questions/solved", to: "questions#solved_answers"
       get "comments/reply/:id", to: "comments#reply"
+      
 
       resources :tags do
       end

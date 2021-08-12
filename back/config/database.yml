@@ -23,5 +23,5 @@ development:
 production:
   <<: *default
   database: engidoor_production
-  username: root
+  url: <%= ENV['DATABASE_URL'] %>
 
