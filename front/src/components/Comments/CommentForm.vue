@@ -6,7 +6,6 @@
         type="text"
         rows="3"
         class="
-          bg-gray-100
           appearance-none
           border
           rounded

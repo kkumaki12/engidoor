@@ -39,7 +39,7 @@
         <router-link to="/" class="ml-3 text-xl">ENGIDOOR</router-link>
       </a>
       <div class="mx-auto">
-        <input type="text" v-model="keyword" class="py-2 px-3" />
+        <input type="text" v-model="keyword" class="py-2 px-3" placeholder="質問を検索"/>
         <button
           @click="search()"
           class="
