@@ -28,7 +28,6 @@ class Api::V1::QuestionsController < ApiController
 
   def create
     question = Question.create(question_params)
-    puts(question_params)
     if question.save!
       render json: question
     else
@@ -62,11 +61,15 @@ class Api::V1::QuestionsController < ApiController
     render json: questions
   end
 
+  def specialty
+    questions = Question.where(tag: params[:tag])
+    render json: questions.as_json(include: :user)
+  end
 
 
   private
 
   def question_params
-    params.permit(:title, :content,:tag,:user_id)
+    params.permit(:title, :content, :tag, :user_id)
   end
 end

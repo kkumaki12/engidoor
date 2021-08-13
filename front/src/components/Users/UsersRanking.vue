@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2 class="font-bold">いいね数ランキング</h2>
-    <div class="border">
+    <div class="border bg-white">
     <div v-for="user in users" :key="user.id">
       <li class="mt-2">
         <b>{{ users.indexOf(user) + 1 }}位</b>

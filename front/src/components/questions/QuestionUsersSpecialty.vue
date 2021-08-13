@@ -110,7 +110,7 @@
                         params: { id: question.user_id },
                       }"
                     >
-                      <QuestionUser :question="question"></QuestionUser>
+                      {{ question.user.name }}さん
                     </router-link>
                   </div>
                 </div>
@@ -140,7 +140,7 @@
 </template>
 
 <script>
-import QuestionUser from "./QuestionUser.vue";
+
 import QuestionStatus from "./QuestionStatus.vue";
 import QuestionCommentsCount from "./QuestionCommentsCount.vue";
 import axios from "axios";
@@ -148,7 +148,7 @@ import moment from "moment";
 
 export default {
   components: {
-    QuestionUser,
+
     QuestionStatus,
     QuestionCommentsCount,
   },
@@ -167,7 +167,7 @@ export default {
     };
   },
   created() {
-    axios.get("api/v1/questions/list").then((response) => {
+    axios.get(`api/v1/questions/specialty/${this.$store.state.specialty}`).then((response) => {
       this.questions = response.data;
       console.log(response.data);
     });

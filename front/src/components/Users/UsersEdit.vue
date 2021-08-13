@@ -83,7 +83,7 @@
       ></v-select>
 
       <button
-        @click="updateImage()"
+        @click="updateUser()"
         class="
           bg-blue-500
           hover:bg-blue-700
@@ -167,7 +167,7 @@ export default {
           this.$router.push(`/users/${this.$route.params.id}`);
         });
     },
-    updateImage() {
+    /*updateImage() {
       const formData = new FormData();
     formData.append("image", this.image);
     const config = {
@@ -188,7 +188,7 @@ export default {
           console.log(error);
           this.$router.push(`/users/${this.$route.params.id}`);
         });
-    },
+    },*/
   },
 };
 </script>

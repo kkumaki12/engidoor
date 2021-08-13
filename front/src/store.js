@@ -10,12 +10,14 @@ export default new Vuex.Store({
   state: {
     token: null,
     userId: null,
-    searchWord: null
+    searchWord: null,
+    specialty: null,
   },
   getters: {
     token: state => state.token,
     userId: state => state.id,
-    searchWord: state => state.keyword
+    searchWord: state => state.keyword,
+    specialty: state => state.specialty,
   },
   mutations: {
     updateToken(state, token) {
@@ -26,6 +28,9 @@ export default new Vuex.Store({
     },
     updateSearchWord(state, searchword) {
       state.searchWord = searchword;
+    },
+    updateSpecialty(state, specialty) {
+      state.specialty = specialty;
     }
   },
   actions: {
@@ -41,6 +46,7 @@ export default new Vuex.Store({
           console.log(response);
           commit('updateToken', response.data.token);
           commit('updateUserId', response.data.id);
+          commit('updateSpecialty', response.data.specialty)
           router.push('/');
         }).catch((error) => {
           console.log(error);
@@ -50,6 +56,7 @@ export default new Vuex.Store({
     logout({ commit }) {
       commit('updateToken', null);
       commit('updateUserId', null);
+      commit('updateSpecialty', null);
       router.push('/login');
     },
     search({ commit }, searchWord) {

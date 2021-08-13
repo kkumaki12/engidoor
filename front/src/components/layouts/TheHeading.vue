@@ -39,7 +39,12 @@
         <router-link to="/" class="ml-3 text-xl">ENGIDOOR</router-link>
       </a>
       <div class="mx-auto">
-        <input type="text" v-model="keyword" class="py-2 px-3" placeholder="質問を検索"/>
+        <input
+          type="text"
+          v-model="keyword"
+          class="py-2 px-3"
+          placeholder="質問を検索"
+        />
         <button
           @click="search()"
           class="
@@ -60,22 +65,31 @@
         class="md:ml-auto flex flex-wrap items-center text-base justify-center"
       >
         <template v-if="isAuthenticated">
-          <router-link to="/question" class="mr-5 hover:text-gray-900"
+          <font-awesome-icon :icon="['fas', 'file-import']" />
+
+          <router-link
+            to="/question"
+            class="mr-5 hover:text-gray-900 text-white"
             >質問する</router-link
           >
+          <font-awesome-icon :icon="['fas', 'user']" />
           <router-link
             :to="{ name: 'UserShow', params: { id: this.$store.state.userId } }"
-            class="mr-5 hover:text-gray-900"
+            class="mr-5 hover:text-gray-900 text-white"
             >マイページ</router-link
           >
-          <button @click="logout()" class="mr-5 hover:text-gray-900">
+
+          <font-awesome-icon :icon="['fas', 'sign-out-alt']" />
+          <button @click="logout()" class="mr-5 hover:text-gray-900 text-white">
             ログアウト
           </button>
         </template>
         <template v-if="!isAuthenticated">
+          <font-awesome-icon :icon="['fas', 'user-plus']" />
           <router-link class="mr-5 hover:text-gray-900" to="/register"
             >登録</router-link
           >
+          <font-awesome-icon :icon="['fas', 'sign-in-alt']" />
           <router-link class="mr-5 hover:text-gray-900" to="/login"
             >ログイン</router-link
           >
@@ -115,6 +129,11 @@
 </template>
 
 <script>
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { far } from "@fortawesome/free-regular-svg-icons";
+
+library.add(fas, far);
 export default {
   data: function () {
     return {

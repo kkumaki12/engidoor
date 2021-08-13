@@ -18,6 +18,7 @@
           leading-tight
           focus:outline-none
           focus:shadow-outline
+          focus:border-b-2 focus:border-indigo-500 
         "
       />
       <button
@@ -70,9 +71,9 @@
               <template v-if="bestAnswer">
               <best-answer-button :comment="comment.id"></best-answer-button>
               </template>
-              <div v-else class="text-red-600">
+              <button v-else class="text-red-600">
                 ベストアンサー
-              </div>
+              </button>
        
 
             </div>

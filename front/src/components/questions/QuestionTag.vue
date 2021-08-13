@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="relative inline-block text-left ml-2">
-      <div class="bold">ジャンルから選択</div>
+      <div class="font-bold">ジャンルから検索</div>
       <div v-for="tag in tags" :key="tag.id">
         <div
           class="
@@ -33,7 +33,7 @@
             >
               <span class="flex flex-col">
                 <span>
-                  {{ tag.name }}
+                  {{ tag }}
                 </span>
               </span>
             </a>
@@ -45,24 +45,27 @@
 </template>
 
 <script>
-import axios from "axios";
+
 export default {
   data: function () {
     return {
-      tags: [],
+      tags: [
+        "材料・素材",
+        "金型",
+        "機械加工",
+        "半導体",
+        "電子",
+        "設計",
+        "FA・自動化",
+        "ロボット",
+        "品質管理",
+        "環境",
+        "生産技術",
+        "化学",
+        "化学工学",
+      ],
     };
   },
-  created() {
-    axios
-      .get("api/v1/tags")
-      .then((response) => {
-        this.tags = response.data;
-
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  },
+ 
 };
 </script>
