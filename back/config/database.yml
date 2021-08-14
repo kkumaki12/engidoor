@@ -5,23 +5,29 @@ default: &default
   pool: 5
   username: <%= ENV['DATABASE_USER'] %>
   password: <%= ENV['DATABASE_PASSWORD'] %>
-  host: localhost
+  
   port: 3306
 
 
 test:
   <<: *default
   database: engineerQA_test
+  host: localhost
   
 
 development:
   <<: *default
   database: engineerQA_development
-
+  host: localhost
 
 
 production:
   <<: *default
   database: engidoor_production
   url: <%= ENV['DATABASE_URL'] %>
+  host: db
+  username: admin
+  password: kumakiKensuke28
+  
+
 

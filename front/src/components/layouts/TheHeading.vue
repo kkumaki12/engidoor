@@ -65,31 +65,40 @@
         class="md:ml-auto flex flex-wrap items-center text-base justify-center"
       >
         <template v-if="isAuthenticated">
-          <font-awesome-icon :icon="['fas', 'file-import']" />
+          <font-awesome-icon
+            :icon="['fas', 'file-import']"
+            class="text-white"
+          />
 
           <router-link
             to="/question"
             class="mr-5 hover:text-gray-900 text-white"
             >質問する</router-link
           >
-          <font-awesome-icon :icon="['fas', 'user']" />
+          <font-awesome-icon :icon="['fas', 'user']" class="text-white" />
           <router-link
             :to="{ name: 'UserShow', params: { id: this.$store.state.userId } }"
             class="mr-5 hover:text-gray-900 text-white"
             >マイページ</router-link
           >
 
-          <font-awesome-icon :icon="['fas', 'sign-out-alt']" />
+          <font-awesome-icon
+            :icon="['fas', 'sign-out-alt']"
+            class="text-white"
+          />
           <button @click="logout()" class="mr-5 hover:text-gray-900 text-white">
             ログアウト
           </button>
         </template>
         <template v-if="!isAuthenticated">
-          <font-awesome-icon :icon="['fas', 'user-plus']" />
+          <font-awesome-icon :icon="['fas', 'user-plus']" class="text-white" />
           <router-link class="mr-5 hover:text-gray-900" to="/register"
             >登録</router-link
           >
-          <font-awesome-icon :icon="['fas', 'sign-in-alt']" />
+          <font-awesome-icon
+            :icon="['fas', 'sign-in-alt']"
+            class="text-white"
+          />
           <router-link class="mr-5 hover:text-gray-900" to="/login"
             >ログイン</router-link
           >

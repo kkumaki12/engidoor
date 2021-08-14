@@ -9,7 +9,7 @@
       </div>
       <div class="col-span-1"></div>
       <div class="col-span-2">
-        <UsersRanking></UsersRanking>
+        <RankingList></RankingList>
       </div>
     </div>
   </div>
@@ -17,13 +17,14 @@
 
 <script>
 import QuestionList from "../Questions/QuestionList.vue";
-import UsersRanking from "../Users/UsersRanking.vue";
+import RankingList from "../Ranking/RankingList.vue";
 import QuestionTabs from "../Questions/QuestionTag.vue";
+
 export default {
   name: "app",
   components: {
     QuestionList,
-    UsersRanking,
+    RankingList,
     QuestionTabs,
   },
 };
