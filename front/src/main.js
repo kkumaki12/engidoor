@@ -22,7 +22,10 @@ Vue.config.productionTip = false
 
 
 axios.defaults.baseURL =
-'http://localhost:3000/'
+process.env.VUE_APP_API_BASE_URL
+console.log(process.env.VUE_APP_API_BASE_URL);
+console.log(process.env.API_BASE_URL);
+console.log(process.env);
 
 axios.interceptors.request.use(
   config => {
