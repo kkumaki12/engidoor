@@ -1,6 +1,4 @@
 #!/bin/bash
 
-sudo service nginx start
-cd /app
-bin/setup
-bundle exec pumactl start
+
+bundle exec rails db:migrate RAILS_ENV=production
