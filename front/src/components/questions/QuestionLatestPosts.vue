@@ -123,7 +123,7 @@
     <paginate
       :v-model="currentPage"
       :page-count="getPageCount"
-      :page-range="2"
+      :page-range="3"
       :margin-pages="1"
       :click-handler="clickCallback"
       :prev-text="'<'"
