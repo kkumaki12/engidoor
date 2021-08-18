@@ -57,8 +57,8 @@ class Api::V1::QuestionsController < ApiController
   end
 
   def solved_answers
-    questions = BestAnswer.joins(:question).select('*')
-    render json: questions
+    questions = Question.joins(:best_answer)
+    render json: questions.as_json(include: :user)
   end
 
   def specialty
