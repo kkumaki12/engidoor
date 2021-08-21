@@ -29,6 +29,6 @@ production:
   pool: 5
   username: admin
   password: password
-  host: engidoor-database-3.cmdexsnlk4dz.ap-northeast-1.rds.amazonaws.com
+  host: terraform-20210821114528601600000001.cmdexsnlk4dz.ap-northeast-1.rds.amazonaws.com
   port: 3306
 
