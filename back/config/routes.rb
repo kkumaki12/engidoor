@@ -9,6 +9,8 @@ Rails.application.routes.draw do
       get "/questions/search/:search", to: "questions#search"
       get "questions/solved", to: "questions#solved_answers"
       get "comments/reply/:id", to: "comments#reply"
+      get "health_check", to: "health_check#index"
+      get "questions/specialty/:tag", to: "questions#specialty"
 
       resources :tags do
       end

@@ -50,3 +50,6 @@ db/mysql
 node_modules
 /config/credentials
 deploy-me.sh
+
+/sessionmanager-bundle
+/sessionmanager-bundle.zp

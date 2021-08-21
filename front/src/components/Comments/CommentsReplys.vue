@@ -65,7 +65,6 @@
         type="text"
         rows="3"
         class="
-          bg-gray-100
           appearance-none
           border
           rounded
@@ -80,7 +79,7 @@
           focus:shadow-outline
         "
       />
-      <button @click="createReply(comment)" class="bg-blue-600 text-white px-3 py-1 rounded-md">投稿</button>
+      <button @click="createReply(comment)" class="bg-blue-600 text-white px-3 py-1 rounded-md font-bold">投稿</button>
     </div>
   </div>
 </template>

@@ -25,7 +25,7 @@ jobs:
           
 
   #作業環境
-    working_directory: ~/engidoor
+    working_directory: ~/engidoor/back
 
     steps:
     #CI環境上の working_directory の値の場所にGitリポジトリをコピーする

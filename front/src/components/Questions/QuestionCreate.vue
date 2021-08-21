@@ -14,7 +14,6 @@
               v-model="title"
               type="text"
               class="
-                bg-gray-100
                 appearance-none
                 border
                 rounded
@@ -25,6 +24,7 @@
                 leading-tight
                 focus:outline-none
                 focus:shadow-outline
+                 focus:border-b-2 focus:border-indigo-500 
               "
             />
           </div>
@@ -35,24 +35,25 @@
             >
               タグ
             </label>
-            <input
-              v-model="tag"
-              placeholder="複数タグ付けする場合はスペースを開けてください"
-              class="
-                bg-gray-100
-                appearance-none
-                border
-                rounded
-                w-full
-                py-2
-                px-3
-                text-gray-700
-                leading-tight
-                focus:outline-none
-                focus:shadow-outline
-              "
-              id="tag"
-            />
+      <v-select
+        placeholder="選択してください"
+        name="hoge"
+        :options="options"
+        v-model="tag"
+        class="
+          bg-white
+          shadow
+          appearance-none
+          border
+          rounded
+          w-full
+          text-gray-700
+          leading-tight
+          focus:outline-none
+          focus:shadow-outline
+          focus:border-b-2 focus:border-indigo-500 
+        "
+      ></v-select>
           </div>
           <div class="mb-4">
             <label
@@ -64,7 +65,6 @@
             <textarea
               v-model="content"
               class="
-                bg-gray-100
                 p-1
                 appearance-none
                 border
@@ -74,6 +74,7 @@
                 leading-tight
                 focus:outline-none
                 focus:shadow-outline
+                focus:border-b-2 focus:border-indigo-500 
               "
               rows="8"
             ></textarea>
@@ -92,6 +93,7 @@
                 rounded
                 focus:outline-none
                 focus:shadow-outline
+                w-full
               "
             >
               投稿する
@@ -105,14 +107,33 @@
 
 <script>
 import axios from "axios";
+import vSelect from "vue-select";
+import "vue-select/dist/vue-select.css";
 export default {
+  components: { "v-select": vSelect },
   data: function () {
     return {
       title: "",
       tag: "",
       content: "",
+      options: [
+        "材料・素材",
+        "金型",
+        "機械加工",
+        "半導体",
+        "電子",
+        "設計",
+        "FA・自動化",
+        "ロボット",
+        "品質管理",
+        "環境",
+        "生産技術",
+        "化学",
+        "化学工学",
+        "その他"
+      ],
     };
-  },
+    },
   computed: {
     token() {
       return this.$store.getters.token;
@@ -124,6 +145,7 @@ export default {
         .post("/api/v1/questions", {
           title: this.title,
           content: this.content,
+          tag: this.tag,
           user_id: this.$store.state.userId
         })
         .then((response) => {
@@ -138,3 +160,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+::placeholder {
+  background-color: orange;
+}
+</style>

@@ -1,6 +1,5 @@
 <template>
   <div>
-    
     <div v-for="question in getLists" :key="question.id">
       <div
         class="
@@ -91,22 +90,31 @@
               <question-status :question="question"></question-status>
               <!-- ユーザー情報 -->
 
-              
-                              <div class="col-none hidden mr-2 lg:block lg:col-start-9 lg:col-end-12">
-                    <div class="flex items-center">
-                    <div class="w-16 h-16">
-                        <img src="../../assets/default.png" class="rounded-full">
-                    </div>
-                        <div class="text-gray-600 font-bold text-sm hover:underline">
-                                          <router-link
-                :to="{ name: 'UserShow', params: { id: question.user_id } }"
+              <div
+                class="
+                  col-none
+                  hidden
+                  mr-2
+                  lg:block
+                  lg:col-start-9 lg:col-end-12
+                "
               >
-                <QuestionUser :question="question"></QuestionUser>
-              </router-link>
-                        </div>
-                    </div>
+                <div class="flex items-center">
+                  <div class="w-16 h-16">
+                    <img src="../../assets/default.png" class="rounded-full" />
+                  </div>
+                  <div class="text-gray-600 font-bold text-sm hover:underline">
+                    <router-link
+                      :to="{
+                        name: 'UserShow',
+                        params: { id: question.user_id },
+                      }"
+                    >
+                      <QuestionUser :question="question"></QuestionUser>
+                    </router-link>
+                  </div>
                 </div>
-                
+              </div>
             </div>
           </div>
         </div>
@@ -115,14 +123,14 @@
     <paginate
       :v-model="currentPage"
       :page-count="getPageCount"
-      :page-range="2"
+      :page-range="3"
       :margin-pages="1"
       :click-handler="clickCallback"
       :prev-text="'<'"
       :prev-class="'inline-block w-12 h-12  mx-0.5 text-center'"
       :next-text="'>'"
       :next-class="'inline-block w-12 h-12  mx-0.5 text-center'"
-      :container-class="'pagination justify-center mx-auto'"  
+      :container-class="'pagination justify-center mx-auto'"
       :page-class="'inline-block w-12 h-12 leading-10 mx-0.5 box-border text-center rounded-2xl text-black hover:bg-gray-300 '"
       :active-class="'bg-green-600 text-white hover:none'"
       :page-link-class="''"
@@ -144,12 +152,12 @@ export default {
     QuestionStatus,
     QuestionCommentsCount,
   },
-   filters: {
-      moment: function(date) {
-         moment.locale("ja");
-        return moment(date).fromNow();
-      },
+  filters: {
+    moment: function (date) {
+      moment.locale("ja");
+      return moment(date).fromNow();
     },
+  },
   data: function () {
     return {
       count: "",

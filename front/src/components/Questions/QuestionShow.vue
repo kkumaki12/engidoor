@@ -24,7 +24,7 @@
             <div class="text-right mr-5">回答数{{ count }}</div>
           </section>
           <section class="text-sm font-thin text-orange-400">
-            {{ question.created_at }}
+            {{ question.created_at | moment }}
           </section>
           <section class="text-3xl font-bold">{{ question.title }}</section>
           <section class="font-normal text-md text-gray-700">
@@ -55,10 +55,17 @@
 <script>
 import axios from "axios";
 import CommentForm from "../Comments/CommentForm.vue";
+import moment from "moment";
 
 
 export default {
   components: { CommentForm},
+  filters: {
+    moment: function (date) {
+      moment.locale("ja");
+      return moment(date).fromNow();
+    },
+  },
 
   data: function () {
     return {

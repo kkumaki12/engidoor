@@ -11,5 +11,5 @@ def show
   best_answers = BestAnswer.joins(:question).select('best_answers.*,questions.*')
   render json:best_answers
 end
-
+end
 

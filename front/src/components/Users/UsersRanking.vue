@@ -1,14 +1,16 @@
 <template>
   <div>
-    <h2>いいね数ランキング</h2>
+    <h2 class="font-bold">いいね数ランキング</h2>
+    <div class="border bg-white">
     <div v-for="user in users" :key="user.id">
-      <li class="border bold">
+      <li class="mt-2">
         <b>{{ users.indexOf(user) + 1 }}位</b>
         <router-link :to="{ name: 'UserShow', params: { id: user.id } }">
           {{ user.name }}さん
         </router-link>
         <img src="../../assets/default.png" class="w-16 h-16 rounded-full" />
       </li>
+      </div>
     </div>
   </div>
 </template>
