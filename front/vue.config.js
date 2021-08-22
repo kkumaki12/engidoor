@@ -1,7 +1,7 @@
 module.exports = {
-  /*publicPath: process.env.NODE_ENV === 'production'
+  publicPath: process.env.NODE_ENV === 'production'
   ? '/back.engidoor.com/'
-  : '/',*/
+  : '/',
   devServer: {
     // 開発サーバーのポート設定
     port: 8080,
