@@ -54,7 +54,7 @@ jobs:
           command: mkdir /tmp/test-results
           working_directory: ~/engidoor/back
 
-      # run tests
+      ## run tests
      # - run:
        #   name: RSpec
     #      command: |
