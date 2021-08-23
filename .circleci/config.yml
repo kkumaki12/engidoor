@@ -61,10 +61,10 @@ jobs:
      #       bundle exec rspec $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings) \
      #         || (printf "====== RETRYING...\n\n\n"; bundle exec rspec --only-failures)
      #     working_directory: ~/engidoor/back
-      - run:
-          name: Rubocop
-          command: bundle exec rubocop
-          working_directory: ~/engidoor/back
+     # - run:
+      #    name: Rubocop
+       #   command: bundle exec rubocop
+        #  working_directory: ~/engidoor/back
 
       # collect engidoor
       - store_test_results:
