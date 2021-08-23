@@ -15,13 +15,13 @@ RSpec.describe User, type: :model do
 
   it 'パスワードが暗号化されている' do
     user = FactoryBot.build(:user)
-    expect(user.password_digest).to_not eq 'password' 
+    expect(user.password_digest).to_not eq 'password'
   end
 
   xit 'ログイン中のユーザーと一致しない場合、編集ができない' do
     @user = FactoryBot.create(:user)
     user2 = FactoryBot.create(:user)
-    get edit_user_path, params: {id: @user.id}
+    get edit_user_path, params: { id: @user.id }
     expect(response).redirect_to root
   end
 end

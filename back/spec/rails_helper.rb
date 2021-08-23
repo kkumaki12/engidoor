@@ -46,17 +46,16 @@ RSpec.configure do |config|
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
   # `post` in specs under `spec/controllers`.
-  #RSpec.configure do |config|
+  # RSpec.configure do |config|
   # ...
 
   # テストケース共通の事前処理
   config.before(:each) do
-
     # let(:rspec_session) で指定された値を セッションの初期値とします
     session = defined?(rspec_session) ? rspec_session : {}
 
     # destroyメソッドを実行してもエラーにならないようにします（必要であれば）
-    session.class_eval { def destroy; nil; end } 
+    session.class_eval { def destroy() = nil }
 
     # sessionメソッドを上書き
     allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return(session)
@@ -77,5 +76,4 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
-  
 end

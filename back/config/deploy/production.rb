@@ -1,6 +1,6 @@
-server '35.74.51.186', user: 'kensuke', roles: %w{app db web}
+server '35.74.51.186', user: 'kensuke', roles: %w[app db web]
 
-$app_dir = "/var/www/rails/engidoor/current"
+$app_dir = '/var/www/rails/engidoor/current'
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.
@@ -9,8 +9,6 @@ $app_dir = "/var/www/rails/engidoor/current"
 # server "example.com", user: "deploy", roles: %w{app db web}, my_property: :my_value
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.du -sh * | sort", user: "deploy", roles: %w{db}
-
-
 
 # role-based syntax
 # ==================
@@ -24,8 +22,6 @@ $app_dir = "/var/www/rails/engidoor/current"
 # role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
 # role :db,  %w{deploy@example.com}
 
-
-
 # Configuration
 # =============
 # You can set any configuration variable like in config/deploy.rb
@@ -33,8 +29,6 @@ $app_dir = "/var/www/rails/engidoor/current"
 # For available Capistrano configuration variables see the documentation page.
 # http://capistranorb.com/documentation/getting-started/configuration/
 # Feel free to add new variables to customise your setup.
-
-
 
 # Custom SSH Options
 # ==================
@@ -44,11 +38,11 @@ $app_dir = "/var/www/rails/engidoor/current"
 #
 # Global options
 # --------------
-  set :ssh_options, {
-    keys: %w(~/.ssh/engidoor_key_rsa),
-    forward_agent: false,
-    auth_methods: %w(publickey)
-  }
+set :ssh_options, {
+  keys: %w[~/.ssh/engidoor_key_rsa],
+  forward_agent: false,
+  auth_methods: %w[publickey]
+}
 #
 # The server-based syntax can be used to override options:
 # ------------------------------------
@@ -62,5 +56,4 @@ $app_dir = "/var/www/rails/engidoor/current"
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
-puts "Hello!! This is custom puma template!!"
-
+puts 'Hello!! This is custom puma template!!'

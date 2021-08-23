@@ -1,15 +1,17 @@
-class Api::V1::BestAnswersController < ApiController
+module Api
+  module V1
+    class BestAnswersController < ApiController
+      def create
+        comment = Comment.find(params[:comment_id])
+        question_id = comment.question_id
+        @best_answer = BestAnswer.create(question_id: question_id, comment_id: params[:comment_id])
+        @best_answer.save
+      end
 
-  def create
-    comment = Comment.find(params[:comment_id])
-    question_id = comment.question_id
-    @best_answer = BestAnswer.create(question_id: question_id, comment_id: params[:comment_id])
-    @best_answer.save
+      def show
+        best_answers = BestAnswer.joins(:question).select('best_answers.*,questions.*')
+        render json: best_answers
+      end
+    end
+  end
 end
-
-def show
-  best_answers = BestAnswer.joins(:question).select('best_answers.*,questions.*')
-  render json:best_answers
-end
-end
-

@@ -13,13 +13,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :goods, dependent: :destroy
 
-
-
   def good_user?(comment_id)
     goods.exists?(comment_id: comment_id)
   end
-
-
-    
-
 end
