@@ -11,22 +11,20 @@ module EngineerQA
     config.i18n.default_locale = :ja
     config.api_only = true
 
-
-
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
 
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
     # Permit cross origin
-config.middleware.insert_before 0, Rack::Cors do
-  allow do
-    origins "*"
-    resource "*",
-      headers: :any,
-      methods: [:get, :post, :delete, :options, :head, :put]
-  end
-end
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*',
+                 headers: :any,
+                 methods: %i[get post delete options head put]
+      end
+    end
 
     # Configuration for the application, engines, and railties goes here.
     #

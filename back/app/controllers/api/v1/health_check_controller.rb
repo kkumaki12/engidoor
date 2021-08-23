@@ -1,5 +1,9 @@
-class Api::V1::HealthCheckController < ApiController
-  def index
-    head 200
+module Api
+  module V1
+    class HealthCheckController < ApiController
+      def index
+        head 200
+      end
+    end
   end
 end

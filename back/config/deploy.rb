@@ -1,14 +1,14 @@
 # config valid for current version and patch releases of Capistrano
-lock "3.16.0"
+lock '3.16.0'
 
-set :application, "engidoor"
-set :repo_url, "git@github.com:kkumaki12/engidoor.git"
+set :application, 'engidoor'
+set :repo_url, 'git@github.com:kkumaki12/engidoor.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/engidoor
-set :deploy_to, "/var/www/rails/engidoor"
+set :deploy_to, '/var/www/rails/engidoor'
 # バージョンが変わっても共通で参照するディレクトリ
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system', 'public/uploads'
 append :linked_files, 'config/database.yml', 'config/master.key'
@@ -22,8 +22,8 @@ set :rbenv_ruby, '3.0.0'
 # set :format_options, command_output: true, log_file: "log/capistrano.log", color: :auto, truncate: :auto
 
 # Default value for :pty is false
- set :pty, true
- set :branch, ENV['BRANCH'] || "master"
+set :pty, true
+set :branch, ENV['BRANCH'] || 'master'
 # Default value for :linked_files is []
 # append :linked_files, "config/database.yml"
 
@@ -41,10 +41,9 @@ set :rbenv_ruby, '3.0.0'
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 set :ssh_options,  auth_methods: ['publickey'],
-                   keys: ['~/.ssh/engidoor_key_rsa'] 
+                   keys: ['~/.ssh/engidoor_key_rsa']
 # プロセス番号を記載したファイルの場所
-set :puma_pid, "var/www/rails/engidoor/tmp/pids/puma.pid"
+set :puma_pid, 'var/www/rails/engidoor/tmp/pids/puma.pid'
 
 # puma設定ファイルの場所
-set :puma_conf, "/var/www/rails/engidoor/config/puma/production.rb"
-
+set :puma_conf, '/var/www/rails/engidoor/config/puma/production.rb'

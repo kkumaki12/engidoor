@@ -1,2 +1,6 @@
-class Api::V1::ApplicationPagesController < ApiController
+module Api
+  module V1
+    class ApplicationPagesController < ApiController
+    end
+  end
 end
