@@ -1,82 +1,206 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine. See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 orbs:
-  ruby: circleci/ruby@1.1.3
-
-#実行するjob
+  aws-ecr: circleci/aws-ecr@6.15.3
+  aws-ecs: circleci/aws-ecs@2.1.0
+  aws-cli: circleci/aws-cli@1.4.1
 jobs:
-#buildするjob
-  build:
-    #circleciの実行環境
+  #job1
+  test_back:
     docker:
       - image: circleci/ruby:3.0.0-node-browsers-legacy
         environment:
-          - RAILS_ENV: 'test'
-          - DB_HOST: 127.0.0.1
-          - DB_USERNAME: 'root'
-          - MYSQL_PASSWORD: ''
-
-
-      - image: circleci/mysql:8.0.23
-        environment:
-          - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
-          - MYSQL_ROOT_HOST: '%'
-        command: --default-authentication-plugin=mysql_native_password
-          
-
-  #作業環境
+          RAILS_ENV: test
+          DB_HOST: '127.0.0.1'
+      - image: circleci/mysql:5.7.32
     working_directory: ~/engidoor/back
 
     steps:
-    #CI環境上の working_directory の値の場所にGitリポジトリをコピーする
       - checkout
-
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "Gemfile.lock" }}
-            - v1-dependencies-
+            - gem-cache-v1-{{ checksum "~/engidoor/back/Gemfile.lock" }}
+            - gem-cache-v1-
+      - run:
+          name: Install bundler
+          command: gem install bundler -v 2.2.15
+          working_directory: back
+      - run:
+          name: Which bundler?
+          command: bundle -v
+          working_directory: back
+      - run:
+          command: |
+            gem install bundler
+            bundle config set path 'vendor/bundle'
+            bundle install --jobs=4 --retry=3
+          working_directory: ~/engidoor/back
+      - save_cache:
+          key: gem-cache-v1-{{ checksum "~/engidoor/back/Gemfile.lock" }}
+          paths:
+            - ~/engidoor/back/vendor/bundle
+
+      # Database setup
+      - run:
+          command: bundle exec rails db:create
+          working_directory: ~/engidoor/back
+      - run:
+          command: bundle exec rails db:migrate
+          working_directory: ~/engidoor/back
+      - run:
+          command: bundle exec rails db:seed --trace
+          working_directory: ~/engidoor/back
+      - run:
+          name: create directory to store test results
+          command: mkdir /tmp/test-results
+          working_directory: ~/engidoor/back
+
+      # run tests
+      - run:
+          name: RSpec
+          command: |
+            bundle exec rspec $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings) \
+              || (printf "====== RETRYING...\n\n\n"; bundle exec rspec --only-failures)
+          working_directory: ~/engidoor/back
+      - run:
+          name: Rubocop
+          command: bundle exec rubocop
+          working_directory: ~/engidoor/back
+
+      # collect engidoor
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
+      - store_artifacts:
+          path: /home/circleci/engidoor/tmp/screenshots
+  #job2
+  test_front:
+    docker:
+      - image: circleci/node:15.10
+        environment:
+          NODE_ENV: test
+    working_directory: ~/engidoor
+
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "~/engidoor/front/package.json" }}
 
       - run:
-          name: DB待ち
-          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 3m
-      - run: gem install bundler:2.2.15
-      - run: bundle install --jobs=4 --retry=3 --path vendor/bundle
-      - run: yarn install
-      - run:
-          name: npmをインストール
+          name: install-packages
           command: npm install
-      - run:
-          name: webpackをインストール
-          command: bundle exec bin/webpack
+          working_directory: ~/engidoor/front
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "~/engidoor/front/package.json" }}
 
-      
-
-      - run: mv config/database.yml.ci config/database.yml
-      - run: bundle exec rake db:create
-      - run: bundle exec rake db:schema:load
+      # - run:
+      #     name: Run ESLint
+      #     command: npm run lint
+      #     working_directory: ~/engidoor/front
 
       #- run:
-          #name: Rubocop実行
-          #command: bundle exec rubocop
-
-      - run:
-          name: Rspecでのテスト
-          command: bundle exec rspec
-
-  deploy:
+      #   name: test
+      #    command: npm run test
+      #    working_directory: ~/engidoor/front
+#job3
+  build_and_push_image_back:
     machine:
-      enabled: true
+      image: ubuntu-1604:201903-01
     steps:
-      - add_ssh_keys:
-          fingerprints:
-            - 1b:0d:86:29:5e:72:1e:48:29:08:7d:7b:3d:ad:13:3a
-      - run: ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "/var/www/rails/engidoor/deploy-me.sh"
+      - checkout
+      - aws-ecr/build-and-push-image:
+          account-url: AWS_ACCOUNT_URL
+          repo: "engidoor-back-tf"
+          region: AWS_REGION
+          tag: "${CIRCLE_SHA1}"
+          path: './back'
+          dockerfile: Dockerfile
+#job4
+  build_and_push_image_front:
+    machine:
+      image: ubuntu-1604:201903-01
+    steps:
+      - checkout
+      - aws-ecr/build-and-push-image:
+            account-url: AWS_ACCOUNT_URL
+            repo: "engidoor-front-tf"
+            region: AWS_REGION
+            tag: "${CIRCLE_SHA1}"
+            path: './front'
+            dockerfile: Dockerfile
 
 workflows:
   version: 2
-  deploy:
+  test:
     jobs:
-      - build
-      - deploy
-          
+      - test_back:
+          filters:
+            branches:
+              only: master
+      - test_front:
+          filters:
+            branches:
+              only: master
+      - build_and_push_image_back:
+          requires:
+           - test_front
+           - test_back
+          filters:
+            branches:
+              only: master
+      - build_and_push_image_front:
+          requires:
+            - test_front
+            - test_back
+          filters:
+            branches:
+              only: master
+      - aws-ecs/update-task-definition:
+          # family: engidoor-db-migrate
+          family: engidoor-db-migrate-tf
+          container-image-name-updates: 'container=engidoor-back-container-tf,tag=${CIRCLE_SHA1}'
+          aws-region: AWS_REGION
+          requires:
+            - build_and_push_image_back
+          filters:
+            branches:
+              only: master
 
+      - aws-ecs/run-task:
+          cluster: engidoor-ecs-cluster-tf
+          # task-definition: engidoor-db-migrate
+          task-definition: engidoor-db-migrate-tf
+          subnet-ids: subnet-039a1710852bb7139, subnet-0d18332c424b061b4
+          assign-public-ip: ENABLED
+          security-group-ids: '${MIGRATION_SECURITY_GROUP_ID}'
+          requires:
+            - aws-ecs/update-task-definition
+          filters:
+            branches:
+              only: master
+
+      - aws-ecs/deploy-service-update:
+            family: engidoor-front-task-tf
+            service-name: engidoor-front-ecs-service-tf
+            cluster-name: engidoor-ecs-cluster-tf
+            container-image-name-updates: 'container=engidoor-front-container-tf,tag=${CIRCLE_SHA1}'
+            requires:
+              - build_and_push_image_front
+            filters:
+              branches:
+                only: master
+      - aws-ecs/deploy-service-update:
+            requires:
+              - build_and_push_image_front
+              - build_and_push_image_back
+            family: engidoor-back-task-tf
+            service-name: engidoor-back-ecs-service-tf
+            cluster-name: engidoor-ecs-cluster-tf
+            container-image-name-updates: 'container=engidoor-back-container-tf,tag=${CIRCLE_SHA1}'
+            filters:
+              branches:
+                only: master
