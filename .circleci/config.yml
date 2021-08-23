@@ -54,13 +54,13 @@ jobs:
           command: mkdir /tmp/test-results
           working_directory: ~/engidoor/back
 
-      # run tests
-      - run:
-          name: RSpec
-          command: |
-            bundle exec rspec $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings) \
-              || (printf "====== RETRYING...\n\n\n"; bundle exec rspec --only-failures)
-          working_directory: ~/engidoor/back
+      ## run tests
+     # - run:
+       #   name: RSpec
+    #      command: |
+     #       bundle exec rspec $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings) \
+     #         || (printf "====== RETRYING...\n\n\n"; bundle exec rspec --only-failures)
+     #     working_directory: ~/engidoor/back
       - run:
           name: Rubocop
           command: bundle exec rubocop
