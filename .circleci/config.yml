@@ -108,8 +108,8 @@ jobs:
       #    working_directory: ~/engidoor/front
 #job3
   build_and_push_image_back:
-    machine:
-      image: ubuntu-1604:201903-01
+    docker:
+      - image: alpine
     steps:
       - checkout
       - aws-ecr/build-and-push-image:
@@ -131,7 +131,7 @@ jobs:
             region: AWS_REGION
             tag: "${CIRCLE_SHA1}"
             path: './front'
-            dockerfile: Dockerfile
+            #dockerfile: Dockerfile
             
 
 
@@ -162,7 +162,6 @@ workflows:
             branches:
               only: master
       - aws-ecs/update-task-definition:
-          # family: engidoor-db-migrate
           family: engidoor-db-migrate-tf
           container-image-name-updates: 'container=engidoor-back-container-tf,tag=${CIRCLE_SHA1}'
           aws-region: AWS_REGION
