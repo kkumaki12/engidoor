@@ -1,6 +1,6 @@
 <template>
  <div>
-<p>{{ this.tag }}</p>
+タグ:<p>{{ this.tag }}</p>
   
       <div v-for="question in questions" :key="question.id">
       <div
