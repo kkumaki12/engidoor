@@ -16,9 +16,9 @@
 </template>
 
 <script>
-import QuestionList from "../Questions/QuestionList.vue";
+import QuestionList from "../questions/QuestionList.vue";
 import RankingList from "../Ranking/RankingList.vue";
-import QuestionTabs from "../Questions/QuestionTag.vue";
+import QuestionTabs from "../questions/QuestionTag.vue";
 
 export default {
   name: "app",
