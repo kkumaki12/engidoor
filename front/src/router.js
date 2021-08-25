@@ -2,15 +2,15 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import store from './store.js';
 import Home from './components/layouts/Home.vue'
-import QuestionCreate from './components/Questions/QuestionCreate.vue'
-import QuestionShow from './components/Questions/QuestionShow.vue'
-import QuestionList from './components/Questions/QuestionList.vue'
+import QuestionCreate from './components/questions/QuestionCreate.vue'
+import QuestionShow from './components/questions/QuestionShow.vue'
+import QuestionList from './components/questions/QuestionList.vue'
 import Login from './views/Login.vue'
 import Register from './views/Register.vue'
 import UserShow from './components/Users/UsersShow.vue'
 import UserRanking from './components/Users/UsersRanking.vue'
 import UserEdit from './components/Users/UsersEdit.vue'
-import QuestionSearchResult from './components/Questions/QuestionSearchResult.vue'
+import QuestionSearchResult from './components/questions/QuestionSearchResult.vue'
 
 
 Vue.use(Router);

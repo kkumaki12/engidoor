@@ -99,7 +99,7 @@
 
 <script>
 import axios from "axios";
-import QuestionCommentsCount from "../Questions/QuestionCommentsCount.vue";
+import QuestionCommentsCount from "../questions/QuestionCommentsCount.vue";
 export default {
   components: {
     QuestionCommentsCount,
