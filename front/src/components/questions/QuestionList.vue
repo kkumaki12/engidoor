@@ -131,7 +131,7 @@
 </template>
 
 <script>
-import QuestionUsersSpecialty from '../Questions/QuestionUsersSpecialty.vue';
+import QuestionUsersSpecialty from './QuestionUsersSpecialty.vue';
 import QuestionLatestPosts from "./QuestionLatestPosts.vue";
 import QuestionSolvedPosts from "./QuestionSolvedPosts.vue";
 
