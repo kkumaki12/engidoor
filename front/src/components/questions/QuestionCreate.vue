@@ -24,7 +24,7 @@
                 leading-tight
                 focus:outline-none
                 focus:shadow-outline
-                 focus:border-b-2 focus:border-indigo-500 
+                focus:border-b-2 focus:border-indigo-500 
               "
             />
           </div>
