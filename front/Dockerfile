@@ -5,7 +5,7 @@ WORKDIR /front
 
 COPY package*.json ./
 RUN npm cache clean -f
-RUN apk update && npm install -g vue-cli
+RUN apk update && apk upgrade && npm install -g vue-cli && npm install
 COPY . .
 RUN npm run build-production
 CMD ["npm", "run", "start"]
