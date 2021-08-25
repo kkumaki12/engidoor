@@ -1,6 +1,6 @@
 <template>
  <div>
-
+<p>{{ this.tag }}</p>
   
       <div v-for="question in questions" :key="question.id">
       <div
@@ -116,11 +116,13 @@ export default {
   data: function () {
     return { 
     count: '',
-    questions: []
+    questions: [],
+    tag: ''
   }
   },
   created() {
     axios.get(`api/v1/questions/specialty/${this.$route.params.tag}`).then((response) => {
+      this.tag = `${this.$route.params.tag}`;
       this.questions = response.data;
       console.log(response.data);
     });

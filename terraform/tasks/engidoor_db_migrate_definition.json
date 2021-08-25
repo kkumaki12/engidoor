@@ -24,7 +24,16 @@
         "name": "RAILS_ENV",
         "value": "production"
       }
+    ],
+    "secrets": [
+      {
+        "name": "RAILS_SECRET_BASE_KEY",
+        "valueFrom": "engidoor_rails_production_key"
+      },
+      {
+        "name": "RAILS_PRODUCTION_KEY",
+        "valueFrom": "engidoor_rails_secret_base_key"
+      }
     ]
-   
   }
 ]
