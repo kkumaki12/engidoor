@@ -2,7 +2,7 @@
   <div id="app">
     <div class="grid grid-cols-12 flex-row">
       <div class="col-span-3">
-        <QuestionTabs></QuestionTabs>
+        <TagsList></TagsList>
       </div>
       <div class="col-span-6">
         <QuestionList></QuestionList>
@@ -18,14 +18,14 @@
 <script>
 import QuestionList from "../questions/QuestionList.vue";
 import RankingList from "../Ranking/RankingList.vue";
-import QuestionTabs from "../questions/QuestionTag.vue";
+import TagsList from "../Tags/Tagslist.vue";
 
 export default {
   name: "app",
   components: {
     QuestionList,
     RankingList,
-    QuestionTabs,
+    TagsList,
   },
 };
 </script>
