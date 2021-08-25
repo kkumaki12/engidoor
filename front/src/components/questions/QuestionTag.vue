@@ -1,71 +1,143 @@
 <template>
-  <div>
-    <div class="relative inline-block text-left ml-2">
-      <div class="font-bold">ジャンルから検索</div>
-      <div v-for="tag in tags" :key="tag.id">
-        <div
-          class="
-            origin-top-right
-            right-0
-            mt-2
-            w-56
-            rounded-md
-            shadow-lg
-            bg-white
-            dark:bg-gray-800
-            ring-1 ring-black ring-opacity-5
-          "
-        >
-          <div class="py-1">
-            <a
-              href="#"
-              class="
-                block block
-                px-4
-                py-2
-                text-md text-gray-700
-                hover:bg-gray-100
-                hover:text-gray-900
-                dark:text-gray-100
-                dark:hover:text-white
-                dark:hover:bg-gray-600
-              "
-            >
-              <span class="flex flex-col">
-                <span>
-                  {{ tag }}
-                </span>
+ <div>
+
+  
+      <div v-for="question in questions" :key="question.id">
+      <div
+        class="
+          bg-white
+          rounded-lg
+          shadow-sm
+          hover:shadow-lg
+          duration-500
+          px-2
+          sm:px-6
+          md:px-2
+          py-4
+          my-6
+        "
+      >
+        <div class="grid grid-cols-12 gap-3">
+          <!-- Meta Column -->
+          <div class="col-span-0 sm:col-span-2 text-center hidden sm:block">
+            <!-- 回答数 -->
+            <question-comments-count :question="question.id"></question-comments-count>
+            <!-- 閲覧数 -->
+            <div class="grid my-3">
+              <span class="inline-block font-bold text-xs">
+                {{ questionViewsCount(question.impressions_count) }}     Views
               </span>
-            </a>
+            </div>
+          </div>
+
+          <!-- レスポンシブル対応 -->
+          <div class="col-span-12 sm:col-start-3 sm:col-end-13 px-3 sm:px-0">
+            <div class="grid block sm:hidden">
+              <div class="flex flex-wrap">
+                <div class="mr-2">
+                  <div class="inline-block font-light capitalize">
+                    <i class="uil uil-check-circle mr-1"></i>
+                    <span class="text-sm"> </span>
+                  </div>
+                </div>
+                <div class="mr-2">
+                  <div class="inline-block">
+                    <i class="uil uil-eye mr-1"></i>
+                    <span class="text-sm capitalize font-light"> </span>
+                  </div>
+                </div>
+
+                <div class="mr-2">
+                  <div class="inline-block">
+                    <i class="uil uil-clock mr-1"></i>
+                    <span class="text-sm font-light">
+                      {{ question.created_at }}前
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex justify-between items-center hidden sm:block">
+              <span class="font-light text-gray-600">
+                {{ question.created_at }}前
+              </span>
+            </div>
+
+            <div class="mt-2">
+              <router-link
+                :to="{ name: 'QuestionShow', params: { id: question.id } }"
+                class="
+                  sm:text-sm
+                  md:text-md
+                  lg:text-lg
+                  text-gray-700
+                  font-bold
+                  hover:underline
+                "
+              >
+                {{ question.title }}
+              </router-link>
+
+              <p class="mt-2 text-gray-600 text-sm md:text-md">
+                {{ question.content.substring(0,50) }}
+              </p>
+            </div>
+
+            <!-- Question Labels -->
+            <div class="grid grid-cols-2 mt-4 my-auto">
+              <!-- ベストアンサー決定済み表示  -->
+            <question-status :question="question"></question-status>
+            <!-- ユーザー情報 -->
+            <router-link
+              :to="{ name: 'UserShow', params: { id: question.user_id } }"
+            >
+              <QuestionUser :question="question"></QuestionUser>
+            </router-link>
           </div>
         </div>
       </div>
     </div>
-  </div>
+    </div>
+    </div>
+
+
 </template>
 
 <script>
-
+import QuestionUser from "./QuestionUser.vue";
+import QuestionStatus from "./QuestionStatus.vue";
+import QuestionCommentsCount from "./QuestionCommentsCount.vue";
+import axios from 'axios';
 export default {
-  data: function () {
-    return {
-      tags: [
-        "材料・素材",
-        "金型",
-        "機械加工",
-        "半導体",
-        "電子",
-        "設計",
-        "FA・自動化",
-        "ロボット",
-        "品質管理",
-        "環境",
-        "生産技術",
-        "化学",
-        "化学工学",
-      ],
-    };
+  components: {
+    QuestionUser,QuestionStatus,QuestionCommentsCount
   },
- 
-};
+  data: function () {
+    return { 
+    count: '',
+    questions: []
+  }
+  },
+  created() {
+    axios.get(`api/v1/questions/specialty/${this.$route.params.tag}`).then((response) => {
+      this.questions = response.data;
+      console.log(response.data);
+    });
+  },
+  methods: {
+   questionViewsCount: function(view){
+     let count;
+     if(view > 0){
+       count = view;
+     }else{
+       count = 0;
+     }
+     return count;
+   }
+
+  }
+}
 </script>
+
+
