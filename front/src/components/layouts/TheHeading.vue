@@ -92,14 +92,14 @@
         </template>
         <template v-if="!isAuthenticated">
           <font-awesome-icon :icon="['fas', 'user-plus']" class="text-white" />
-          <router-link class="mr-5 hover:text-gray-900" to="/register"
+          <router-link class="mr-5 hover:text-gray-900 text-white" to="/register"
             >登録</router-link
           >
           <font-awesome-icon
             :icon="['fas', 'sign-in-alt']"
             class="text-white"
           />
-          <router-link class="mr-5 hover:text-gray-900" to="/login"
+          <router-link class="mr-5 hover:text-gray-900 text-white" to="/login"
             >ログイン</router-link
           >
         </template>
