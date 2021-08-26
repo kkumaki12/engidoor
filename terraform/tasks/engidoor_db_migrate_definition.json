@@ -23,13 +23,14 @@
       {
         "name": "RAILS_ENV",
         "value": "production"
-      }
-    ],
-    "secrets": [
+      },
       {
         "name": "RAILS_MASTER_KEY",
-        "valueFrom": "engidoor_rails_production_key"
-      },
+        "value": "d3db4828e64e6f5f5be8fb7e8ad2dd93"
+      }
+
+    ],
+    "secrets": [
       {
         "name": "AWS_ACCESS_KEY_ID",
         "valueFrom": "ENGIDOOR_AWS_ACCESS_KEY_ID"
