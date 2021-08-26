@@ -26,12 +26,16 @@
     ],
     "secrets": [
       {
-        "name": "RAILS_SECRET_BASE_KEY",
+        "name": "RAILS_MASTER_KEY",
         "valueFrom": "engidoor_rails_production_key"
       },
       {
-        "name": "RAILS_PRODUCTION_KEY",
-        "valueFrom": "engidoor_rails_secret_base_key"
+        "name": "AWS_ACCESS_KEY_ID",
+        "valueFrom": "ENGIDOOR_AWS_ACCESS_KEY_ID"
+      },
+      {
+        "name": "AWS_SECRET_ACCESS_KEY",
+        "valueFrom": "ENGIDOOR_AWS_SECRET_ACCESS_KEY"
       }
     ]
   }
