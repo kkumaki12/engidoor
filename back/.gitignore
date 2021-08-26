@@ -53,3 +53,5 @@ deploy-me.sh
 
 /sessionmanager-bundle
 /sessionmanager-bundle.zp
+
+/config/credentials/development.key
