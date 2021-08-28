@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       get 'health_check', to: 'health_check#index'
       get 'questions/specialty/:tag', to: 'questions#specialty'
       get 'users/:id/comments_by_tag_count', to: 'users#comments_by_tag_count'
+      get 'users/:id/comments_by_tag_count_values', to: 'users#comments_by_tag_count_values'
 
       resources :tags do
       end
