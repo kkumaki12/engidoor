@@ -18,6 +18,7 @@ resource "aws_ecs_task_definition" "engidoor-front-task-tf" {
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   container_definitions    = file("./tasks/engidoor_front_definition.json")
+  task_role_arn            = module.ecs_task_execution_role.iam_role_arn
   execution_role_arn       = module.ecs_task_execution_role.iam_role_arn
 }
 
@@ -58,6 +59,7 @@ resource "aws_ecs_task_definition" "engidoor-back-task-tf" {
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   container_definitions    = file("./tasks/engidoor_back_definition.json")
+  task_role_arn            = module.ecs_task_execution_role.iam_role_arn
   execution_role_arn       = module.ecs_task_execution_role.iam_role_arn
 }
 

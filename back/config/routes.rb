@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       get 'comments/reply/:id', to: 'comments#reply'
       get 'health_check', to: 'health_check#index'
       get 'questions/specialty/:tag', to: 'questions#specialty'
+      get 'users/:id/comments_by_tag_count', to: 'users#comments_by_tag_count'
 
       resources :tags do
       end

@@ -48,7 +48,7 @@ db/mysql
 /repo
 /revisions.log
 node_modules
-/config/credentials
+/config/credentials/*.key
 deploy-me.sh
 .terraform
 terraform/.terraform/providers/registry.terraform.io/hashicorp/aws/3.55.0/darwin_amd64/terraform-provider-aws_v3.55.0_x5
