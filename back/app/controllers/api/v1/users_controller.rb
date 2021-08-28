@@ -37,6 +37,25 @@ module Api
         render json: rank
       end
 
+      def comments_by_tag_count
+        user = User.find(params[:id])
+        comments = Comment.where(user_id:[user.id]).select(:question_id)
+        question_id = comments.map(&:question_id)
+        tags = []
+       question_id.each do |q_id|
+          tags << Question.find(q_id)
+      end 
+        result = tags.group_by{ |d| d[:tag] }
+        keys = result.keys
+        number = []
+
+        keys.each do |n|
+          number << result[n].count
+        end
+        value = keys.zip(number).to_h
+        render json: value
+      end
+
       private
 
       def user_params
