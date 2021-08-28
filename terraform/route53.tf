@@ -1,6 +1,6 @@
 resource "aws_route53_zone" "engidoor-host-zone-tf" {
-  name    = "engidoor.back"
-  comment = "engidoor.back host zone"
+  name    = "back.engidoor.com"
+  comment = "back.engidoor host zone"
 }
 
 resource "aws_route53_record" "engidoor-host-zone-record-tf" {
