@@ -50,12 +50,6 @@ resource "aws_lb_listener" "engidoor-http-listener-tf" {
   default_action {
     target_group_arn = aws_lb_target_group.engidoor-alb-front-tg-tf.arn
     type             = "forward"
-
-    fixed_response {
-      content_type = "text/plain"
-      message_body = "これはHTTPS"
-      status_code = "200"
-    }
   }
   
 }
@@ -119,7 +113,7 @@ resource "aws_lb_target_group" "engidoor-alb-front-tg-tf" {
     timeout             = 120
     interval            = 150
     matcher             = 200
-    port                = 80
+    port                = 5000
     protocol            = "HTTP"
   }
 }
