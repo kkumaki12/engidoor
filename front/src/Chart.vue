@@ -1,10 +1,10 @@
 <script>
-import { Bar } from 'vue-chartjs'
+import { Pie } from 'vue-chartjs'
 import axios from 'axios'
 
 export default {
-  props: ["records"],
-  extends: Bar,
+  props: ["records" ,"user_id"],
+  extends: Pie,
   name: "chart",
     data () {
     return {
@@ -13,7 +13,7 @@ export default {
         labels: [],
         datasets: [
           {
-            label: 'Bar Dataset',
+            label: 'Pie Dataset',
             data: [],
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
@@ -40,7 +40,7 @@ export default {
           xAxes: [{
             scaleLabel: {
               display: true,
-              labelString: 'Month'
+              labelString: 'ジャンル'
             }
           }],
           yAxes: [{
@@ -55,15 +55,15 @@ export default {
   },
  
   async mounted() {
-    await axios.get('api/v1/users/17/comments_by_tag_count')
+    await axios.get(`api/v1/users/${this.$route.params.id}/comments_by_tag_count`)
         .then((response) => {
           this.data.labels = response.data;
 
           console.log(this.data.labels);
           console.log(response);
-          
+
         });
-    await axios.get('api/v1/users/17/comments_by_tag_count_values')
+    await axios.get(`api/v1/users/${this.$route.params.id}/comments_by_tag_count_values`)
         .then((response) => {
           this.data.datasets[0].data = response.data
           console.log(this.data.datasets[0].data);
@@ -71,6 +71,7 @@ export default {
           
         });
      this.renderChart(this.data, this.options);
+               console.log(this.user_id);
   }
 
 };
