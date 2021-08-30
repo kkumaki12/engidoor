@@ -147,8 +147,6 @@ export default {
     console.log(this.image);
    },
     updateUser() {
-      
-     
       axios
         .put(`/api/v1/users/${this.$route.params.id}`, {
           name: this.name,
@@ -167,6 +165,13 @@ export default {
           this.$router.push(`/users/${this.$route.params.id}`);
         });
     },
+      created() {
+    axios.get(`api/v1/users/${this.$route.params.id}`).then((response) => {
+      this.name = response.data.name;
+      console.log(response);
+    });
+    this.usersGoodsCount();
+  },
     /*updateImage() {
       const formData = new FormData();
     formData.append("image", this.image);

@@ -29,7 +29,7 @@ resource "aws_ecs_service" "engidoor-front-ecs-service-tf" {
   task_definition                   = "${aws_ecs_task_definition.engidoor-front-task-tf.family}:${max("${aws_ecs_task_definition.engidoor-front-task-tf.revision}", "${data.aws_ecs_task_definition.engidoor-front-task-tf.revision}")}"
   desired_count                     = 1
   launch_type                       = "FARGATE"
-  platform_version                  = "1.3.0"
+  platform_version                  = "1.4.0"
   health_check_grace_period_seconds = 600
 
   network_configuration {
@@ -70,7 +70,7 @@ resource "aws_ecs_service" "engidoor-back-ecs-service-tf" {
   task_definition                   = "${aws_ecs_task_definition.engidoor-back-task-tf.family}:${max("${aws_ecs_task_definition.engidoor-back-task-tf.revision}", "${data.aws_ecs_task_definition.engidoor-back-task-tf.revision}")}"
   desired_count                     = 1
   launch_type                       = "FARGATE"
-  platform_version                  = "1.3.0"
+  platform_version                  = "1.4.0"
   health_check_grace_period_seconds = 600
 
   network_configuration {

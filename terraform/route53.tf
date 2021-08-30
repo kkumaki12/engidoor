@@ -1,8 +1,9 @@
+#ホストゾーン作成
 resource "aws_route53_zone" "engidoor-host-zone-tf" {
   name    = "back.engidoor.com"
   comment = "back.engidoor host zone"
 }
-
+#DNSレコード
 resource "aws_route53_record" "engidoor-host-zone-record-tf" {
   zone_id = aws_route53_zone.engidoor-host-zone-tf.zone_id
   name    = aws_route53_zone.engidoor-host-zone-tf.name
@@ -17,12 +18,14 @@ resource "aws_route53_record" "engidoor-host-zone-record-tf" {
 
 
 # フロント用
+#ホストゾーン作成
 resource "aws_route53_zone" "engidoor-zone-tf" {
   name = "engidoor.com"
   tags = {
     "engidoor" = "engidoor.com" 
   }
 }
+#DNSレコード
 resource "aws_route53_record" "engidoor-zone-record-tf" {
   zone_id = aws_route53_zone.engidoor-zone-tf.id
   name = aws_route53_zone.engidoor-zone-tf.name
