@@ -148,7 +148,7 @@
                 "
               >
                 <div class="space-x-2 truncate">
-                  <chart></chart>
+                  <chart :user_id="user.id"></chart>
                 </div>
 
               </div>
