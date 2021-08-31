@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       get '/questions/search/:search', to: 'questions#search'
       get 'questions/solved', to: 'questions#solved_answers'
       get 'comments/reply/:id', to: 'comments#reply'
+      get 'comments/question/:id', to: 'comments#comment_by_question'
       get 'health_check', to: 'health_check#index'
       get 'questions/specialty/:tag', to: 'questions#specialty'
       get 'users/:id/comments_by_tag_count', to: 'users#comments_by_tag_count'

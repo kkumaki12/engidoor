@@ -108,7 +108,7 @@ export default {
     };
   },
   created() {
-    axios.get(`/api/v1/comments/${this.$route.params.id}`).then((response) => {
+    axios.get(`/api/v1/comments/question/${this.$route.params.id}`).then((response) => {
       this.comments = response.data;
       console.log(response.data);
     });
@@ -126,7 +126,7 @@ export default {
         .then((response) => {
           console.log(response);
           this.renderComments();
-            })
+        })
         .catch((error) => {
           console.log(error);
           alert("コメントの投稿に失敗しました");
@@ -134,12 +134,14 @@ export default {
       this.content = "";
     },
     renderComments() {
-      axios.get(`/api/v1/comments/${this.$route.params.id}`).then((response) => {
-      this.comments = response.data;
-      console.log(response.data);
-    });
+      axios
+        .get(`/api/v1/comments/question/${this.$route.params.id}`)
+        .then((response) => {
+          this.comments = response.data;
+          console.log(response.data);
+        });
     },
-     openCommentBox(comment_id) {
+    openCommentBox(comment_id) {
       if (this.activeItem === comment_id) {
         this.activeItem = null;
       } else {
@@ -149,12 +151,12 @@ export default {
       console.log(comment_id);
     },
     createReply(comment_id) {
-       axios
+      axios
         .post("/api/v1/comments", {
           content: this.content,
           question_id: this.question,
           user_id: this.$store.state.userId,
-          reply_comment: comment_id
+          reply_comment: comment_id,
         })
         .then((response) => {
           console.log(response);
@@ -165,20 +167,23 @@ export default {
     },
     replyCatch() {
       axios.get(`/api/v1/comments/reply/57`).then((response) => {
-      this.replys = response.data;
-      console.log(response.data);
-    });
+        this.replys = response.data;
+        console.log(response.data);
+      });
     },
     statusBestAnswer() {
-      axios.get(`/api/v1/bestanswer/${this.$route.params.id}`).then((response) => {
-        console.log(response.data);
-        this.bestAnswerCommentId = response.data.comment_id;
-      this.bestAnswer = false;
-      console.log(this.bestAnswerCommentId);
-    }).catch((error) => {
+      axios
+        .get(`/api/v1/bestanswer/${this.$route.params.id}`)
+        .then((response) => {
+          console.log(response.data);
+          this.bestAnswerCommentId = response.data.comment_id;
+          this.bestAnswer = false;
+          console.log(this.bestAnswerCommentId);
+        })
+        .catch((error) => {
           console.log(error);
         });
-    }
+    },
   },
 };
 </script>

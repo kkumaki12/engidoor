@@ -65,11 +65,11 @@ export default {
       reply_comment: "",
       comment: [],
       bestAnswer: "true",
-      bestAnswerCommentId: ""
+      
     };
   },
   created() {
-    axios.get(`/api/v1/comments/${this.$route.params.id}`).then((response) => {
+    axios.get(`/api/v1/comments/question/${this.$route.params.id}`).then((response) => {
       this.comments = response.data;
       console.log(response.data);
     });

@@ -22,6 +22,11 @@ module Api
       end
 
       def show
+        comment = Comment.find(params[:id])
+        render json: comment
+      end
+
+      def comment_by_question
         comments = Comment.includes(:user).where(question_id: params[:id], reply_comment: [nil, '']).select('*')
         render json: comments.as_json(include: :user)
       end
