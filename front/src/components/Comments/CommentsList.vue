@@ -64,7 +64,8 @@ export default {
       question_id: "",
       reply_comment: "",
       comment: [],
-      bestAnswer: "true"
+      bestAnswer: "true",
+      bestAnswerCommentId: ""
     };
   },
   created() {
@@ -107,7 +108,8 @@ export default {
     });
     },
     statusBestAnswer() {
-      axios.get(`/api/v1/bestanswer/${this.$route.params.id}`).then(() => {
+      axios.get(`/api/v1/bestanswer/${this.$route.params.id}`).then((response) => {
+        console.log("a");
       this.bestAnswer = false;
       console.log(this.bestAnswer);
     }).catch((error) => {

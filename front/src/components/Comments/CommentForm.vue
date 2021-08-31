@@ -72,7 +72,7 @@
               <best-answer-button :comment="comment.id"></best-answer-button>
               </template>
               <button v-else class="text-red-600">
-                ベストアンサー
+                 <div v-if="bestAnswerCommentId == comment.id">ベストアンサー</div>
               </button>
        
 
@@ -101,7 +101,7 @@ export default {
       user_id: this.$store.state.userId,
       comments: [],
       activeItem: null,
-
+      bestAnswerCommentId: "",
       reply_comment: "",
       comment: [],
       bestAnswer: "true"
@@ -170,9 +170,11 @@ export default {
     });
     },
     statusBestAnswer() {
-      axios.get(`/api/v1/bestanswer/${this.$route.params.id}`).then(() => {
+      axios.get(`/api/v1/bestanswer/${this.$route.params.id}`).then((response) => {
+        console.log(response.data);
+        this.bestAnswerCommentId = response.data.comment_id;
       this.bestAnswer = false;
-      console.log(this.bestAnswer);
+      console.log(this.bestAnswerCommentId);
     }).catch((error) => {
           console.log(error);
         });
