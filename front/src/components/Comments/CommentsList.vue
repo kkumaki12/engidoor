@@ -1,11 +1,11 @@
 <template>
   <div>
-       <section class="text-gray-600 body-font overflow-hidden">
+    <section class="text-gray-600 body-font overflow-hidden">
       <div class="container px-5 py-24 mx-auto divide-y-2 divide-gray-100">
         <div v-for="comment in comments" :key="comment.id">
           <div class="-my-8 divide-y-2 divide-gray-900">
-            <div class="py-8 flex flex-wrap md:flex-nowrap ">
-              <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col ">
+            <div class="py-8 flex flex-wrap md:flex-nowrap">
+              <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
                 <div class="w-16 h-16 rounded-full">
                   <img
                     src="../../assets/default.png"
@@ -25,25 +25,22 @@
                   :commentId="comment.id"
                 ></good-button>
                 <p>{{ comment.created_at }}</p>
-                <comments-replys :comment="comment.id" :question="question"></comments-replys>
-                
-                
-   
+                <comments-replys
+                  :comment="comment.id"
+                  :question="question"
+                ></comments-replys>
               </div>
               <template v-if="bestAnswer">
-              <best-answer-button :comment="comment.id"></best-answer-button>
+                <best-answer-button
+                  :commentId="comment.id"
+                ></best-answer-button>
               </template>
-              <div v-else class="text-red-600">
-                ベストアンサー
-              </div>
-       
-
+              <div v-else class="text-red-600">ベストアンサー</div>
             </div>
           </div>
         </div>
       </div>
     </section>
-
   </div>
 </template>
 
@@ -51,10 +48,10 @@
 import axios from "axios";
 import GoodButton from "../Good/GoodButton.vue";
 import CommentsReplys from "./CommentsReplys.vue";
-import BestAnswerButton from "../BestAnswer/BestAnswerButton.vue"
+import BestAnswerButton from "../BestAnswer/BestAnswerButton.vue";
 
 export default {
-  components: { GoodButton, CommentsReplys,BestAnswerButton },
+  components: { GoodButton, CommentsReplys, BestAnswerButton },
   props: ["question"],
   data() {
     return {
@@ -65,14 +62,15 @@ export default {
       reply_comment: "",
       comment: [],
       bestAnswer: "true",
-      
     };
   },
   created() {
-    axios.get(`/api/v1/comments/question/${this.$route.params.id}`).then((response) => {
-      this.comments = response.data;
-      console.log(response.data);
-    });
+    axios
+      .get(`/api/v1/comments/question/${this.$route.params.id}`)
+      .then((response) => {
+        this.comments = response.data;
+        console.log(response.data);
+      });
     this.replyCatch();
     this.statusBestAnswer();
   },
@@ -87,12 +85,12 @@ export default {
       console.log(comment_id);
     },
     createReply(comment_id) {
-       axios
+      axios
         .post("/api/v1/comments", {
           content: this.content,
           question_id: this.question,
           user_id: this.$store.state.userId,
-          reply_comment: comment_id
+          reply_comment: comment_id,
         })
         .then((response) => {
           console.log(response);
@@ -103,19 +101,22 @@ export default {
     },
     replyCatch() {
       axios.get(`/api/v1/comments/reply/57`).then((response) => {
-      this.replys = response.data;
-      console.log(response.data);
-    });
+        this.replys = response.data;
+        console.log(response.data);
+      });
     },
     statusBestAnswer() {
-      axios.get(`/api/v1/bestanswer/${this.$route.params.id}`).then((response) => {
-        console.log("a");
-      this.bestAnswer = false;
-      console.log(this.bestAnswer);
-    }).catch((error) => {
+      axios
+        .get(`/api/v1/bestanswer/${this.$route.params.id}`)
+        .then((response) => {
+          console.log("a");
+          this.bestAnswer = false;
+          console.log(this.bestAnswer);
+        })
+        .catch((error) => {
           console.log(error);
         });
-    }
+    },
   },
 };
 </script>

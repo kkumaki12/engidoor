@@ -22,15 +22,15 @@
 <script>
 import axios from "axios";
 export default {
-  props: ["comment"],
+  props: { commentId: Number },
   methods: {
     createBestAnswer: function () {
       if (confirm("ベストアンサーにしますか?(一度決めたら変更できません)")) {
         axios
-          .post(`/api/v1/comments/${this.comment}/best_answers`)
+          .post(`/api/v1/comments/${this.commentId}/best_answers`)
           .then((response) => {
-            this.bestAnswer = response.data;
             console.log(response.data);
+            this.$emit('render');
           });
       }
     },
