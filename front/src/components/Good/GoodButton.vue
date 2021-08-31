@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="this.userId !== this.$store.state.userId">
     <!-- The solid style is implicit -->
     <div v-if="isGood">
       <font-awesome-icon
@@ -32,6 +32,7 @@ export default {
   data() {
     return {
       goodList: [], // いいね一覧を格納するための変数{ id: 1, user_id: 1, post_id: 1 } がArrayで入る
+      userId: '',
     };
   },
   // 算出プロパティ ここではlikeListが変更される度に、count、isLiked が再構築される (watchで監視するようにしても良いかも)
@@ -49,11 +50,18 @@ export default {
     },
   },
   // Vueインスタンスの作成・初期化直後に実行される
-  created: function () {
-    this.fetchGoodByCommentId().then((result) => {
+  created() {
+      this.fetchGoodByCommentId().then((result) => {
       this.goodList = result;
     });
+    this.fetchUserId();
   },
+
+
+
+
+
+
   methods: {
     // rails側のindexアクションにリクエストするメソッド
     fetchGoodByCommentId: async function () {
@@ -104,6 +112,13 @@ export default {
         return good.id;
       }
     },
+    fetchUserId: function () {
+      axios.get('api/v1/comments/' + this.commentId)
+      .then((response) => {
+        this.userId = response.data.user_id;
+        console.log(response.data);
+      });
+    }
   },
 };
 </script>
