@@ -3,7 +3,7 @@
     <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
       <label for="image">画像</label>
       <input
-       @change="setImage"
+        @change="setImage"
         type="file"
         accept="image/png, image/jpeg, image/bmp"
         class="rounded w-full py-2 px-3 mb-3"
@@ -37,7 +37,6 @@
 
       <div class="form-group">
         <input
-       
           type="submit"
           name="commit"
           value="アップロード"
@@ -140,12 +139,20 @@ export default {
       ],
     };
   },
+  created() {
+      axios.get(`api/v1/users/1`).then((response) => {
+        this.name = response.data.name;
+        this.occupation = response.data.occupation;
+        this.specialty = response.data.specialty;
+        console.log(response);
+      });
+    },
 
   methods: {
-    setImage(file){
-    this.image = file;
-    console.log(this.image);
-   },
+    setImage(file) {
+      this.image = file;
+      console.log(this.image);
+    },
     updateUser() {
       axios
         .put(`/api/v1/users/${this.$route.params.id}`, {
@@ -165,13 +172,7 @@ export default {
           this.$router.push(`/users/${this.$route.params.id}`);
         });
     },
-      created() {
-    axios.get(`api/v1/users/${this.$route.params.id}`).then((response) => {
-      this.name = response.data.name;
-      console.log(response);
-    });
-    this.usersGoodsCount();
-  },
+    
     /*updateImage() {
       const formData = new FormData();
     formData.append("image", this.image);
