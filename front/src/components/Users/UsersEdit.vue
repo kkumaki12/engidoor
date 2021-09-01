@@ -1,6 +1,18 @@
 <template v-if="user">
   <div class="w-full max-w-xl container mt-24 mx-auto">
     <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+
+<div v-if="alert == true" class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-red-500">
+    <span class="text-xl inline-block mr-5 align-middle">
+      <font-awesome-icon
+        :icon="['fas', 'bell']"
+      />
+    </span>
+    <span class="inline-block align-middle mr-8">
+      <b class="capitalize">{{ errors }}</b>
+    </span>  
+</div>
+
       <label for="image">画像</label>
       <input
         @change="setImage"
@@ -82,7 +94,7 @@
       ></v-select>
 
       <button
-        @click="updateUser()"
+        @click="checkForm()"
         class="
           bg-blue-500
           hover:bg-blue-700
@@ -117,10 +129,12 @@ export default {
 
   data: function () {
     return {
+      errors: "",
       name: "",
       occupation: "",
       specialty: "",
       image: "",
+      alert: false,
       options: [
         "選択して下さい",
         "材料・素材",
@@ -140,13 +154,13 @@ export default {
     };
   },
   created() {
-      axios.get(`api/v1/users/1`).then((response) => {
-        this.name = response.data.name;
-        this.occupation = response.data.occupation;
-        this.specialty = response.data.specialty;
-        console.log(response);
-      });
-    },
+    axios.get(`api/v1/users/${this.$route.params.id}`).then((response) => {
+      this.name = response.data.name;
+      this.occupation = response.data.occupation;
+      this.specialty = response.data.specialty;
+      console.log(response);
+    });
+  },
 
   methods: {
     setImage(file) {
@@ -158,12 +172,12 @@ export default {
         .put(`/api/v1/users/${this.$route.params.id}`, {
           name: this.name,
           occupation: this.occupation,
-          user_id: this.$store.state.userId,
           specialty: this.specialty,
         })
         .then((response) => {
           alert("更新しました");
           console.log(response);
+          console.log("成功");
           this.$router.push(`/users/${this.$route.params.id}`);
         })
         .catch((error) => {
@@ -172,7 +186,21 @@ export default {
           this.$router.push(`/users/${this.$route.params.id}`);
         });
     },
-    
+    checkForm: function (e) {
+      if (this.name) {
+        this.updateUser();
+      }
+
+      this.errors = "";
+      console.log("成功");
+
+      if (!this.name) {
+        this.errors="ユーザーネームを入力してください";
+        this.alert = true;
+      }
+      e.preventDefault();
+    },
+
     /*updateImage() {
       const formData = new FormData();
     formData.append("image", this.image);
