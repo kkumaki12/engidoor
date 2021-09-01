@@ -23,8 +23,7 @@ module Api
       def create
         user = User.new(user_params)
         if user.save!
-          log_in user
-          render json: user, status: created
+          render json: user
         else
           render json: { message: '登録できませんでした' }
         end
@@ -42,8 +41,8 @@ module Api
         comments = Comment.where(user_id:[user.id]).select(:question_id)
         question_id = comments.map(&:question_id)
         tags = []
-       question_id.each do |q_id|
-          tags << Question.find(q_id)
+        question_id.each do |q_id|
+        tags << Question.find(q_id)
       end 
         result = tags.group_by{ |d| d[:tag] }
         keys = result.keys

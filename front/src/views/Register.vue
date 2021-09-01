@@ -149,6 +149,7 @@ export default {
         })
         .then((response) => {
           console.log(response);
+          this.login();
         })
         .catch((error) => {
           console.log(error);
@@ -157,6 +158,12 @@ export default {
     },
      closeAlert: function(){
       this.alertOpen = false;
+    },
+        login() {
+      this.$store.dispatch("login", {
+        email: this.email,
+        password: this.password,
+      })
     },
   },
 };
