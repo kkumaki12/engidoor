@@ -1,9 +1,8 @@
-import { mount } from '@vue/test-utils';
-import Component from '@/App.vue'
+import sum from '../src/sum.js'
 
-describe('Testing App component', () => {
-    it('is a Vue instance', () => {
-      const wrapper = mount(Component)
-      expect(wrapper.isVueInstance).toBeTruthy()
-    })
+it('関数sumに1と2を渡すと3が返ってくる', () => {
+  // 関数sumの結果を格納
+  const result = sum(1, 2)
+  // sumの結果は3だよね！
+  expect(result).toBe(3)
 })
