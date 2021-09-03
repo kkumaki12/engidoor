@@ -12,6 +12,7 @@
     "test": "NODE_ENV=test jest"
   },
   "jest": {
+    "testEnvironment": "jsdom",
     "moduleFileExtensions": [
       "js",
       "json",
