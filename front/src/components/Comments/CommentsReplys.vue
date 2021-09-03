@@ -123,6 +123,7 @@ export default {
         })
         .then((response) => {
           console.log(response);
+          this.replyCatch();
         })
         .catch((error) => {
           console.log(error);
