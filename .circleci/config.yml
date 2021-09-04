@@ -174,7 +174,6 @@ workflows:
 
       - aws-ecs/run-task:
           cluster: engidoor-ecs-cluster-tf
-          # task-definition: engidoor-db-migrate
           task-definition: engidoor-db-migrate-tf
           subnet-ids: subnet-039a1710852bb7139, subnet-0d18332c424b061b4
           assign-public-ip: ENABLED

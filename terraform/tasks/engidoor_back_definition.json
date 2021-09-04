@@ -3,6 +3,9 @@
     "name": "engidoor-back-container-tf",
     "image": "547789976793.dkr.ecr.ap-northeast-1.amazonaws.com/engidoor-back-tf",
     "essential": true,
+    "linuxParameters": {
+      "initProcessEnabled": true
+  },
     "logConfiguration": {
       "logDriver": "awslogs",
       "options": {

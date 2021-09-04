@@ -1,7 +1,7 @@
 <template>
   <div>
     <a
-      class="text-indigo-500 inline-flex items-center mt-4"
+      class="text-indigo-500 inline-flex items-center mt-4 pr-20"
       @click="showReplys(comment)"
       v-if="`${replys.length}` != '0'"
       >{{ replys.length }} 件のコメント
@@ -53,7 +53,15 @@
     </transition>
     <!-- ここまで -->
 
-    <button @click="openCommentBox(comment)">コメント返信</button>
+    <button @click="openCommentBox(comment)" class="bg-gray-200
+          hover:bg-gray-400
+          text-gray
+          font-bold
+          py-2
+          px-4
+          rounded
+          focus:outline-none
+          focus:shadow-outline">コメント投稿</button>
 
     <div
       v-bind:class="`{is-active: activeItem === ${comment}}`"
@@ -79,7 +87,22 @@
           focus:shadow-outline
         "
       />
-      <button @click="createReply(comment)" class="bg-blue-600 text-white px-3 py-1 rounded-md font-bold">投稿</button>
+      <button
+        @click="createReply(comment)"
+        class="
+          bg-blue-500
+          hover:bg-blue-700
+          text-white
+          font-bold
+          py-2
+          px-4
+          rounded
+          focus:outline-none
+          focus:shadow-outline
+        "
+      >
+        投稿
+      </button>
     </div>
   </div>
 </template>
@@ -123,6 +146,7 @@ export default {
         })
         .then((response) => {
           console.log(response);
+          this.replyCatch();
         })
         .catch((error) => {
           console.log(error);

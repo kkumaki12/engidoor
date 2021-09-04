@@ -39,46 +39,63 @@
       </button>
     </div>
     <section class="text-gray-600 body-font overflow-hidden">
-      <div class="container px-5 py-24 mx-auto divide-y-2 divide-gray-100">
+      <div
+        class="
+          container
+          px-5
+          py-24
+          mx-auto
+          divide-y-4 divide-gray-300 divide-dotted
+        "
+      >
         <div v-for="comment in comments" :key="comment.id">
-          <div class="-my-8 divide-y-2 divide-gray-900">
-            <div class="py-8 flex flex-wrap md:flex-nowrap">
-              <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
-                <div class="w-16 h-16 rounded-full">
-                  <img
-                    src="../../assets/default.png"
-                    class="rounded-full w-12 h-12"
-                    alt="ユーザーアイコン"
-                  />
-                </div>
-                <span class="mt-1 text-gray-500 text-sm"
-                  >{{ comment.user.name }}さん</span
+          <div class="py-8 flex flex-wrap md:flex-nowrap">
+            <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
+              <div class="w-16 h-16 rounded-full">
+                <img
+                  src="../../assets/default.png"
+                  class="rounded-full w-12 h-12"
+                  alt="ユーザーアイコン"
+                />
+              </div>
+              <span class="mt-1 text-gray-500 text-sm"
+                >{{ comment.user.name }}さん</span
+              >
+              <div v-if="bestAnswerCommentId == comment.id">
+                <div
+                  class="
+                    px-4
+                    py-2
+                    text-base
+                    rounded-full
+                    text-red-600
+                    bg-red-200
+                    inline-block
+                  "
                 >
+                  ベストアンサー
+                </div>
               </div>
-              <div class="md:flex-grow">
-                <p class="leading-relaxed"></p>
-                <p>{{ comment.content }}</p>
-                <good-button
-                  :questionId="question.id"
-                  :commentId="comment.id"
-                ></good-button>
-                <p>{{ comment.created_at }}</p>
-                <comments-replys
-                  :comment="comment.id"
-                  :question="question"
-                ></comments-replys>
-              </div>
+            </div>
+            <div class="md:flex-grow">
+              <p class="leading-relaxed"></p>
+              <p>{{ comment.content }}</p>
+              <good-button
+                :questionId="question.id"
+                :commentId="comment.id"
+              ></good-button>
+              <p>{{ comment.created_at | moment }}</p>
               <template v-if="bestAnswer">
                 <best-answer-button
                   :commentId="comment.id"
                   @render="statusBestAnswer()"
                 ></best-answer-button>
               </template>
-              <button v-else class="text-red-600">
-                <div v-if="bestAnswerCommentId == comment.id">
-                  ベストアンサー
-                </div>
-              </button>
+
+              <comments-replys
+                :comment="comment.id"
+                :question="question"
+              ></comments-replys>
             </div>
           </div>
         </div>
@@ -92,6 +109,7 @@ import axios from "axios";
 import GoodButton from "../Good/GoodButton.vue";
 import CommentsReplys from "./CommentsReplys.vue";
 import BestAnswerButton from "../BestAnswer/BestAnswerButton.vue";
+import moment from "moment";
 export default {
   components: { GoodButton, CommentsReplys, BestAnswerButton },
   props: ["question"],
@@ -108,6 +126,12 @@ export default {
       comment: [],
       bestAnswer: "true",
     };
+  },
+  filters: {
+    moment: function (date) {
+      moment.locale("ja");
+      return moment(date).fromNow();
+    },
   },
   created() {
     axios

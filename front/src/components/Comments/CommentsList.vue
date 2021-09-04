@@ -35,7 +35,7 @@
                   :commentId="comment.id"
                 ></best-answer-button>
               </template>
-              <div v-else class="text-red-600">ベストアンサー</div>
+              <div v-else class="text-red-600">ベスアンサー</div>
             </div>
           </div>
         </div>
