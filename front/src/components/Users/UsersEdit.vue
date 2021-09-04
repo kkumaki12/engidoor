@@ -1,21 +1,21 @@
 <template v-if="user">
   <div class="w-full max-w-xl container mt-24 mx-auto">
     <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-
-<div v-if="alert == true" class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-red-500">
-    <span class="text-xl inline-block mr-5 align-middle">
-      <font-awesome-icon
-        :icon="['fas', 'bell']"
-      />
-    </span>
-    <span class="inline-block align-middle mr-8">
-      <b class="capitalize">{{ errors }}</b>
-    </span>  
-</div>
+      <div
+        v-if="alert == true"
+        class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-red-500"
+      >
+        <span class="text-xl inline-block mr-5 align-middle">
+          <font-awesome-icon :icon="['fas', 'bell']" />
+        </span>
+        <span class="inline-block align-middle mr-8">
+          <b class="capitalize">{{ errors }}</b>
+        </span>
+      </div>
 
       <label for="image">画像</label>
       <input
-        @change="setImage"
+        @change="changeFile"
         type="file"
         accept="image/png, image/jpeg, image/bmp"
         class="rounded w-full py-2 px-3 mb-3"
@@ -56,6 +56,7 @@
           data-disable-with="アップロード"
         />
       </div>
+      <input @click="regist" type="button" value="Upload"/>
 
       <label for="UserOccupation">職業</label>
       <input
@@ -133,7 +134,7 @@ export default {
       name: "",
       occupation: "",
       specialty: "",
-      image: "",
+      uploadfile: {},
       alert: false,
       options: [
         "選択して下さい",
@@ -163,10 +164,6 @@ export default {
   },
 
   methods: {
-    setImage(file) {
-      this.image = file;
-      console.log(this.image);
-    },
     updateUser() {
       axios
         .put(`/api/v1/users/${this.$route.params.id}`, {
@@ -190,39 +187,37 @@ export default {
       if (this.name) {
         this.updateUser();
       }
-
       this.errors = "";
       console.log("成功");
-
       if (!this.name) {
-        this.errors="ユーザーネームを入力してください";
+        this.errors = "ユーザーネームを入力してください";
         this.alert = true;
       }
       e.preventDefault();
     },
+    changeFile(e) {
+      const files = e.target.files || e.dataTransfer.files;
+      this.uploadfile = files[0];
+    },
 
-    /*updateImage() {
-      const formData = new FormData();
-    formData.append("image", this.image);
-    const config = {
-     headers: {
-      "content-type": "multipart/form-data",
-     }
-    };
-     
-      axios
-        .put(`/api/v1/users/${this.$route.params.id}`, formData,config)
-        .then((response) => {
-          alert("更新しました");
-          console.log(response);
-          this.$router.push(`/users/${this.$route.params.id}`);
-        })
-        .catch((error) => {
-          alert("更新に失敗しました");
-          console.log(error);
-          this.$router.push(`/users/${this.$route.params.id}`);
-        });
-    },*/
+    // 送信アクション
+    async regist() {
+      // パラメータ生成
+      var params = new FormData();
+      // FormDataにアップロードするファイルを設定
+      params.append('file', this.uploadfile);
+      // API実行
+await axios.post(
+        `api/v1/users/${this.$route.params.id}`,
+        params,
+        {
+          headers: {
+            // multipartで送信
+            'content-type': 'multipart/form-data',
+          },
+        }
+      );
+    },
   },
 };
 </script>
