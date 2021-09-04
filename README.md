@@ -32,7 +32,7 @@
 
 ## インフラ構成図
 
-<img src="./back/app/assets/images/aws.png">
+<img src="./back/app/assets/images/aws_ver4.png">
 
 ## 機能一覧
 * ユーザー機能

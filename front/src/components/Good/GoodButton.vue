@@ -32,7 +32,7 @@ export default {
   data() {
     return {
       goodList: [], // いいね一覧を格納するための変数{ id: 1, user_id: 1, post_id: 1 } がArrayで入る
-      userId: '',
+      userId: "",
     };
   },
   // 算出プロパティ ここではlikeListが変更される度に、count、isLiked が再構築される (watchで監視するようにしても良いかも)
@@ -51,16 +51,11 @@ export default {
   },
   // Vueインスタンスの作成・初期化直後に実行される
   created() {
-      this.fetchGoodByCommentId().then((result) => {
+    this.fetchGoodByCommentId().then((result) => {
       this.goodList = result;
     });
     this.fetchUserId();
   },
-
-
-
-
-
 
   methods: {
     // rails側のindexアクションにリクエストするメソッド
@@ -113,12 +108,11 @@ export default {
       }
     },
     fetchUserId: function () {
-      axios.get('api/v1/comments/' + this.commentId)
-      .then((response) => {
+      axios.get("api/v1/comments/" + this.commentId).then((response) => {
         this.userId = response.data.user_id;
         console.log(response.data);
       });
-    }
+    },
   },
 };
 </script>
