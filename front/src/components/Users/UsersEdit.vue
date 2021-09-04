@@ -13,13 +13,6 @@
         </span>
       </div>
 
-      <label for="image">画像</label>
-      <input
-        @change="changeFile"
-        type="file"
-        accept="image/png, image/jpeg, image/bmp"
-        class="rounded w-full py-2 px-3 mb-3"
-      />
       <label for="UserName">ユーザー名</label>
 
       <input
@@ -40,23 +33,11 @@
         "
         id="UserName"
       />
-      <input
-        class="custom-file-input"
-        type="file"
-        name="products[image]"
-        ref="productImage"
-      />
+      <input class="custom-file-input" type="file" @change="changeFile" />
 
       <div class="form-group">
-        <input
-          type="submit"
-          name="commit"
-          value="アップロード"
-          class="btn btn-success submit"
-          data-disable-with="アップロード"
-        />
       </div>
-      <input @click="regist" type="button" value="Upload"/>
+      <input @click="regist" type="button" value="アップロード" />
 
       <label for="UserOccupation">職業</label>
       <input
@@ -130,11 +111,14 @@ export default {
 
   data: function () {
     return {
+      presignedUrl: "", // Rails側で発行される署名付きリンク
+      uploadFile: {}, // アップロードする予定のファイル
+      productId: "",
       errors: "",
       name: "",
       occupation: "",
       specialty: "",
-      uploadfile: {},
+      uploadfile: "",
       alert: false,
       options: [
         "選択して下さい",
@@ -198,25 +182,18 @@ export default {
     changeFile(e) {
       const files = e.target.files || e.dataTransfer.files;
       this.uploadfile = files[0];
+      console.log(this.uploadfile);
     },
 
-    // 送信アクション
     async regist() {
-      // パラメータ生成
       var params = new FormData();
-      // FormDataにアップロードするファイルを設定
-      params.append('file', this.uploadfile);
-      // API実行
-await axios.post(
-        `api/v1/users/${this.$route.params.id}`,
-        params,
-        {
-          headers: {
-            // multipartで送信
-            'content-type': 'multipart/form-data',
-          },
-        }
-      );
+      params.append("image", this.uploadfile);
+      console.log(params);
+      await axios.put(`/api/v1/users/${this.$route.params.id}`, params, {
+        headers: {
+          "content-type": "multipart/form-data",
+        },
+      });
     },
   },
 };
