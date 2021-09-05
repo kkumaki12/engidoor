@@ -8,7 +8,17 @@
           <router-link :to="{ name: 'UserShow', params: { id: user.id } }">
             {{ user.name }}さん
           </router-link>
-          <img src="../../assets/default.png" class="w-16 h-16 rounded-full" />
+          <img
+            v-if="user.image.url"
+            :src="user.image.url"
+            class="w-16 h-16 rounded-full"
+          />
+          <img
+            v-else
+            src="../../assets/default.png"
+            class="rounded-full w-16 h-16"
+            alt="ユーザーアイコン"
+          />
         </li>
       </div>
     </div>

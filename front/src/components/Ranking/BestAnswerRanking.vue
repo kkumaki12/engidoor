@@ -2,14 +2,24 @@
   <div>
     <h2 class="font-bold">ベストアンサーランキング</h2>
     <div class="border bg-white">
-    <div v-for="user in users" :key="user.id">
-      <li class="mt-2">
-        <b>{{ users.indexOf(user) + 1 }}位</b>
-        <router-link :to="{ name: 'UserShow', params: { id: user.id } }">
-          {{ user.name }}さん
-        </router-link>
-        <img src="../../assets/default.png" class="w-16 h-16 rounded-full" />
-      </li>
+      <div v-for="user in users" :key="user.id">
+        <li class="mt-2">
+          <b>{{ users.indexOf(user) + 1 }}位</b>
+          <router-link :to="{ name: 'UserShow', params: { id: user.id } }">
+            {{ user.name }}さん
+          </router-link>
+          <img
+            v-if="user.image.url"
+            :src="user.image.url"
+            class="w-16 h-16 rounded-full"
+          />
+          <img
+            v-else
+            src="../../assets/default.png"
+            class="rounded-full w-16 h-16"
+            alt="ユーザーアイコン"
+          />
+        </li>
       </div>
     </div>
   </div>

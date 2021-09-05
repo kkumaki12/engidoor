@@ -31,6 +31,13 @@
                 <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
                   <div class="w-16 h-16 rounded-full">
                     <img
+                      v-if="user.image.url"
+                      :src="user.image.url"
+                      class="rounded-full w-12 h-12"
+                      alt="ユーザーアイコン"
+                    />
+                    <img
+                      v-else
                       src="../../assets/default.png"
                       class="rounded-full w-12 h-12"
                       alt="ユーザーアイコン"
@@ -53,15 +60,22 @@
     </transition>
     <!-- ここまで -->
 
-    <button @click="openCommentBox(comment)" class="bg-gray-200
-          hover:bg-gray-400
-          text-gray
-          font-bold
-          py-2
-          px-4
-          rounded
-          focus:outline-none
-          focus:shadow-outline">コメント投稿</button>
+    <button
+      @click="openCommentBox(comment)"
+      class="
+        bg-gray-200
+        hover:bg-gray-400
+        text-gray
+        font-bold
+        py-2
+        px-4
+        rounded
+        focus:outline-none
+        focus:shadow-outline
+      "
+    >
+      コメント投稿
+    </button>
 
     <div
       v-bind:class="`{is-active: activeItem === ${comment}}`"

@@ -11,9 +11,12 @@ module Api
 
       def update
         user = User.find(params[:id])
-        user.update(user_params)
-        render json:user
+        if user.update(user_params)
+          render json:user
+        else
+         render json: { message: '更新に失敗しました'}
       end
+    end
 
       def show
         user = User.find(params[:id])
@@ -21,7 +24,8 @@ module Api
       end
 
       def create
-        user = User.new(params)
+        user = User.new(user_params)
+        user.image = "default.png"
         if user.save!
           render json: user
         else
@@ -91,10 +95,11 @@ module Api
         @user = User.find(params[:id])
         redirect_to(root_url) unless current_user == @user
       end
+    end
 
       def current_user
         user = User.find_by(params[:token])
       end
     end
   end
-end
+

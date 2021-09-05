@@ -101,7 +101,17 @@
               >
                 <div class="flex items-center">
                   <div class="w-16 h-16">
-                    <img src="../../assets/default.png" class="rounded-full" />
+                    <img
+                      v-if="user.image.url"
+                      :src="user.image.url"
+                      class="rounded-full"
+                    />
+                    <img
+                      v-else
+                      src="../../assets/default.png"
+                      class="rounded-full"
+                      alt="ユーザーアイコン"
+                    />
                   </div>
                   <div class="text-gray-600 font-bold text-sm hover:underline">
                     <router-link
@@ -140,7 +150,6 @@
 </template>
 
 <script>
-
 import QuestionStatus from "./QuestionStatus.vue";
 import QuestionCommentsCount from "./QuestionCommentsCount.vue";
 import axios from "axios";
@@ -148,7 +157,6 @@ import moment from "moment";
 
 export default {
   components: {
-
     QuestionStatus,
     QuestionCommentsCount,
   },
@@ -167,10 +175,12 @@ export default {
     };
   },
   created() {
-    axios.get(`api/v1/questions/specialty/${this.$store.state.specialty}`).then((response) => {
-      this.questions = response.data;
-      console.log(response.data);
-    });
+    axios
+      .get(`api/v1/questions/specialty/${this.$store.state.specialty}`)
+      .then((response) => {
+        this.questions = response.data;
+        console.log(response.data);
+      });
   },
   methods: {
     questionViewsCount: function (view) {
