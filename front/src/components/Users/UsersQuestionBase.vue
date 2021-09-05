@@ -60,7 +60,7 @@
 
             <div class="flex justify-between items-center hidden sm:block">
               <span class="font-light text-gray-600">
-                {{ question.created_at }}前
+                {{ question.created_at | moment }}
               </span>
             </div>
 
@@ -99,6 +99,8 @@
 
 <script>
 import QuestionCommentsCount from "../questions/QuestionCommentsCount.vue";
+import Mixins from '@/mixin.js';
+
 export default {
   components: {
     QuestionCommentsCount,
@@ -106,6 +108,7 @@ export default {
   props: {
     questions: Array,
   },
+  mixins: [Mixins],
   data() {
     return {};
   },

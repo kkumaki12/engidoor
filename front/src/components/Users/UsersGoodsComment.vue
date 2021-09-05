@@ -27,7 +27,7 @@
               <div class="md:flex-grow">
                 <p class="leading-relaxed"></p>
                 <p>{{ comment.content }}</p>
-                <p>{{ comment.created_at }}</p>
+                <p>{{ comment.created_at | moment }}</p>
               </div>
             </div>
           </div>
@@ -39,12 +39,14 @@
 
 <script>
 import axios from "axios";
+import Mixins from "@/mixin.js";
+
 
 export default {
+  mixins: [Mixins],
   data() {
     return {
       comments: [],
-
       content: "",
       question_id: "",
       user: [],
