@@ -33,7 +33,8 @@
             >
               <span class="flex flex-col">
                 <router-link :to="{ name: 'QuestionTag', params: { tag: tag } }">
-                <span>
+                  
+                <span @click="childEvent">
                   {{ tag }}
                 </span>
                 </router-link>
@@ -68,6 +69,10 @@ export default {
       ],
     };
   },
- 
+ methods: {
+    childEvent() {
+      this.$emit('parent-event')
+    }
+  }
 };
 </script>

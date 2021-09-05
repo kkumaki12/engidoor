@@ -54,7 +54,7 @@ export default new Router({
     { path: '/users/edit/:id', component: UserEdit, name: 'UserEdit' },
     { path: 'ranking', component: UserRanking, },
     { path: '/question/search/:params', component: QuestionSearchResult, name: 'QuestionSearchResult' },
-    { path: '/question/tag/:params', component: QuestionTag, name: 'QuestionTag' },
+    { path: '/question/tag/:tag', component: QuestionTag, name: 'QuestionTag' },
 
   ]
 });
