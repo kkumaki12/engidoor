@@ -3,7 +3,8 @@ Rails.application.routes.draw do
     namespace 'v1' do
       get '/questions/list', to: 'questions#list'
       post '/login', to: 'sessions#log_in'
-      get '/ranking', to: 'users#ranking'
+      get '/ranking', to: 'users#good_ranking'
+      get '/bestanswer_ranking', to: 'users#bestanswer_ranking'
       get '/bestanswer/:id', to: 'questions#best'
       get '/comments_count/:id', to: 'comments#comments_count'
       get '/questions/search/:search', to: 'questions#search'
