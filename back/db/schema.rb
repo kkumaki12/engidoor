@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_13_093021) do
+ActiveRecord::Schema.define(version: 2021_09_05_125448) do
 
   create_table "best_answers", charset: "utf8", force: :cascade do |t|
     t.bigint "question_id", null: false
@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(version: 2021_08_13_093021) do
     t.string "specialty"
     t.string "occupation"
     t.string "token"
+    t.text "introduction"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["token"], name: "index_users_on_token", unique: true
   end

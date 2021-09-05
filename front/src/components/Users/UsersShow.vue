@@ -146,11 +146,7 @@
             >
               <p class="text-gray-600">自己紹介</p>
               <p>
-                Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim
-                incididunt cillum culpa consequat. Excepteur qui ipsum aliquip
-                consequat sint. Sit id mollit nulla mollit nostrud in ea officia
-                proident. Irure nostrud pariatur mollit ad adipisicing
-                reprehenderit deserunt qui eu.
+                {{ user.introduction }}
               </p>
             </div>
             <div

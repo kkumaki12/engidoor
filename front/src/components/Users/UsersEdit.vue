@@ -70,6 +70,27 @@
         "
       ></v-select>
 
+      <label for="UserIntroduction">自己紹介</label>
+
+      <textarea
+        v-model="introduction"
+        class="
+          shadow
+          appearance-none
+          border
+          rounded
+          w-full
+          py-2
+          px-3
+          text-gray-700
+          mb-3
+          leading-tight
+          focus:outline-none
+          focus:shadow-outline
+        "
+        id="UserIntroduction"
+      />
+
       <button
         @click="checkForm()"
         class="
@@ -110,6 +131,7 @@ export default {
       name: "",
       occupation: "",
       specialty: "",
+      introduction: "",
       alert: false,
       options: [
         "選択して下さい",
@@ -134,6 +156,7 @@ export default {
       this.name = response.data.name;
       this.occupation = response.data.occupation;
       this.specialty = response.data.specialty;
+      this.introduction = response.data.introduction;
       console.log(response);
       console.log(this.uploadfile);
     });
@@ -146,6 +169,7 @@ export default {
           name: this.name,
           occupation: this.occupation,
           specialty: this.specialty,
+          introduction: this.introduction,
         })
         .then((response) => {
           alert("更新しました");
