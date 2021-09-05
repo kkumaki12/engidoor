@@ -28,11 +28,12 @@ jobs:
           name: Which bundler?
           command: bundle -v
           working_directory: back
-      #- run:
-      #    command: |
-      #      gem install bundler
-      #      bundle install
-      #    working_directory: ~/engidoor/back
+      - run:
+          command: |
+            gem install bundler
+            bundle config set path 'vendor/bundle'
+            bundle install --jobs=4 --retry=3
+          working_directory: ~/engidoor/back
       - save_cache:
           key: gem-cache-v2-{{ checksum "~/engidoor/back/Gemfile.lock" }}
           paths:
