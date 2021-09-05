@@ -19,7 +19,7 @@ jobs:
       #- restore_cache:
        #   keys:
        #     - gem-cache-v2-{{ checksum "~/engidoor/back/Gemfile.lock" }}
-       #     - gem-cache-v2-
+       #    - gem-cache-v2-
       - run:
           name: Install bundler
           command: gem install bundler -v 2.2.15
@@ -31,8 +31,7 @@ jobs:
       - run:
           command: |
             gem install bundler
-            bundle config set path '~engidoor/backvendor/bundle'
-            bundle install --jobs=4 --retry=3
+            bundle install
           working_directory: ~/engidoor/back
       - save_cache:
           key: gem-cache-v2-{{ checksum "~/engidoor/back/Gemfile.lock" }}
