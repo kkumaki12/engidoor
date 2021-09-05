@@ -18,7 +18,6 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - gem-cache-v1-{{ checksum "~/engidoor/back/Gemfile.lock" }}
             - gem-cache-v1-
       - run:
           name: Install bundler
