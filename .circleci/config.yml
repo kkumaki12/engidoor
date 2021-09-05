@@ -16,10 +16,10 @@ jobs:
 
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - gem-cache-v2-{{ checksum "~/engidoor/back/Gemfile.lock" }}
-            - gem-cache-v2-
+      #- restore_cache:
+       #   keys:
+       #     - gem-cache-v2-{{ checksum "~/engidoor/back/Gemfile.lock" }}
+       #     - gem-cache-v2-
       - run:
           name: Install bundler
           command: gem install bundler -v 2.2.15
