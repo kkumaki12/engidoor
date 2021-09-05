@@ -33,11 +33,6 @@
         "
         id="UserName"
       />
-      <input class="custom-file-input" type="file" @change="changeFile" />
-
-      <div class="form-group">
-      </div>
-      <input @click="regist" type="button" value="アップロード" />
 
       <label for="UserOccupation">職業</label>
       <input
@@ -111,14 +106,10 @@ export default {
 
   data: function () {
     return {
-      presignedUrl: "", // Rails側で発行される署名付きリンク
-      uploadFile: {}, // アップロードする予定のファイル
-      productId: "",
       errors: "",
       name: "",
       occupation: "",
       specialty: "",
-      uploadfile: "",
       alert: false,
       options: [
         "選択して下さい",
@@ -144,6 +135,7 @@ export default {
       this.occupation = response.data.occupation;
       this.specialty = response.data.specialty;
       console.log(response);
+      console.log(this.uploadfile);
     });
   },
 
@@ -178,22 +170,6 @@ export default {
         this.alert = true;
       }
       e.preventDefault();
-    },
-    changeFile(e) {
-      const files = e.target.files || e.dataTransfer.files;
-      this.uploadfile = files[0];
-      console.log(this.uploadfile);
-    },
-
-    async regist() {
-      var params = new FormData();
-      params.append("image", this.uploadfile);
-      console.log(params);
-      await axios.put(`/api/v1/users/${this.$route.params.id}`, params, {
-        headers: {
-          "content-type": "multipart/form-data",
-        },
-      });
     },
   },
 };
