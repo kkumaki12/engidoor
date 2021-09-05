@@ -155,7 +155,7 @@ import QuestionUser from "./QuestionUser.vue";
 import QuestionStatus from "./QuestionStatus.vue";
 import QuestionCommentsCount from "./QuestionCommentsCount.vue";
 import axios from "axios";
-import moment from "moment";
+import Mixins from '@/mixin.js'
 
 export default {
   components: {
@@ -163,12 +163,7 @@ export default {
     QuestionStatus,
     QuestionCommentsCount,
   },
-  filters: {
-    moment: function (date) {
-      moment.locale("ja");
-      return moment(date).fromNow();
-    },
-  },
+  mixins: [Mixins],
   data: function () {
     return {
       count: "",
