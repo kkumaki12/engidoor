@@ -135,6 +135,7 @@ export default {
       email: "",
       password: "",
       password_confirmation: "",
+      image: "",
       alertOpen: false
     };
   },
@@ -146,6 +147,7 @@ export default {
           email: this.email,
           password: this.password,
           password_confirmation: this.password_confirmation,
+          image: this.image,
         })
         .then((response) => {
           console.log(response);

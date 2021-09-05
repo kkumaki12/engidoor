@@ -11,7 +11,7 @@ module Api
 
       def index
         questions = Question.where(user_id: params[:user_id])
-        render json: questions
+        render json: questions.as_json(include: :user)
       end
 
       def new
@@ -24,7 +24,7 @@ module Api
 
       def list
         questions = Question.joins(:user).select('questions.*,users.name')
-        render json: questions
+        render json: questions.as_json(include: :user)
       end
 
       def create
@@ -49,12 +49,12 @@ module Api
 
       def best
         question = Question.joins(:best_answer).select('questions.*,best_answers.*').find(params[:id])
-        render json: question
+        render json: question.as_json(include: :user)
       end
 
       def search
         questions = Question.search(params[:search]).page(params[:page]).per(7)
-        render json: questions
+        render json: questions.as_json(include: :user)
       end
 
       def solved_answers

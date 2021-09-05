@@ -8,7 +8,7 @@
               <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
                 <div class="w-16 h-16 rounded-full">
                   <img
-                    src="../../assets/default.png"
+                    v-if="user.image.url" :src="user.image.url"
                     class="rounded-full w-12 h-12"
                     alt="ユーザーアイコン"
                   />
@@ -35,7 +35,7 @@
                   :commentId="comment.id"
                 ></best-answer-button>
               </template>
-              <div v-else class="text-red-600">ベスアンサー</div>
+              <div v-else class="text-red-600">ベストアンサー</div>
             </div>
           </div>
         </div>

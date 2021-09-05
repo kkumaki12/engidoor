@@ -16,8 +16,15 @@
         <div>
           <section class="font-bold text-lg text-blue-900">
             <img
-              src="../../assets/default.png"
+              v-if="question.user.image.url"
+              :src="question.user.image.url"
               class="w-16 h-16 rounded-full"
+            />
+            <img
+              v-else
+              src="../../assets/default.png"
+              class="rounded-full w-16 h-16"
+              alt="ユーザーアイコン"
             />
             <div>{{ question.user.name }}さん</div>
             <div>{{ this.$route.params }}</div>
@@ -36,7 +43,7 @@
 
           <section class="flex justify-end">
             <button
-            v-if="question.user_id=== this.$store.state.userId"
+              v-if="question.user_id === this.$store.state.userId"
               type="button"
               class="bg-red-600 text-white px-3 py-1 rounded-md"
               @click="deleteQuestion()"
@@ -48,7 +55,6 @@
       </div>
     </main>
     <comment-form :question="question.id"></comment-form>
-
   </div>
 </template>
 
@@ -57,9 +63,8 @@ import axios from "axios";
 import CommentForm from "../Comments/CommentForm.vue";
 import moment from "moment";
 
-
 export default {
-  components: { CommentForm},
+  components: { CommentForm },
   filters: {
     moment: function (date) {
       moment.locale("ja");
@@ -87,20 +92,20 @@ export default {
   },
   methods: {
     deleteQuestion() {
-      if(confirm('削除しますか？')){
-      axios
-        .delete(`/api/v1/questions/${this.$route.params.id}`)
-        .then((response) => {
-          console.log(response);
-          this.$router.push("/");
-        })
-        .catch((error) => {
-          console.log(error);
-          alert('失敗しました');
-        });
+      if (confirm("削除しますか？")) {
+        axios
+          .delete(`/api/v1/questions/${this.$route.params.id}`)
+          .then((response) => {
+            console.log(response);
+            this.$router.push("/");
+          })
+          .catch((error) => {
+            console.log(error);
+            alert("失敗しました");
+          });
       }
     },
-  }, 
+  },
 };
 </script>
 
