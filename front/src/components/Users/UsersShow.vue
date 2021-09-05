@@ -4,6 +4,32 @@
       <div class="col-span-1 mt-56">
         <img v-if="user.image.url" :src="user.image.url" class="rounded-full" />
         <img v-else src="../../assets/default.png" class="rounded-full" />
+         <router-link :to="{ name: 'UsersImageEdit', params: { id: user.id } }">
+        <button
+        v-if="this.$store.state.userId === user.id"
+          class="
+            px-4
+            py-2
+            font-medium
+            tracking-wide
+            text-white
+            capitalize
+            transition-colors
+            duration-200
+            transform
+            bg-green-600
+            rounded-md
+            dark:bg-gray-800
+            hover:bg-green-500
+            dark:hover:bg-gray-700
+            focus:outline-none
+            focus:bg-blue-500
+            dark:focus:bg-gray-700
+          "
+        >
+          画像を変更する
+        </button>
+         </router-link>
       </div>
 
       <!-- This is an example component -->

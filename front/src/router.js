@@ -8,10 +8,10 @@ import QuestionList from './components/questions/QuestionList.vue'
 import Login from './views/Login.vue'
 import Register from './views/Register.vue'
 import UserShow from './components/Users/UsersShow.vue'
-import UserRanking from './components/Users/UsersRanking.vue'
 import UserEdit from './components/Users/UsersEdit.vue'
 import QuestionSearchResult from './components/questions/QuestionSearchResult.vue'
 import QuestionTag from './components/questions/QuestionTag.vue'
+import UsersImageEdit from './components/Users/UsersImageEdit.vue'
 
 
 Vue.use(Router);
@@ -52,7 +52,7 @@ export default new Router({
     },
     { path: '/users/:id', component: UserShow, name: 'UserShow' },
     { path: '/users/edit/:id', component: UserEdit, name: 'UserEdit' },
-    { path: 'ranking', component: UserRanking, },
+    { path: '/users/image/:id', component: UsersImageEdit, name: 'UsersImageEdit' },
     { path: '/question/search/:params', component: QuestionSearchResult, name: 'QuestionSearchResult' },
     { path: '/question/tag/:tag', component: QuestionTag, name: 'QuestionTag' },
 
