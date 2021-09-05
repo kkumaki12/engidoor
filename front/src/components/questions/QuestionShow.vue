@@ -16,8 +16,8 @@
         <div>
           <section class="font-bold text-lg text-blue-900">
             <img
-              v-if="user.image.url"
-              :src="user.image.url"
+              v-if="question.user.image.url"
+              :src="question.user.image.url"
               class="w-16 h-16 rounded-full"
             />
             <img

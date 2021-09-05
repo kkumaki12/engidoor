@@ -100,19 +100,20 @@
                 "
               >
                 <div class="flex items-center">
-                  <div class="w-16 h-16">
+
                     <img
-                      v-if="user.image.url"
-                      :src="user.image.url"
-                      class="rounded-full"
+                      v-if="question.user.image.url"
+                      :src="question.user.image.url"
+                      class="rounded-full w-16 h-16"
+                      alt="ユーザーアイコン"
                     />
                     <img
                       v-else
                       src="../../assets/default.png"
-                      class="rounded-full"
+                      class="rounded-full w-16 h-16"
                       alt="ユーザーアイコン"
                     />
-                  </div>
+
                   <div class="text-gray-600 font-bold text-sm hover:underline">
                     <router-link
                       :to="{

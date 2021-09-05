@@ -101,8 +101,8 @@
                 <div class="flex items-center">
                   <div class="w-16 h-16">
                     <img
-                      v-if="user.image.url"
-                      :src="user.image.url"
+                      v-if="question.user.image.url"
+                      :src="question.user.image.url"
                       class="rounded-full"
                     />
                     <img
