@@ -65,7 +65,7 @@
       <li v-else-if="isActives === '2'">
         <users-goods-comments></users-goods-comments>
       </li>
-      <li v-else-if="isActives === '3'">コンテンツ3</li>
+      <li v-else-if="isActives === '3'"><users-unsolved-questions></users-unsolved-questions></li>
     </ul>
   </div>
 </template>
@@ -73,9 +73,10 @@
 <script>
 import UsersQuestions from "./UsersQuestions.vue";
 import UsersGoodsComments from "./UsersGoodsComment.vue";
+import UsersUnsolvedQuestions from "./UsersUnsolvedQuestions.vue";
 
 export default {
-  components: { UsersQuestions, UsersGoodsComments },
+  components: { UsersQuestions, UsersGoodsComments, UsersUnsolvedQuestions },
   data() {
     return {
       questions: [],

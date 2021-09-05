@@ -11,7 +11,7 @@ module Api
 
       def index
         questions = Question.where(user_id: params[:user_id])
-        render json: questions.as_json(include: :user)
+        render json: questions.as_json(include: :best_answer)
       end
 
       def new
@@ -57,15 +57,22 @@ module Api
         render json: questions.as_json(include: :user)
       end
 
-      def solved_answers
+      def solved_questions
         questions = Question.joins(:best_answer)
         render json: questions.as_json(include: :user)
+      end
+
+      def unsolved_questions
+        questions = Question.where(user_id: params[:user_id])
+        unsolved_questions = questions.where.missing(:best_answer)
+        render json: unsolved_questions
       end
 
       def specialty
         questions = Question.where(tag: params[:tag])
         render json: questions.as_json(include: :user)
       end
+
 
       private
 

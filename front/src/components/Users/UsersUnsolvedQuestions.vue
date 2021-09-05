@@ -15,7 +15,7 @@ export default {
   },
   created() {
     axios
-      .get(`api/v1/users/${this.$route.params.id}/questions/`)
+      .get(`api/v1/users/${this.$route.params.id}/questions/unsolved`)
       .then((response) => {
         this.questions = response.data;
         console.log(response.data);
