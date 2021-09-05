@@ -1,13 +1,14 @@
 <template>
-  <div>
-    <h2 class="font-bold">いいね数ランキング</h2>
     <div class="border bg-white">
+      <div class="container px-5 mx-auto divide-y-2 divide-gray-500">
       <div v-for="user in users" :key="user.id">
         <li class="mt-2">
+          <div class="text-center">
           <b>{{ users.indexOf(user) + 1 }}位</b>
           <router-link :to="{ name: 'UserShow', params: { id: user.id } }">
             {{ user.name }}さん
           </router-link>
+          </div>
           <img
             v-if="user.image.url"
             :src="user.image.url"
@@ -22,30 +23,14 @@
         </li>
       </div>
     </div>
-  </div>
+    </div>
 </template>
 
 <script>
-import axios from "axios";
+
 export default {
-  data() {
-    return {
-      users: [],
-      length: "",
-    };
-  },
-  created() {
-    axios
-      .get("api/v1/ranking")
-      .then((response) => {
-        this.users = response.data;
-        this.length = response.data.length;
-        console.log(response.data);
-        console.log(response.data.length);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  props: {
+    users: Array,
   },
 };
 </script>

@@ -5,7 +5,7 @@
         :icon="['fas', 'crown']"
         style="color: black"
       />
-    <h2 class="font-bold">ベストアンサーランキング</h2>
+    <h2 class="font-bold">いいね数ランキング</h2>
     </div>
 <ranking-base :users="users"></ranking-base>
   </div>
@@ -32,7 +32,7 @@ export default {
   },
   created() {
     axios
-      .get("api/v1/bestanswer_ranking")
+      .get("api/v1/ranking")
       .then((response) => {
         this.users = response.data;
         this.length = response.data.length;
