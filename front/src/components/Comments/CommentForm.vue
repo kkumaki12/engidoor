@@ -53,8 +53,8 @@
             <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
               <div class="w-16 h-16 rounded-full">
                 <img
-                  v-if="user.image.url"
-                  :src="user.image.url"
+                  v-if="comment.user.image.url"
+                  :src="comment.user.image.url"
                   class="rounded-full w-12 h-12"
                   alt="ユーザーアイコン"
                 />
