@@ -1,11 +1,14 @@
 <template>
     <div class="border bg-white">
+      <div class="container px-5 mx-auto divide-y-2 divide-gray-500">
       <div v-for="user in users" :key="user.id">
         <li class="mt-2">
+          <div class="text-center">
           <b>{{ users.indexOf(user) + 1 }}位</b>
           <router-link :to="{ name: 'UserShow', params: { id: user.id } }">
             {{ user.name }}さん
           </router-link>
+          </div>
           <img
             v-if="user.image.url"
             :src="user.image.url"
@@ -19,6 +22,7 @@
           />
         </li>
       </div>
+    </div>
     </div>
 </template>
 
