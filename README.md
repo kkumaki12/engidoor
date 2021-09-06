@@ -34,6 +34,10 @@
 
 <img src="./back/app/assets/images/aws_ver4.png">
 
+## ER図
+
+<img src="./back/app/assets/images/engidoor_ER2.png">
+
 ## 機能一覧
 * ユーザー機能
   * ユーザー登録機能
