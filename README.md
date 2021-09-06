@@ -32,7 +32,7 @@
 
 ## インフラ構成図
 
-<img src="./back/app/assets/images/aws_ver4.png">
+<img src="./back/app/assets/images/engidoorAWS.png">
 
 ## ER図
 
