@@ -62,7 +62,7 @@ export default new Vuex.Store({
     search({ commit }, searchWord) {
       console.log(searchWord);
       commit('updateSearchWord', searchWord.searchWord);
-      this.keyword= '';
+      this.keyword = '';
       router.push(`/question/search/${searchWord.searchWord}`)
     }
   },

@@ -1,8 +1,6 @@
 <template>
-  
-    <div v-if="genre === 'null'">
-
-        <div class="tabs flex">
+  <div v-if="genre === 'null'">
+    <div class="tabs flex">
       <button
         class="
           text-gray-600
@@ -38,11 +36,8 @@
         :class="{ 'border-green-500': isActive === '2' }"
         v-on:click="isActive = '2'"
       >
-        解決済み質問
+        解決ß済み質問
       </button>
-
-
-
     </div>
     <ul class="contents">
       <li v-if="isActive === '1'">
@@ -51,13 +46,10 @@
       <li v-else-if="isActive === '2'">
         <question-solved-posts></question-solved-posts>
       </li>
-
     </ul>
   </div>
-  
+
   <div v-else>
-
-
     <div class="tabs flex">
       <button
         class="
@@ -115,7 +107,6 @@
       >
         {{ this.genre }}の質問
       </button>
-
     </div>
     <ul class="contents">
       <li v-if="isActive === '1'">
@@ -124,17 +115,17 @@
       <li v-else-if="isActive === '2'">
         <question-solved-posts></question-solved-posts>
       </li>
-      <li v-else-if="isActive === '3'"><question-users-specialty></question-users-specialty></li>
+      <li v-else-if="isActive === '3'">
+        <question-users-specialty></question-users-specialty>
+      </li>
     </ul>
   </div>
-  
 </template>
 
 <script>
-import QuestionUsersSpecialty from './QuestionUsersSpecialty.vue';
+import QuestionUsersSpecialty from "./QuestionUsersSpecialty.vue";
 import QuestionLatestPosts from "./QuestionLatestPosts.vue";
 import QuestionSolvedPosts from "./QuestionSolvedPosts.vue";
-
 
 export default {
   components: {
@@ -147,7 +138,7 @@ export default {
       questions: [],
       user: [],
       isActive: "1",
-      genre: `${this.$store.state.specialty}`
+      genre: `${this.$store.state.specialty}`,
     };
   },
 };
