@@ -4,6 +4,26 @@
       <div class="w-full max-w-3xl mx-auto">
         <div style="bg-white rounded px-8 pt-6 pb-8 mb-4">
           <div class="mb-4">
+            <div
+              v-if="alert == true"
+              class="
+                text-white
+                px-6
+                py-4
+                border-0
+                rounded
+                relative
+                mb-4
+                bg-red-500
+              "
+            >
+              <span class="text-xl inline-block mr-5 align-middle">
+                <font-awesome-icon :icon="['fas', 'bell']" />
+              </span>
+              <span class="inline-block align-middle mr-8">
+                <b class="capitalize"><li v-for="error in errors" :key="error">{{ error }}</li></b>
+              </span>
+            </div>
             <label
               class="block text-gray-600 text-sm font-semibold mb-2"
               for="title"
@@ -82,7 +102,7 @@
 
           <div class="flex items-center justify-between">
             <button
-              @click="createQuestion()"
+              @click="checkForm()"
               class="
                 bg-blue-500
                 hover:bg-blue-700
@@ -116,6 +136,8 @@ export default {
       title: "",
       tag: "",
       content: "",
+      errors: [],
+      alert: false,
       options: [
         "材料・素材",
         "金型",
@@ -156,6 +178,26 @@ export default {
           console.log(error);
           this.$router.push("/");
         });
+    },
+    checkForm: function (e) {
+      if (this.title && this.tag && this.content) {
+        this.createQuestion();
+        console.log("投稿に成功しました");
+      }
+      this.errors = [];
+      if (!this.title) {
+        this.errors.push('タイトルを入力してください');
+        this.alert = true;
+      }
+      if (!this.tag) {
+        this.errors.push('タグを選択してください');
+        this.alert = true;
+      }
+      if (!this.content) {
+        this.errors.push('本文を入力してください');
+        this.alert = true;
+      }
+      e.preventDefault();
     },
   },
 };
