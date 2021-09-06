@@ -32,7 +32,11 @@
 
 ## インフラ構成図
 
-<img src="./back/app/assets/images/aws_ver4.png">
+<img src="./back/app/assets/images/engidoorAWS.png">
+
+## ER図
+
+<img src="./back/app/assets/images/engidoor_ER2.png">
 
 ## 機能一覧
 * ユーザー機能

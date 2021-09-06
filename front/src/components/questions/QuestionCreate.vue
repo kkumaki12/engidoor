@@ -24,7 +24,7 @@
                 leading-tight
                 focus:outline-none
                 focus:shadow-outline
-                focus:border-b-2 focus:border-indigo-500 
+                focus:border-b-2 focus:border-indigo-500
               "
             />
           </div>
@@ -35,25 +35,25 @@
             >
               タグ
             </label>
-      <v-select
-        placeholder="選択してください"
-        name="hoge"
-        :options="options"
-        v-model="tag"
-        class="
-          bg-white
-          shadow
-          appearance-none
-          border
-          rounded
-          w-full
-          text-gray-700
-          leading-tight
-          focus:outline-none
-          focus:shadow-outline
-          focus:border-b-2 focus:border-indigo-500 
-        "
-      ></v-select>
+            <v-select
+              placeholder="選択してください"
+              name="hoge"
+              :options="options"
+              v-model="tag"
+              class="
+                bg-white
+                shadow
+                appearance-none
+                border
+                rounded
+                w-full
+                text-gray-700
+                leading-tight
+                focus:outline-none
+                focus:shadow-outline
+                focus:border-b-2 focus:border-indigo-500
+              "
+            ></v-select>
           </div>
           <div class="mb-4">
             <label
@@ -74,7 +74,7 @@
                 leading-tight
                 focus:outline-none
                 focus:shadow-outline
-                focus:border-b-2 focus:border-indigo-500 
+                focus:border-b-2 focus:border-indigo-500
               "
               rows="8"
             ></textarea>
@@ -130,10 +130,10 @@ export default {
         "生産技術",
         "化学",
         "化学工学",
-        "その他"
+        "その他",
       ],
     };
-    },
+  },
   computed: {
     token() {
       return this.$store.getters.token;
@@ -146,7 +146,7 @@ export default {
           title: this.title,
           content: this.content,
           tag: this.tag,
-          user_id: this.$store.state.userId
+          user_id: this.$store.state.userId,
         })
         .then((response) => {
           console.log(response);

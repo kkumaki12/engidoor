@@ -61,16 +61,11 @@
 <script>
 import axios from "axios";
 import CommentForm from "../Comments/CommentForm.vue";
-import moment from "moment";
+import Mixins from "@/mixin.js";
 
 export default {
   components: { CommentForm },
-  filters: {
-    moment: function (date) {
-      moment.locale("ja");
-      return moment(date).fromNow();
-    },
-  },
+  mixins: [Mixins],
 
   data: function () {
     return {
