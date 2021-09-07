@@ -58,7 +58,7 @@ module Api
       end
 
       def solved_questions
-        questions = Question.joins(:best_answer)
+        questions = Question.joins(:best_answer, :user).select('questions.*,users.name')
         render json: questions.as_json(include: :user)
       end
 
@@ -69,7 +69,7 @@ module Api
       end
 
       def specialty
-        questions = Question.where(tag: params[:tag])
+        questions = Question.joins(:user).where(tag: params[:tag]).select('questions.*,users.name')
         render json: questions.as_json(include: :user)
       end
 
