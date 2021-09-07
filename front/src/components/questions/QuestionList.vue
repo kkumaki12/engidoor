@@ -36,7 +36,7 @@
         :class="{ 'border-green-500': isActive === '2' }"
         v-on:click="isActive = '2'"
       >
-        解決ß済み質問
+        解決済み質問
       </button>
     </div>
     <ul class="contents">

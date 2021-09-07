@@ -27,7 +27,6 @@
               alt="ユーザーアイコン"
             />
             <div>{{ question.user.name }}さん</div>
-            <div>{{ this.$route.params }}</div>
             <div class="text-right mr-5">回答数{{ count }}</div>
           </section>
           <section class="text-sm font-thin text-orange-400">
@@ -35,7 +34,7 @@
           </section>
           <section class="text-3xl font-bold">{{ question.title }}</section>
           <section class="font-normal text-md text-gray-700">
-            {{ question.content }}
+            {{ question.content }}ß
           </section>
           <section class="font-normal text-md text-gray800">
             <ul></ul>
@@ -54,7 +53,7 @@
         </div>
       </div>
     </main>
-    <comment-form :question="question.id"></comment-form>
+    <comment-form :question="question"></comment-form>
   </div>
 </template>
 

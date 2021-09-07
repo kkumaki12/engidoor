@@ -50,7 +50,7 @@
                 <div class="md:flex-grow">
                   <p class="leading-relaxed"></p>
                   <p>{{ comment.content }}</p>
-                  <p>{{ comment.created_at | monent }}</p>
+                  <p>{{ comment.created_at | moment }}</p>
                 </div>
               </div>
             </div>
@@ -58,7 +58,6 @@
         </div>
       </section>
     </transition>
-    <!-- ここまで -->
 
     <button
       @click="openCommentBox(comment)"
@@ -162,6 +161,7 @@ export default {
         })
         .then((response) => {
           console.log(response);
+          this.content = "";
           this.replyCatch();
         })
         .catch((error) => {
@@ -170,8 +170,7 @@ export default {
     },
     replyCatch() {
       axios.get(`/api/v1/comments/reply/${this.comment}`).then((response) => {
-        this.replys = response.data;
-        console.log(response.data);
+        this.replys = response.data.reverse();
       });
     },
     showReplys(comment_id) {

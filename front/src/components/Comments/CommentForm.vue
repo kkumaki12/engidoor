@@ -92,7 +92,7 @@
                 :commentId="comment.id"
               ></good-button>
               <p>{{ comment.created_at | moment }}</p>
-              <template v-if="bestAnswer">
+              <template v-if="bestAnswer && question.user_id == user_id">
                 <best-answer-button
                   :commentId="comment.id"
                   @render="statusBestAnswer()"
@@ -101,7 +101,7 @@
 
               <comments-replys
                 :comment="comment.id"
-                :question="question"
+                :question="question.id"
               ></comments-replys>
             </div>
           </div>
@@ -119,7 +119,7 @@ import BestAnswerButton from "../BestAnswer/BestAnswerButton.vue";
 import moment from "moment";
 export default {
   components: { GoodButton, CommentsReplys, BestAnswerButton },
-  props: ["question"],
+  props: { question :Object },
 
   data: function () {
     return {
@@ -155,7 +155,7 @@ export default {
       axios
         .post("/api/v1/comments", {
           content: this.content,
-          question_id: this.question,
+          question_id: this.question.id,
           user_id: this.$store.state.userId,
         })
         .then((response) => {
@@ -189,7 +189,7 @@ export default {
       axios
         .post("/api/v1/comments", {
           content: this.content,
-          question_id: this.question,
+          question_id: this.question.id,
           user_id: this.$store.state.userId,
           reply_comment: comment_id,
         })
