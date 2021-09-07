@@ -54,7 +54,7 @@
         </div>
       </div>
     </main>
-    <comment-form :question="question.id"></comment-form>
+    <comment-form :question="question"></comment-form>
   </div>
 </template>
 
