@@ -58,7 +58,6 @@
         </div>
       </section>
     </transition>
-    <!-- ここまで -->
 
     <button
       @click="openCommentBox(comment)"
@@ -162,6 +161,7 @@ export default {
         })
         .then((response) => {
           console.log(response);
+          this.content = "";
           this.replyCatch();
         })
         .catch((error) => {
