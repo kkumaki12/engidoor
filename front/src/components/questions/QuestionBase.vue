@@ -83,7 +83,7 @@
               </router-link>
 
               <p class="mt-2 text-gray-600 text-sm md:text-md">
-                {{ question.content.substring(0, 50) }}
+                {{ contentSlice(question.content) }}
               </p>
             </div>
 
@@ -208,6 +208,13 @@ export default {
       this.currentPage = Number(pageNum);
       console.log(this.currentPage);
     },
+    contentSlice: function (content) {
+      if (content.length > 70 ){
+        return content.slice(0, 70)+"…";
+      }else {
+        return content
+      }
+    }
   },
   computed: {
     getLists: function () {
