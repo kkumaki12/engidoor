@@ -21,7 +21,9 @@
                 <font-awesome-icon :icon="['fas', 'bell']" />
               </span>
               <span class="inline-block align-middle mr-8">
-                <b class="capitalize"><li v-for="error in errors" :key="error">{{ error }}</li></b>
+                <b class="capitalize"
+                  ><li v-for="error in errors" :key="error">{{ error }}</li></b
+                >
               </span>
             </div>
             <label
@@ -44,7 +46,7 @@
                 leading-tight
                 focus:outline-none
                 focus:shadow-outline
-                focus:border-b-2 focus:border-indigo-500
+                focus:border-b-2 focus:border-blue-400
               "
             />
           </div>
@@ -71,7 +73,7 @@
                 leading-tight
                 focus:outline-none
                 focus:shadow-outline
-                focus:border-b-2 focus:border-indigo-500
+                focus:border-b-2 focus:border-blue-400
               "
             ></v-select>
           </div>
@@ -186,15 +188,15 @@ export default {
       }
       this.errors = [];
       if (!this.title) {
-        this.errors.push('タイトルを入力してください');
+        this.errors.push("タイトルを入力してください");
         this.alert = true;
       }
       if (!this.tag) {
-        this.errors.push('タグを選択してください');
+        this.errors.push("タグを選択してください");
         this.alert = true;
       }
       if (!this.content) {
-        this.errors.push('本文を入力してください');
+        this.errors.push("本文を入力してください");
         this.alert = true;
       }
       e.preventDefault();

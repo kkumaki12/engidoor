@@ -67,7 +67,7 @@ export default new Vuex.Store({
     }
   },
   modules: {
-    // ここにモジュールを記述
+
   },
   plugins: [createPersistedState()]
 });

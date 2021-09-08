@@ -11,7 +11,6 @@
     </span>
       </div>
     <button class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none" v-on:click="closeAlert()">
-      <span>×</span>
     </button>
     <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
       <label for="email">ユーザー名</label>
@@ -22,7 +21,7 @@
         class="
           shadow
           appearance-none
-          border border-red-500
+          border 
           rounded
           w-full
           py-2
@@ -32,6 +31,7 @@
           leading-tight
           focus:outline-none
           focus:shadow-outline
+          focus:border-blue-400
         "
       />
 
@@ -43,7 +43,7 @@
         class="
           shadow
           appearance-none
-          border border-red-500
+          border 
           rounded
           w-full
           py-2
@@ -53,6 +53,7 @@
           leading-tight
           focus:outline-none
           focus:shadow-outline
+          focus:border-blue-400
         "
       />
 
@@ -64,7 +65,7 @@
         class="
           shadow
           appearance-none
-          border border-red-500
+          border 
           rounded
           w-full
           py-2
@@ -74,6 +75,7 @@
           leading-tight
           focus:outline-none
           focus:shadow-outline
+          focus:border-blue-400
         "
       />
 
@@ -85,7 +87,7 @@
         class="
           shadow
           appearance-none
-          border border-red-500
+          border 
           rounded
           w-full
           py-2
@@ -95,6 +97,7 @@
           leading-tight
           focus:outline-none
           focus:shadow-outline
+          focus:border-blue-400
         "
       />
 

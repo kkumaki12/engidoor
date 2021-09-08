@@ -1,7 +1,5 @@
 <template>
   <div class="w-full max-w-xl container mt-24 mx-auto">
-    
-
     <h1>ENGIDOOR</h1>
     <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
       <label for="email">email</label>
@@ -12,7 +10,7 @@
         class="
           shadow
           appearance-none
-          border border-red-500
+          border
           rounded
           w-full
           py-2
@@ -22,6 +20,7 @@
           leading-tight
           focus:outline-none
           focus:shadow-outline
+          focus:border-blue-400
         "
       />
 
@@ -33,7 +32,7 @@
         class="
           shadow
           appearance-none
-          border border-red-500
+          border
           rounded
           w-full
           py-2
@@ -43,6 +42,7 @@
           leading-tight
           focus:outline-none
           focus:shadow-outline
+          focus:border-blue-400
         "
       />
 
@@ -99,7 +99,6 @@ export default {
     return {
       email: "",
       password: "",
-      
     };
   },
   methods: {
@@ -107,15 +106,14 @@ export default {
       this.$store.dispatch("login", {
         email: this.email,
         password: this.password,
-      })
+      });
     },
-  guestLogin() {
-    this.$store.dispatch("login", {
-      email: 'guest12@example.com',
-      password: 'guestpassword',
-    });
+    guestLogin() {
+      this.$store.dispatch("login", {
+        email: "guest12@example.com",
+        password: "guestpassword",
+      });
+    },
   },
- 
-}
-}
+};
 </script>
