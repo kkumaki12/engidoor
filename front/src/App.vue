@@ -14,6 +14,9 @@ export default {
   components: {
     Header,
   },
+  mounted: function(){
+      document.title = 'engidoor';
+  },
 };
 </script>
 
