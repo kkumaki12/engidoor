@@ -14,7 +14,7 @@
 ## 使用技術
 * フロントエンド  
   * HTML/CSS
-  * Javascript
+  * JavaScript
   * Vue.js（SPA）
   * TailwindCSS（UIフレームワーク）
   * Jest（テスト）
