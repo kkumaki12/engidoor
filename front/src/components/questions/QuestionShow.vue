@@ -34,7 +34,7 @@
           </section>
           <section class="text-3xl font-bold">{{ question.title }}</section>
           <section class="font-normal text-md text-gray-700">
-            {{ question.content }}ß
+            {{ question.content }}
           </section>
           <section class="font-normal text-md text-gray800">
             <ul></ul>
