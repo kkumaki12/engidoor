@@ -27,8 +27,8 @@
               <span class="inline-block font-bold text-xs">
                 {{ questionViewsCount(question.impressions_count) }} Views
               </span>
-              <div class="mt-10 font-mono  rounded-sm border-4 border-gray-200">
-              {{ question.tag }}
+              <div class="mt-10 font-mono rounded-sm border-4 border-gray-200">
+                {{ question.tag }}
               </div>
             </div>
           </div>
@@ -92,16 +92,8 @@
               <!-- ベストアンサー決定済み表示  -->
               <question-status :question="question"></question-status>
               <!-- ユーザー情報 -->
-              
-              <div
-                class="
-                  col-none
-                  hidden
-                  mr-2
-                  lg:block
-                  lg:col-start-9 lg:col-end-12
-                "
-              >
+
+              <div class="col-none mr-2 lg:block lg:col-start-9 lg:col-end-12">
                 <div class="flex items-center">
                   <img
                     v-if="question.user.image.url"
@@ -126,14 +118,13 @@
                       <div
                         class="
                           col-none
-                          hidden
                           mr-2
                           lg:block
                           lg:col-start-9 lg:col-end-12
                         "
                       >
                         <div class="flex items-center">
-                          <div class="w-16 h-16"></div>
+                          <div class="lg:w-16 lg:h-16"></div>
                         </div>
                         <div
                           class="
@@ -209,12 +200,12 @@ export default {
       console.log(this.currentPage);
     },
     contentSlice: function (content) {
-      if (content.length > 70 ){
-        return content.slice(0, 70)+"…";
-      }else {
-        return content
+      if (content.length > 70) {
+        return content.slice(0, 70) + "…";
+      } else {
+        return content;
       }
-    }
+    },
   },
   computed: {
     getLists: function () {

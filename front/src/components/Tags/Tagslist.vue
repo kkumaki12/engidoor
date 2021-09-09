@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="relative inline-block text-left ml-2">
+    <div class="relative inline-block text-left ml-2 hidden md:inline-block">
       <div class="font-bold">ジャンルから検索</div>
       <div v-for="tag in tags" :key="tag.id">
         <router-link :to="{ name: 'QuestionTag', params: { tag: tag } }">
@@ -43,6 +43,46 @@
         </router-link>
       </div>
     </div>
+
+    <div class="md:hidden">
+      <select
+        v-model="selected"
+        class="
+          w-6/12
+          bg-white
+          h-10
+          shadow
+          appearance-none
+          border
+          rounded
+          text-gray-700
+          leading-tight
+          focus:outline-none
+          focus:shadow-outline
+          focus:border-b-2 focus:border-blue-400
+        "
+      >
+        <option disabled value="">タグで検索</option>
+        <option v-for="tag in tags" :key="tag.id">
+          {{ tag }}
+        </option>
+      </select>
+      <router-link
+        :to="{ name: 'QuestionTag', params: { tag: selected } }"
+        tag="button"
+        @click.native="childEvent"
+        class="
+          bg-blue-500
+          hover:bg-blue-700
+          text-white
+          font-bold
+          h-10
+          w-20
+          rounded
+        "
+        >検索</router-link
+      >
+    </div>
   </div>
 </template>
 
@@ -65,11 +105,13 @@ export default {
         "化学",
         "化学工学",
       ],
+      selected: "",
     };
   },
   methods: {
     childEvent() {
       this.$emit("parent-event");
+      console.log("tete");
     },
   },
 };

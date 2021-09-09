@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="grid grid-cols-12 flex-row">
+    <div class="md:grid md:grid-cols-12 md:flex-row">
       <div class="col-span-3">
         <TagsList @parent-event="parentEvent"></TagsList>
       </div>

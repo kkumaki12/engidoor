@@ -1,6 +1,6 @@
 <template>
   <div id="app" v-cloak>
-    <Header></Header>
+    <Header class="w-full"></Header>
 
     <router-view></router-view>
   </div>
