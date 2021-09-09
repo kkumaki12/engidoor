@@ -93,12 +93,12 @@
               <question-status :question="question"></question-status>
               <!-- ユーザー情報 -->
 
-              <div class="col-none mr-2 lg:block lg:col-start-9 lg:col-end-12">
-                <div class="flex items-center">
+              <div class=" pr-0 col-none mr-2 lg:block lg:col-start-9 lg:col-end-12">
+
                   <img
                     v-if="question.user.image.url"
                     :src="question.user.image.url"
-                    class="rounded-full w-16 h-16"
+                    class="rounded-full w-16 h-16 ml-auto"
                     alt="ユーザーアイコン"
                   />
                   <img
@@ -123,9 +123,7 @@
                           lg:col-start-9 lg:col-end-12
                         "
                       >
-                        <div class="flex items-center">
-                          <div class="lg:w-16 lg:h-16"></div>
-                        </div>
+
                         <div
                           class="
                             text-gray-600
@@ -140,7 +138,7 @@
                     </router-link>
                   </div>
                 </div>
-              </div>
+
             </div>
           </div>
         </div>

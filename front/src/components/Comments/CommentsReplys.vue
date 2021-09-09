@@ -71,6 +71,8 @@
         rounded
         focus:outline-none
         focus:shadow-outline
+        h-10
+        w-40
       "
     >
       コメント投稿
@@ -122,7 +124,7 @@
 
 <script>
 import axios from "axios";
-import Mixins from '@/mixin.js';
+import Mixins from "@/mixin.js";
 
 export default {
   props: ["comment", "question"],
