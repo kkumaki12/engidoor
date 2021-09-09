@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="grid grid-cols-12 flex-row">
+    <div class="lg:grid lg:grid-cols-12 lg:flex-row">
       <div class="col-span-3">
         <TagsList></TagsList>
       </div>
