@@ -13,6 +13,7 @@
           md:px-2
           py-4
           my-6
+          lg:h-64
         "
       >
         <div class="grid grid-cols-12 gap-3">
