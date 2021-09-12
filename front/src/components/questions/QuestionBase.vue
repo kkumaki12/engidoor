@@ -91,61 +91,59 @@
             <!-- Question Labels -->
             <div class="grid grid-cols-2 mt-4 my-auto">
               <!-- ベストアンサー決定済み表示  -->
-              <question-status :question="question"></question-status>
+              <question-status
+                :question="question"
+                @status="status = $event"
+              ></question-status>
               <!-- ユーザー情報 -->
 
-              <div class=" pr-0 col-none mr-2 lg:block lg:col-start-9 lg:col-end-12">
+              <div
+                class="pr-0 col-none mr-2 lg:block lg:col-start-9 lg:col-end-12"
+              >
+                <img
+                  v-if="question.user.image.url"
+                  :src="question.user.image.url"
+                  class="rounded-full w-16 h-16 ml-auto"
+                  alt="ユーザーアイコン"
+                />
+                <img
+                  v-else
+                  src="../../assets/default.png"
+                  class="rounded-full w-16 h-16"
+                  alt="ユーザーアイコン"
+                />
 
-                  <img
-                    v-if="question.user.image.url"
-                    :src="question.user.image.url"
-                    class="rounded-full w-16 h-16 ml-auto"
-                    alt="ユーザーアイコン"
-                  />
-                  <img
-                    v-else
-                    src="../../assets/default.png"
-                    class="rounded-full w-16 h-16"
-                    alt="ユーザーアイコン"
-                  />
-
-                  <div class="text-gray-600 font-bold text-sm hover:underline">
-                    <router-link
-                      :to="{
-                        name: 'UserShow',
-                        params: { id: question.user_id },
-                      }"
+                <div class="text-gray-600 font-bold text-sm hover:underline">
+                  <router-link
+                    :to="{
+                      name: 'UserShow',
+                      params: { id: question.user_id },
+                    }"
+                  >
+                    <div
+                      class="
+                        col-none
+                        mr-2
+                        lg:block
+                        lg:col-start-9 lg:col-end-12
+                      "
                     >
                       <div
-                        class="
-                          col-none
-                          mr-2
-                          lg:block
-                          lg:col-start-9 lg:col-end-12
-                        "
+                        class="text-gray-600 font-bold text-sm hover:underline"
                       >
-
-                        <div
-                          class="
-                            text-gray-600
-                            font-bold
-                            text-sm
-                            hover:underline
-                          "
-                        >
-                          {{ question.name }}さん
-                        </div>
+                        {{ question.name }}さん
                       </div>
-                    </router-link>
-                  </div>
+                    </div>
+                  </router-link>
                 </div>
-
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
     <paginate
+      v-if="status"
       :v-model="currentPage"
       :page-count="getPageCount"
       :page-range="3"
@@ -181,6 +179,7 @@ export default {
       count: "",
       currentPage: 1,
       perPage: 5,
+      status: false,
     };
   },
 
@@ -205,6 +204,9 @@ export default {
         return content;
       }
     },
+    renderQuestion: function () {
+      this.create = true;
+    },
   },
   computed: {
     getLists: function () {
@@ -217,6 +219,11 @@ export default {
     getPageCount: function () {
       return Math.ceil(this.questions.length / this.perPage);
     },
+  },
+  mounted() {
+    this.$nextTick(function () {
+      console.log("マウント");
+    });
   },
 };
 </script>

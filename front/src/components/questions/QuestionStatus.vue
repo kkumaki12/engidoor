@@ -1,6 +1,6 @@
 <template>
   <!-- v-if="craeted" -->
-  <div class="col-span-12 lg:col-span-8">
+  <div class="col-span-12 lg:col-span-8" v-if="create">
     <div
       v-if="bestAnswer"
       class="
@@ -54,6 +54,7 @@ export default {
   data: function () {
     return {
       bestAnswer: "",
+      create: false,
     };
   },
   created() {
@@ -62,9 +63,13 @@ export default {
       .then((response) => {
         this.bestAnswer = response.data;
         console.log(response.data);
+        this.create = true;
+        this.$emit("status", true);
       })
       .catch((error) => {
         console.log(error);
+        this.create = true;
+        this.$emit("status", true);
       });
   },
 };

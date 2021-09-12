@@ -1,5 +1,5 @@
 <template>
-<question-base :questions="questions"></question-base>
+  <question-base :questions="questions"></question-base>
 </template>
 
 <script>
