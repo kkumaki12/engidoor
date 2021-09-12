@@ -1,5 +1,4 @@
 <template>
-
   <button
     @click="createBestAnswer()"
     class="
@@ -13,6 +12,7 @@
       focus:outline-none
       focus:shadow-outline
       h-10
+      w-40
     "
   >
     ベストアンサー
@@ -30,7 +30,7 @@ export default {
           .post(`/api/v1/comments/${this.commentId}/best_answers`)
           .then((response) => {
             console.log(response.data);
-            this.$emit('render');
+            this.$emit("render");
           });
       }
     },
