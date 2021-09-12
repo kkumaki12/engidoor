@@ -1,5 +1,5 @@
 <template>
-<question-base :questions="questions"></question-base>
+  <question-base :questions="questions"></question-base>
 </template>
 
 <script>
@@ -19,7 +19,7 @@ export default {
   created() {
     axios.get("api/v1/questions/list").then((response) => {
       this.questions = response.data;
-      console.log(response.data);
+      console.log("ParentCreate")
     });
   },
 };

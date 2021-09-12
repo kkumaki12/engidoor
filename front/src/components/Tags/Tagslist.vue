@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="relative inline-block text-left ml-2 hidden md:inline-block">
+    <div class="relative inline-block text-left ml-2 hidden lg:inline-block">
       <div class="font-bold">ジャンルから検索</div>
       <div v-for="tag in tags" :key="tag.id">
         <router-link :to="{ name: 'QuestionTag', params: { tag: tag } }">
@@ -44,7 +44,7 @@
       </div>
     </div>
 
-    <div class="md:hidden">
+    <div class="lg:hidden">
       <select
         v-model="selected"
         class="

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-show="count && status">
     <div v-for="question in getLists" :key="question.id">
       <div
         class="
@@ -13,6 +13,7 @@
           md:px-2
           py-4
           my-6
+          lg:h-64
         "
       >
         <div class="grid grid-cols-12 gap-3">
@@ -21,6 +22,7 @@
             <!-- 回答数 -->
             <question-comments-count
               :question="question.id"
+              @count="count = $event"
             ></question-comments-count>
             <!-- 閲覧数 -->
             <div class="grid my-3">
@@ -90,55 +92,52 @@
             <!-- Question Labels -->
             <div class="grid grid-cols-2 mt-4 my-auto">
               <!-- ベストアンサー決定済み表示  -->
-              <question-status :question="question"></question-status>
+              <question-status
+                :question="question"
+                @status="status = $event"
+              ></question-status>
               <!-- ユーザー情報 -->
 
-              <div class=" pr-0 col-none mr-2 lg:block lg:col-start-9 lg:col-end-12">
+              <div
+                class="pr-0 col-none mr-2 lg:block lg:col-start-9 lg:col-end-12"
+              >
+                <img
+                  v-if="question.user.image.url"
+                  :src="question.user.image.url"
+                  class="rounded-full w-16 h-16 ml-auto"
+                  alt="ユーザーアイコン"
+                />
+                <img
+                  v-else
+                  src="../../assets/default.png"
+                  class="rounded-full w-16 h-16"
+                  alt="ユーザーアイコン"
+                />
 
-                  <img
-                    v-if="question.user.image.url"
-                    :src="question.user.image.url"
-                    class="rounded-full w-16 h-16 ml-auto"
-                    alt="ユーザーアイコン"
-                  />
-                  <img
-                    v-else
-                    src="../../assets/default.png"
-                    class="rounded-full w-16 h-16"
-                    alt="ユーザーアイコン"
-                  />
-
-                  <div class="text-gray-600 font-bold text-sm hover:underline">
-                    <router-link
-                      :to="{
-                        name: 'UserShow',
-                        params: { id: question.user_id },
-                      }"
+                <div class="text-gray-600 font-bold text-sm hover:underline">
+                  <router-link
+                    :to="{
+                      name: 'UserShow',
+                      params: { id: question.user_id },
+                    }"
+                  >
+                    <div
+                      class="
+                        col-none
+                        mr-2
+                        lg:block
+                        lg:col-start-9 lg:col-end-12
+                      "
                     >
                       <div
-                        class="
-                          col-none
-                          mr-2
-                          lg:block
-                          lg:col-start-9 lg:col-end-12
-                        "
+                        class="text-gray-600 font-bold text-sm hover:underline"
                       >
-
-                        <div
-                          class="
-                            text-gray-600
-                            font-bold
-                            text-sm
-                            hover:underline
-                          "
-                        >
-                          {{ question.name }}さん
-                        </div>
+                        {{ question.name }}さん
                       </div>
-                    </router-link>
-                  </div>
+                    </div>
+                  </router-link>
                 </div>
-
+              </div>
             </div>
           </div>
         </div>
@@ -177,12 +176,15 @@ export default {
   props: { questions: Array },
   data: function () {
     return {
-      count: "",
       currentPage: 1,
       perPage: 5,
+      status: false,
+      count: false,
     };
   },
-
+  created() {
+console.log("ParentCreate")
+  },
   methods: {
     questionViewsCount: function (view) {
       let count;
@@ -204,18 +206,24 @@ export default {
         return content;
       }
     },
+    renderQuestion: function () {
+      this.create = true;
+    },
   },
   computed: {
     getLists: function () {
       let current = this.currentPage * this.perPage;
-      console.log(current);
       let start = current - this.perPage;
-      console.log(start);
       return this.questions.slice(start, current);
     },
     getPageCount: function () {
       return Math.ceil(this.questions.length / this.perPage);
     },
+  },
+  mounted() {
+    this.$nextTick(function () {
+      console.log("ParentMount");
+    });
   },
 };
 </script>
