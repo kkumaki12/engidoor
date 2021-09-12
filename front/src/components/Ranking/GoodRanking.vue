@@ -36,11 +36,8 @@ export default {
       .then((response) => {
         this.users = response.data;
         this.length = response.data.length;
-        console.log(response.data);
-        console.log(response.data.length);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
       });
   },
 };

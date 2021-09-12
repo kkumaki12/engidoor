@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-show="count && status">
     <div v-for="question in getLists" :key="question.id">
       <div
         class="
@@ -22,6 +22,7 @@
             <!-- 回答数 -->
             <question-comments-count
               :question="question.id"
+              @count="count = $event"
             ></question-comments-count>
             <!-- 閲覧数 -->
             <div class="grid my-3">
@@ -143,7 +144,6 @@
       </div>
     </div>
     <paginate
-      v-if="status"
       :v-model="currentPage"
       :page-count="getPageCount"
       :page-range="3"
@@ -176,13 +176,15 @@ export default {
   props: { questions: Array },
   data: function () {
     return {
-      count: "",
       currentPage: 1,
       perPage: 5,
       status: false,
+      count: false,
     };
   },
-
+  created() {
+console.log("ParentCreate")
+  },
   methods: {
     questionViewsCount: function (view) {
       let count;
@@ -211,9 +213,7 @@ export default {
   computed: {
     getLists: function () {
       let current = this.currentPage * this.perPage;
-      console.log(current);
       let start = current - this.perPage;
-      console.log(start);
       return this.questions.slice(start, current);
     },
     getPageCount: function () {
@@ -222,7 +222,7 @@ export default {
   },
   mounted() {
     this.$nextTick(function () {
-      console.log("マウント");
+      console.log("ParentMount");
     });
   },
 };

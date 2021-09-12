@@ -35,7 +35,8 @@ export default {
   created() {
     axios.get(`/api/v1/comments_count/${this.question}`).then((response) => {
       this.count = response.data;
-      console.log(response.data);
+      console.log("ChildCreate")
+      this.$emit("count", true);
     });
   },
 };

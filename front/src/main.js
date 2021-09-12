@@ -23,13 +23,13 @@ Vue.config.productionTip = false
 
 axios.defaults.baseURL =
 process.env.VUE_APP_API_BASE_URL
-console.log(process.env.VUE_APP_API_BASE_URL);
-console.log(process.env.API_BASE_URL);
-console.log(process.env);
+//console.log(process.env.VUE_APP_API_BASE_URL);
+//console.log(process.env.API_BASE_URL);
+//console.log(process.env);
 
 axios.interceptors.request.use(
   config => {
-    console.log('interceptors request', config);
+    //console.log('interceptors request', config);
     return config;
   },
   error => {
