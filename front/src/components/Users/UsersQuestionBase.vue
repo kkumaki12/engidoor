@@ -16,13 +16,10 @@
         "
       >
         <div class="grid grid-cols-12 gap-3">
-          <!-- Meta Column -->
           <div class="col-span-0 sm:col-span-2 text-center hidden sm:block">
-            <!-- 回答数 -->
             <question-comments-count
               :question="question.id"
             ></question-comments-count>
-            <!-- 閲覧数 -->
             <div class="grid my-3">
               <span class="inline-block font-bold text-xs">
                 {{ questionViewsCount(question.impressions_count) }}Views
@@ -30,7 +27,6 @@
             </div>
           </div>
 
-          <!-- レスポンシブル対応 -->
           <div class="col-span-12 sm:col-start-3 sm:col-end-13 px-3 sm:px-0">
             <div class="grid block sm:hidden">
               <div class="flex flex-wrap">
@@ -51,7 +47,7 @@
                   <div class="inline-block">
                     <i class="uil uil-clock mr-1"></i>
                     <span class="text-sm font-light">
-                      {{ question.created_at }}前
+                      {{ question.created_at | moment }}
                     </span>
                   </div>
                 </div>
@@ -84,12 +80,7 @@
               </p>
             </div>
 
-            <!-- Question Labels -->
-            <div class="grid grid-cols-2 mt-4 my-auto">
-              <!-- ベストアンサー決定済み表示  -->
-
-              <!-- ユーザー情報 -->
-            </div>
+            <div class="grid grid-cols-2 mt-4 my-auto"></div>
           </div>
         </div>
       </div>
@@ -99,7 +90,7 @@
 
 <script>
 import QuestionCommentsCount from "../questions/QuestionCommentsCount.vue";
-import Mixins from '@/mixin.js';
+import Mixins from "@/mixin.js";
 
 export default {
   components: {

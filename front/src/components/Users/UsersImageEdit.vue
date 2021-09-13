@@ -17,45 +17,49 @@
 
       <div class="form-group"></div>
       <div v-if="uploadfile">
-      <input
-        
-        @click="regist"
-        type="button"
-        value="画像アップロード"
-        class="
-          bg-blue-500
-          hover:bg-blue-700
-          text-white
-          font-bold
-          py-2
-          px-4
-          mt-4
-          rounded
-          focus:outline-none
-          focus:shadow-outline
-          w-full
-          block
-        "
-      />
+        <input
+          @click="regist"
+          type="button"
+          value="画像アップロード"
+          class="
+            bg-blue-500
+            hover:bg-blue-700
+            text-white
+            font-bold
+            py-2
+            px-4
+            mt-4
+            rounded
+            focus:outline-none
+            focus:shadow-outline
+            w-full
+            block
+          "
+        />
       </div>
       <div v-else>
-      <div class="bg-red-500
-          text-white
-          font-bold
-          py-2
-          px-4
-          mt-4
-          rounded
-          focus:outline-none
-          focus:shadow-outline
-          w-full
-          block"><font-awesome-icon
-        @click="registerGood()"
-        :icon="['fas', 'ban']"
-        style="color: white"
-      />画像を選択してください</div>
+        <div
+          class="
+            bg-red-500
+            text-white
+            font-bold
+            py-2
+            px-4
+            mt-4
+            rounded
+            focus:outline-none
+            focus:shadow-outline
+            w-full
+            block
+          "
+        >
+          <font-awesome-icon
+            @click="registerGood()"
+            :icon="['fas', 'ban']"
+            style="color: white"
+          />画像を選択してください
+        </div>
       </div>
-     
     </div>
   </div>
 </template>
@@ -84,10 +88,7 @@ export default {
     };
   },
 
-
   methods: {
-    
-
     changeFile(e) {
       const files = e.target.files || e.dataTransfer.files;
       this.uploadfile = files[0];
@@ -106,6 +107,5 @@ export default {
       this.$router.push(`/users/${this.$route.params.id}`);
     },
   },
-
 };
 </script>
