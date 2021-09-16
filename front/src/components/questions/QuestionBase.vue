@@ -1,5 +1,5 @@
 <template>
-  <div v-show="count && status">
+  <div v-show="count && status" id = "questions">
     <div v-for="question in getLists" :key="question.id">
       <div
         class="
