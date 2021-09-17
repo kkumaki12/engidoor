@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full max-w-xl container mt-24 mx-auto">
+  <div class="lg:w-full max-w-xl container mt-24 mx-auto w-11/12">
     <div
       v-if="alertOpen"
       class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-red-500"

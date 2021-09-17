@@ -3,7 +3,7 @@
     <div
       class="
         container
-        mx-auto
+        lg:mx-auto
         flex flex-wrap
         p-5
         flex-col
@@ -42,7 +42,19 @@
         <input
           type="text"
           v-model="keyword"
-          class="py-2 px-3"
+          class="
+            shadow
+            appearance-none
+            border
+            rounded
+            py-2
+            px-3
+            text-gray-700
+            leading-tight
+            focus:outline-none
+            focus:shadow-outline
+            focus:border-blue-400
+          "
           placeholder="質問を検索"
         />
         <button

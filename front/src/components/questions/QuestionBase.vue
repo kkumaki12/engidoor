@@ -1,8 +1,10 @@
 <template>
-  <div v-show="count && status" id = "questions">
+  <div v-show="count && status" id="questions">
     <div v-for="question in getLists" :key="question.id">
       <div
         class="
+          mx-2
+          lg:mx-0
           bg-white
           rounded-lg
           shadow-sm
@@ -17,14 +19,11 @@
         "
       >
         <div class="grid grid-cols-12 gap-3">
-          <!-- Meta Column -->
           <div class="col-span-0 sm:col-span-2 text-center hidden sm:block">
-            <!-- 回答数 -->
             <question-comments-count
               :question="question.id"
               @count="count = $event"
             ></question-comments-count>
-            <!-- 閲覧数 -->
             <div class="grid my-3">
               <span class="inline-block font-bold text-xs">
                 {{ questionViewsCount(question.impressions_count) }} Views
@@ -35,7 +34,6 @@
             </div>
           </div>
 
-          <!-- レスポンシブル対応 -->
           <div class="col-span-12 sm:col-start-3 sm:col-end-13 px-3 sm:px-0">
             <div class="grid block sm:hidden">
               <div class="flex flex-wrap">
@@ -89,14 +87,11 @@
               </p>
             </div>
 
-            <!-- Question Labels -->
             <div class="grid grid-cols-2 mt-4 my-auto">
-              <!-- ベストアンサー決定済み表示  -->
               <question-status
                 :question="question"
                 @status="status = $event"
               ></question-status>
-              <!-- ユーザー情報 -->
 
               <div
                 class="pr-0 col-none mr-2 lg:block lg:col-start-9 lg:col-end-12"
@@ -150,11 +145,11 @@
       :margin-pages="1"
       :click-handler="clickCallback"
       :prev-text="'<'"
-      :prev-class="'inline-block w-12 h-12  mx-0.5 text-center'"
+      :prev-class="'inline-block lg:w-12 lg:h-12 w-10 h-10  mx-0.5 text-center'"
       :next-text="'>'"
-      :next-class="'inline-block w-12 h-12  mx-0.5 text-center'"
+      :next-class="'inline-block lg:w-12 lg:h-12 w-10 h-10   mx-0.5 text-center'"
       :container-class="'pagination justify-center mx-auto'"
-      :page-class="'inline-block w-12 h-12 leading-10 mx-0.5 box-border text-center rounded-2xl text-black hover:bg-gray-300 '"
+      :page-class="'inline-block lg:w-12 lg:h-12 w-10 h-10 leading-10 mx-0.5 box-border text-center rounded-2xl text-black hover:bg-gray-300 '"
       :active-class="'bg-green-600 text-white hover:none'"
       :page-link-class="''"
     >
@@ -183,7 +178,7 @@ export default {
     };
   },
   created() {
-console.log("ParentCreate")
+    console.log("ParentCreate");
   },
   methods: {
     questionViewsCount: function (view) {

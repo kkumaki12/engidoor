@@ -5,6 +5,7 @@
         class="
           flex flex-col
           md:w-3/5
+          w-10/12
           p-3
           space-y-5
           rounded-xl
