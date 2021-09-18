@@ -1,8 +1,8 @@
 <template>
-  <div class="w-full max-w-xl container mt-24 mx-auto">
+  <div class="lg:w-full max-w-xl container mt-24 mx-auto w-11/12">
     <h1>ENGIDOOR</h1>
     <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-      <label for="email">email</label>
+      <label for="email">メールアドレス</label>
       <input
         type="email"
         v-model="email"
