@@ -17,7 +17,7 @@
               ring-1 ring-black ring-opacity-5
             "
           >
-            <div class="py-1">
+            <div class="py-1" @click="childEvent">
               <a
                 href="#"
                 class="
@@ -33,7 +33,7 @@
                 "
               >
                 <span class="flex flex-col">
-                  <span @click="childEvent">
+                  <span>
                     {{ tag }}
                   </span>
                 </span>

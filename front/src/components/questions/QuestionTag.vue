@@ -40,14 +40,24 @@ export default {
     TagsList,
     QuestionBase,
   },
+    beforeRouteEnter(to, from, next) {
+      next(vm => {
+        console.log(vm.q)
+      })
+    },
   data: function () {
     return {
       questions: [],
       tag: "",
+      q: "a",
     };
   },
   created() {
     this.getParamsQuestion();
+  },
+   watch: {
+    // ルートが変更されたらこのメソッドを再び呼び出します
+    $route: 'getParamsQuestion'
   },
   methods: {
     getParamsQuestion: function () {
