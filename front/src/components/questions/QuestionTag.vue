@@ -23,7 +23,15 @@
             <p>{{ this.questions.length }}件</p>
           </div>
         </div>
-        <question-base :questions="questions"></question-base>
+        <div v-if="questions.length != 0">
+          <question-base :questions="questions"></question-base>
+        </div>
+        <div v-else>
+          <h1 class="text-center mt-6">
+            このジャンルはまだ質問が投稿されていません
+          </h1>
+          <img src="../../assets/undraw_Post_re_mtr4.png" />
+        </div>
       </div>
       <div class="col-span-1"></div>
     </div>
@@ -40,11 +48,6 @@ export default {
     TagsList,
     QuestionBase,
   },
-    beforeRouteEnter(to, from, next) {
-      next(vm => {
-        console.log(vm.q)
-      })
-    },
   data: function () {
     return {
       questions: [],
@@ -55,9 +58,8 @@ export default {
   created() {
     this.getParamsQuestion();
   },
-   watch: {
-    // ルートが変更されたらこのメソッドを再び呼び出します
-    $route: 'getParamsQuestion'
+  watch: {
+    $route: "getParamsQuestion",
   },
   methods: {
     getParamsQuestion: function () {
