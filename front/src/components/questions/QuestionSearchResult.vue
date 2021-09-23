@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-show = "create">
     <div v-if="questions.length != 0">
       <div class="grid grid-cols-12">
         <div class="col-span-2"></div>
@@ -46,6 +46,7 @@ export default {
   data: function () {
     return {
       questions: [],
+      create: false,
     };
   },
   created() {
@@ -57,6 +58,7 @@ export default {
         .get(`api/v1/questions/search/${this.$store.state.searchWord}`)
         .then((response) => {
           this.questions = response.data;
+          this.create = true
           console.log(response.data);
         });
     },
