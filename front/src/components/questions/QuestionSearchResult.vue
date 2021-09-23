@@ -28,17 +28,10 @@
       </div>
     </div>
     <div v-else>
-      <div
-        class="my-2 rounded justify-between p-3 bg-gray-300 mx-24 text-center"
-      >
-        <h1>
-          「{{ this.$store.state.searchWord }}」の検索結果:{{
-            questions.length
-          }}件
-        </h1>
-        <p>お探しの質問はありませんでした</p>
-        <p>他の条件でお探し下さい</p>
-      </div>
+<h1 class="text-center mt-6">
+            「{{ this.$store.state.searchWord }}」に関する質問はまだ投稿されていません
+          </h1>
+          <img src="../../assets/undraw_Post_re_mtr4.png"  class="object-center mx-auto">
     </div>
   </div>
 </template>
