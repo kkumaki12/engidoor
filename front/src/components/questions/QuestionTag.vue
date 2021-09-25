@@ -23,7 +23,15 @@
             <p>{{ this.questions.length }}件</p>
           </div>
         </div>
-        <question-base :questions="questions"></question-base>
+        <div v-if="questions.length != 0">
+          <question-base :questions="questions"></question-base>
+        </div>
+        <div v-else>
+          <h1 class="text-center mt-6">
+            このジャンルはまだ質問が投稿されていません
+          </h1>
+          <img src="../../assets/undraw_Post_re_mtr4.png" />
+        </div>
       </div>
       <div class="col-span-1"></div>
     </div>
@@ -44,10 +52,14 @@ export default {
     return {
       questions: [],
       tag: "",
+      q: "a",
     };
   },
   created() {
     this.getParamsQuestion();
+  },
+  watch: {
+    $route: "getParamsQuestion",
   },
   methods: {
     getParamsQuestion: function () {

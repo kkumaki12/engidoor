@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-show = "create">
     <div v-if="questions.length != 0">
       <div class="grid grid-cols-12">
         <div class="col-span-2"></div>
@@ -28,17 +28,10 @@
       </div>
     </div>
     <div v-else>
-      <div
-        class="my-2 rounded justify-between p-3 bg-gray-300 mx-24 text-center"
-      >
-        <h1>
-          「{{ this.$store.state.searchWord }}」の検索結果:{{
-            questions.length
-          }}件
-        </h1>
-        <p>お探しの質問はありませんでした</p>
-        <p>他の条件でお探し下さい</p>
-      </div>
+<h1 class="text-center mt-6">
+            「{{ this.$store.state.searchWord }}」に関する質問はまだ投稿されていません
+          </h1>
+          <img src="../../assets/undraw_Post_re_mtr4.png"  class="object-center mx-auto">
     </div>
   </div>
 </template>
@@ -53,6 +46,7 @@ export default {
   data: function () {
     return {
       questions: [],
+      create: false,
     };
   },
   created() {
@@ -64,6 +58,7 @@ export default {
         .get(`api/v1/questions/search/${this.$store.state.searchWord}`)
         .then((response) => {
           this.questions = response.data;
+          this.create = true
           console.log(response.data);
         });
     },
