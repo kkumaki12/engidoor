@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container mx-auto grid grid-cols-5">
+    <div class="container mx-auto grid grid-cols-5 text-center">
       <div class="col-span-1 mt-56 text-center">
         <img v-if="user.image.url" :src="user.image.url" class="rounded-full h-52 w-52" />
         <img v-else src="../../assets/default.png" class="rounded-full h-52 w-52" />
@@ -10,12 +10,12 @@
             class="
               md:px-4
               md:py-2
-              md:ml-12
               md:mt-2
               md:text-base
               px-1
               py-1
-              ml-2
+             justify-center
+             mx-auto
               font-medium
               tracking-wide
               text-white

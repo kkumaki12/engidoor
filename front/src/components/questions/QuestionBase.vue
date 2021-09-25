@@ -82,7 +82,7 @@
                 {{ question.title }}
               </router-link>
 
-              <p class="mt-2 text-gray-600 text-sm md:text-md">
+              <p class="mt-2 text-gray-600 text-sm md:text-md md:h-10">
                 {{ contentSlice(question.content) }}
               </p>
             </div>
@@ -92,14 +92,16 @@
                 :question="question"
                 @status="status = $event"
               ></question-status>
-
+            </div>
+<div class="grid grid-cols-8">
               <div
-                class="pr-0 col-none mr-2 lg:block lg:col-start-9 lg:col-end-12"
+                class="pr-0 mr-2  md:col-start-7  md:col-span-2"
               >
+              <div class="flex mr-auto container mr-0 w-full">
                 <img
                   v-if="question.user.image.url"
                   :src="question.user.image.url"
-                  class="rounded-full w-16 h-16 ml-auto"
+                  class="rounded-full w-16 h-16"
                   alt="ユーザーアイコン"
                 />
                 <img
@@ -109,32 +111,27 @@
                   alt="ユーザーアイコン"
                 />
 
-                <div class="text-gray-600 font-bold text-sm hover:underline">
+                <div class="text-gray-600 font-bold text-sm hover:underline my-auto">
                   <router-link
                     :to="{
                       name: 'UserShow',
                       params: { id: question.user_id },
                     }"
                   >
-                    <div
-                      class="
-                        col-none
-                        mr-2
-                        lg:block
-                        lg:col-start-9 lg:col-end-12
-                      "
-                    >
+                    
                       <div
-                        class="text-gray-600 font-bold text-sm hover:underline"
+                        class="text-gray-600 font-bold text-sm hover:underline inline-block"
                       >
                         {{ question.name }}さん
                       </div>
-                    </div>
+    
                   </router-link>
                 </div>
+                </div>
+              </div>
               </div>
             </div>
-          </div>
+  
         </div>
       </div>
     </div>
