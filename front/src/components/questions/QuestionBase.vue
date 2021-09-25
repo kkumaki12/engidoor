@@ -149,8 +149,8 @@
       :next-text="'>'"
       :next-class="'inline-block lg:w-12 lg:h-12 w-10 h-10   mx-0.5 text-center'"
       :container-class="'pagination justify-center mx-auto'"
-      :page-class="'inline-block  w-10 h-10 leading-10 mx-0.5 box-border text-center rounded-2xl text-black hover:bg-gray-300 '"
-      :active-class="'bg-green-600 text-white hover:none'"
+      :page-class="'inline-block  w-10 h-10 leading-10 mx-0.5 box-border text-center rounded-2xl text-black hover:bg-gray-300'"
+      :active-class="'bg-green-600 text-white hover:bg-green-600'"
       :page-link-class="''"
     >
     </paginate>

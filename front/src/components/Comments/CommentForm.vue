@@ -1,11 +1,12 @@
 <template>
   <div>
-    <div class="w-full flex justify-center mt-24">
+    <div class="w-full container justify-center mt-24 mx-auto text-center">
       <textarea
         v-model="content"
         type="text"
         rows="3"
         class="
+          content-center
           appearance-none
           border
           rounded
@@ -14,6 +15,7 @@
           justify-center
           py-2
           px-3
+          mx-auto
           text-gray-700
           leading-tight
           focus:outline-none
@@ -28,8 +30,12 @@
           hover:bg-blue-700
           text-white
           font-bold
+          justify-center
           py-2
           px-4
+          mt-4
+          mx-auto
+          w-3/5
           rounded
           focus:outline-none
           focus:shadow-outline
@@ -119,7 +125,7 @@ import BestAnswerButton from "../BestAnswer/BestAnswerButton.vue";
 import moment from "moment";
 export default {
   components: { GoodButton, CommentsReplys, BestAnswerButton },
-  props: { question :Object },
+  props: { question: Object },
 
   data: function () {
     return {
