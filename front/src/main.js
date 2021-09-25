@@ -13,6 +13,7 @@ import { far } from '@fortawesome/free-regular-svg-icons'
 
 
 
+
 Vue.config.productionTip = false;
 library.add(faUserSecret,fas,far)
 Vue.component('font-awesome-icon', FontAwesomeIcon)

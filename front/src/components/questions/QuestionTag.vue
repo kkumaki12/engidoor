@@ -52,7 +52,6 @@ export default {
     return {
       questions: [],
       tag: "",
-      q: "a",
     };
   },
   created() {
