@@ -1,12 +1,12 @@
 <template>
   <div v-show="status">
-  <div v-if="questions.length != 0">
-    <users-question-base :questions="this.questions"></users-question-base>
-  </div>
-  <div v-else>
-    <h1 class="text-center mt-6">未解決な質問はまだありません</h1>
-    <img src="../../assets/undraw_Lost_re_xqjt.png" class="mx-auto" />
-  </div>
+    <div v-if="questions.length != 0">
+      <users-question-base :questions="this.questions"></users-question-base>
+    </div>
+    <div v-else>
+      <h1 class="text-center mt-6">未解決な質問はまだありません</h1>
+      <img src="../../assets/undraw_Lost_re_xqjt.png" class="mx-auto" />
+    </div>
   </div>
 </template>
 

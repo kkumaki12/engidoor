@@ -65,7 +65,9 @@
       <li v-else-if="isActives === '2'">
         <users-goods-comments></users-goods-comments>
       </li>
-      <li v-else-if="isActives === '3'"><users-unsolved-questions></users-unsolved-questions></li>
+      <li v-else-if="isActives === '3'">
+        <users-unsolved-questions></users-unsolved-questions>
+      </li>
     </ul>
   </div>
 </template>
