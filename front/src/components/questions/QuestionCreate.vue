@@ -96,7 +96,7 @@
                 leading-tight
                 focus:outline-none
                 focus:shadow-outline
-                focus:border-b-2 focus:border-indigo-500
+                focus:border-b-2 focus:border-blue-400
               "
               rows="8"
             ></textarea>
