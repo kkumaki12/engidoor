@@ -18,7 +18,6 @@ class User < ApplicationRecord
   end
 
   scope :ranking, -> { order('count(users.id) desc').limit(5).pluck(:id) }
-
-
+  scope :post_question , -> (user_id){ where(user_id:[user_id]).select(:question_id) }
 
 end

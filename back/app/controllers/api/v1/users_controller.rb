@@ -49,7 +49,7 @@ module Api
 
       def comments_by_tag_count
         user = User.find(params[:id])
-        comments = Comment.where(user_id:[user.id]).select(:question_id)
+        comments = Comment.post_question(user.id)
         question_id = comments.map(&:question_id)
         tags = []
         question_id.each do |q_id|
@@ -68,7 +68,7 @@ module Api
 
       def comments_by_tag_count_values
         user = User.find(params[:id])
-        comments = Comment.where(user_id:[user.id]).select(:question_id)
+        comments = Comment.post_question(user.id)
         question_id = comments.map(&:question_id)
         tags = []
        question_id.each do |q_id|
