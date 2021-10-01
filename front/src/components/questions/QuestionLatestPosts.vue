@@ -19,7 +19,7 @@ export default {
   created() {
     axios.get("api/v1/questions/list").then((response) => {
       this.questions = response.data;
-      console.log("ParentCreate")
+      console.log("ParentCreate");
     });
   },
 };

@@ -1,5 +1,5 @@
 <template>
-  <div v-show = "create">
+  <div v-show="create">
     <div v-if="questions.length != 0">
       <div class="grid grid-cols-12">
         <div class="col-span-2"></div>
@@ -28,10 +28,15 @@
       </div>
     </div>
     <div v-else>
-<h1 class="text-center mt-6">
-            「{{ this.$store.state.searchWord }}」に関する質問はまだ投稿されていません
-          </h1>
-          <img src="../../assets/undraw_Post_re_mtr4.png"  class="object-center mx-auto">
+      <h1 class="text-center mt-6">
+        「{{
+          this.$store.state.searchWord
+        }}」に関する質問はまだ投稿されていません
+      </h1>
+      <img
+        src="../../assets/undraw_Post_re_mtr4.png"
+        class="object-center mx-auto"
+      />
     </div>
   </div>
 </template>
@@ -58,7 +63,7 @@ export default {
         .get(`api/v1/questions/search/${this.$store.state.searchWord}`)
         .then((response) => {
           this.questions = response.data;
-          this.create = true
+          this.create = true;
           console.log(response.data);
         });
     },

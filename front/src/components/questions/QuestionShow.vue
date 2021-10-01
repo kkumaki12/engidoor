@@ -33,8 +33,10 @@
           <section class="text-sm font-thin text-orange-400">
             {{ question.created_at | moment }}
           </section>
-          <section class="text-3xl font-bold">{{ question.title }}</section>
-          <section class="font-normal text-md text-gray-700">
+          <section class="text-3xl font-bold mt-2">
+            {{ question.title }}
+          </section>
+          <section class="font-normal text-md text-gray-700 mt-4">
             {{ question.content }}
           </section>
           <section class="font-normal text-md text-gray800">

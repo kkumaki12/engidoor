@@ -1,9 +1,10 @@
 <template>
   <div id="app">
     <div class="lg:grid lg:grid-cols-12 lg:flex-row">
-      <div class="col-span-3">
+      <div class="col-span-2">
         <TagsList></TagsList>
       </div>
+      <div class="col-span-1"></div>
       <div class="col-span-6">
         <QuestionList></QuestionList>
       </div>

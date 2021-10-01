@@ -14,8 +14,8 @@ export default {
   components: {
     Header,
   },
-  mounted: function(){
-      document.title = 'engidoor';
+  mounted: function () {
+    document.title = "engidoor";
   },
 };
 </script>
@@ -24,7 +24,7 @@ export default {
 [v-cloak] {
   display: none;
 }
-body{
-  background-color: #F4F5F7;
+body {
+  background-color: #f4f5f7;
 }
 </style>

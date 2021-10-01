@@ -2,8 +2,16 @@
   <div>
     <div class="container mx-auto grid grid-cols-5 text-center">
       <div class="col-span-1 mt-56 text-center">
-        <img v-if="user.image.url" :src="user.image.url" class="rounded-full h-52 w-52" />
-        <img v-else src="../../assets/default.png" class="rounded-full h-52 w-52" />
+        <img
+          v-if="user.image.url"
+          :src="user.image.url"
+          class="rounded-full h-52 w-52 mx-auto"
+        />
+        <img
+          v-else
+          src="../../assets/default.png"
+          class="rounded-full h-52 w-52 mx-auto"
+        />
         <router-link :to="{ name: 'UsersImageEdit', params: { id: user.id } }">
           <button
             v-if="this.$store.state.userId === user.id"
@@ -14,8 +22,8 @@
               md:text-base
               px-1
               py-1
-             justify-center
-             mx-auto
+              justify-center
+              mx-auto
               font-medium
               tracking-wide
               text-white

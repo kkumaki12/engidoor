@@ -59,5 +59,4 @@ export default {
 .swiper-button-next::after {
   content: "";
 }
-
 </style>

@@ -75,6 +75,7 @@ export default {
       });
       console.log(res);
       if (res.status !== 201) {
+        alert('いいねするにはログインしてください');
         process.exit();
       }
       this.fetchGoodByCommentId().then((result) => {
