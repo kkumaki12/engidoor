@@ -1,26 +1,26 @@
 module Api
   module V1
     class UsersController < ApiController
+
+      before_action :set_user, only: %i[edit update show comments_by_tag_count comments_by_tag_count_values correct_user]
+
       def new
         @user = User.new
       end
 
       def edit
-        @user = User.find(params[:id])
       end
 
       def update
-        user = User.find(params[:id])
-        if user.update(user_params)
-          render json:user
+        if @user.update(user_params)
+          render json:@user
         else
          render json: { message: '更新に失敗しました'}
       end
     end
 
       def show
-        user = User.find(params[:id])
-        render json: user
+        render json: @user
       end
 
       def create
@@ -48,8 +48,7 @@ module Api
       end
 
       def comments_by_tag_count
-        user = User.find(params[:id])
-        comments = Comment.post_question(user.id)
+        comments = Comment.post_question(@user.id)
         question_id = comments.map(&:question_id)
         tags = []
         question_id.each do |q_id|
@@ -67,8 +66,7 @@ module Api
       end
 
       def comments_by_tag_count_values
-        user = User.find(params[:id])
-        comments = Comment.post_question(user.id)
+        comments = Comment.post_question(@user.id)
         question_id = comments.map(&:question_id)
         tags = []
        question_id.each do |q_id|
@@ -87,6 +85,10 @@ module Api
 
       private
 
+      def set_user
+        @user = User.find(params[:id])
+      end
+
       def user_params
         params.permit(:name, :email, :password, :password_confirmation, :image, :occupation, :specialty, :introduction)
       end
@@ -99,7 +101,6 @@ module Api
       end
 
       def correct_user
-        @user = User.find(params[:id])
         redirect_to(root_url) unless current_user == @user
       end
     end

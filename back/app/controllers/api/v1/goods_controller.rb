@@ -29,9 +29,11 @@ module Api
         @good.destroy
       end
 
+      private
       def set_comment
         @comment = Comment.find_by(id: params[:comment_id])
       end
     end
   end
 end
+
