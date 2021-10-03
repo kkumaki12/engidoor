@@ -172,9 +172,9 @@ export default {
           introduction: this.introduction,
         })
         .then((response) => {
+          this.changeSpeciality(this.specialty);
           alert("更新しました");
           console.log(response);
-          console.log("成功");
           this.$router.push(`/users/${this.$route.params.id}`);
         })
         .catch((error) => {
@@ -182,6 +182,9 @@ export default {
           console.log(error);
           this.$router.push(`/users/${this.$route.params.id}`);
         });
+    },
+    changeSpeciality(specialty) {
+      this.$store.commit("updateSpecialty", specialty);
     },
     checkForm: function (e) {
       if (this.name) {
