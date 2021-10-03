@@ -17,6 +17,7 @@ class User < ApplicationRecord
     goods.exists?(comment_id: comment_id)
   end
 
+
   scope :ranking, -> { order('count(users.id) desc').limit(5).pluck(:id) }
   
 end

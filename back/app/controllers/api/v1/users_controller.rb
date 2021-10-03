@@ -15,7 +15,7 @@ module Api
         if @user.update(user_params)
           render json:@user
         else
-         render json: { message: '更新に失敗しました'}
+          render json: { message: '更新に失敗しました'}
       end
     end
 
@@ -50,11 +50,8 @@ module Api
       def comments_by_tag_count
         comments = Comment.post_question(@user.id)
         question_id = comments.map(&:question_id)
-        tags = []
-        question_id.each do |q_id|
-        tags << Question.find(q_id)
-      end 
-        result = tags.group_by{ |d| d[:tag] }
+        add_list(question_id)
+        result = @tags.group_by{ |d| d[:tag] }
         keys = result.keys
         number = []
 
@@ -68,11 +65,8 @@ module Api
       def comments_by_tag_count_values
         comments = Comment.post_question(@user.id)
         question_id = comments.map(&:question_id)
-        tags = []
-       question_id.each do |q_id|
-          tags << Question.find(q_id)
-      end 
-        result = tags.group_by{ |d| d[:tag] }
+        add_list(question_id)
+        result = @tags.group_by{ |d| d[:tag] }
         keys = result.keys
         number = []
 
@@ -87,6 +81,13 @@ module Api
 
       def set_user
         @user = User.find(params[:id])
+      end
+
+      def add_list(question_id)
+        @tags = []
+        question_id.each do |q_id|
+          @tags << Question.find(q_id)
+        end 
       end
 
       def user_params
@@ -109,5 +110,5 @@ module Api
         user = User.find_by(params[:token])
       end
     end
-  end
+  end 
 
