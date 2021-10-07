@@ -64,24 +64,20 @@ export default {
       if (res.status !== 200) {
         process.exit();
       }
-      console.log(res);
       return res.data;
     },
     // rails側のcreateアクションにリクエストするメソッド
     registerGood: async function () {
-      const res = await axios.post(`/api/v1/comments/${this.commentId}/goods`, {
+      await axios.post(`/api/v1/comments/${this.commentId}/goods`, {
         comment_id: this.commentId,
         user_id: this.$store.state.userId,
       });
-      console.log(res);
-      if (res.status !== 201) {
-        alert('いいねするにはログインしてください');
+      if (this.$store.state.userId === null) {
+        alert("いいねするにはログインしてください");
         process.exit();
       }
       this.fetchGoodByCommentId().then((result) => {
-        console.log(this.commentId);
         this.goodList = result;
-        console.log(this.goodList);
       });
     },
     // rails側のdestroyアクションにリクエストするメソッド
@@ -111,7 +107,6 @@ export default {
     fetchUserId: function () {
       axios.get("api/v1/comments/" + this.commentId).then((response) => {
         this.userId = response.data.user_id;
-        console.log(response.data);
       });
     },
   },
