@@ -13,7 +13,7 @@
         </span>
       </div>
       <label for="UserImage" class="block">ユーザー画像</label>
-      <input class="custom-file-input" type="file" @change="changeFile" />
+      <input class="custom-file-input" type="file" accept="image/jpeg, image/png" @change="changeFile" />
 
       <div class="form-group"></div>
       <div v-if="uploadfile">
