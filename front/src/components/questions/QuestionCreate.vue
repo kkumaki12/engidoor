@@ -27,7 +27,15 @@
               </span>
             </div>
             <label
-              class="block text-gray-600 text-sm font-semibold mb-2"
+              class="
+                md:inline-block
+                block
+                text-gray-600 text-sm
+                font-semibold
+                mb-2
+                w-11/12
+                mx-auto
+              "
               for="title"
             >
               タイトル
@@ -36,23 +44,33 @@
               v-model="title"
               type="text"
               class="
+                p-1
                 appearance-none
                 border
                 rounded
-                w-full
-                py-2
-                px-3
+                w-11/12
+                md:w-full
                 text-gray-700
                 leading-tight
                 focus:outline-none
                 focus:shadow-outline
                 focus:border-b-2 focus:border-blue-400
+                block
+                mx-auto
               "
             />
           </div>
           <div class="mb-4">
             <label
-              class="block text-gray-600 text-sm font-semibold mb-2"
+              class="
+                md:inline-block
+                block
+                text-gray-600 text-sm
+                font-semibold
+                mb-2
+                w-11/12
+                mx-auto
+              "
               for="tag"
             >
               タグ
@@ -68,18 +86,29 @@
                 appearance-none
                 border
                 rounded
-                w-full
+                w-11/12
+                md:w-full
                 text-gray-700
                 leading-tight
                 focus:outline-none
                 focus:shadow-outline
                 focus:border-b-2 focus:border-blue-400
+                block
+                mx-auto
               "
             ></v-select>
           </div>
           <div class="mb-4">
             <label
-              class="block text-gray-600 text-sm font-semibold mb-2"
+              class="
+                md:inline-block
+                block
+                text-gray-600 text-sm
+                font-semibold
+                mb-2
+                w-11/12
+                mx-auto
+              "
               for="content"
             >
               内容
@@ -91,12 +120,15 @@
                 appearance-none
                 border
                 rounded
-                w-full
+                w-11/12
+                md:w-full
                 text-gray-700
                 leading-tight
                 focus:outline-none
                 focus:shadow-outline
                 focus:border-b-2 focus:border-blue-400
+                block
+                mx-auto
               "
               rows="8"
             ></textarea>
@@ -115,7 +147,9 @@
                 rounded
                 focus:outline-none
                 focus:shadow-outline
-                w-full
+                w-11/12
+                md:w-full
+                mx-auto
               "
             >
               投稿する
