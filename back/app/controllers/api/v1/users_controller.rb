@@ -1,3 +1,4 @@
+# encoding: utf-8
 module Api
   module V1
     class UsersController < ApiController
@@ -16,8 +17,8 @@ module Api
           render json:@user
         else
           render json: { message: '更新に失敗しました'}
+        end
       end
-    end
 
       def show
         render json: @user
