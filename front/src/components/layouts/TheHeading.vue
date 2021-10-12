@@ -38,7 +38,7 @@
         </svg>
         <router-link to="/" class="ml-3 text-xl">ENGIDOOR</router-link>
       </a>
-      <div class="mx-auto">
+      <div class="md:mx-auto">
         <input
           type="text"
           v-model="keyword"

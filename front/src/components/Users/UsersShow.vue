@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="container mx-auto grid grid-cols-5 text-center">
-      <div class="col-span-1 mt-56 text-center">
+    <div class="container mx-auto grid-cols-4 md:grid-cols-5 text-center">
+      <div class="col-span-1 md:mt-56 text-center">
         <img
           v-if="user.image.url"
           :src="user.image.url"
