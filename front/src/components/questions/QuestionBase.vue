@@ -93,8 +93,8 @@
                 @status="status = $event"
               ></question-status>
             </div>
-            <div class="md:grid md:grid-cols-8">
-              <div class="pr-0 mr-2 md:col-start-7 md:col-span-2">
+            <div class="md:grid md:grid-cols-9">
+              <div class="pr-0 mr-2 md:col-start-7 md:col-span-3">
                 <div class="flex mr-auto container mr-0 w-full">
                   <img
                     v-if="question.user.image.url"
