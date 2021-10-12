@@ -93,7 +93,7 @@
                 @status="status = $event"
               ></question-status>
             </div>
-            <div class="grid grid-cols-8">
+            <div class="md:grid md:grid-cols-8">
               <div class="pr-0 mr-2 md:col-start-7 md:col-span-2">
                 <div class="flex mr-auto container mr-0 w-full">
                   <img
@@ -183,9 +183,6 @@ export default {
       count: false,
     };
   },
-  created() {
-    console.log("ParentCreate");
-  },
   methods: {
     questionViewsCount: function (view) {
       let count;
@@ -222,9 +219,7 @@ export default {
     },
   },
   mounted() {
-    this.$nextTick(function () {
-      console.log("ParentMount");
-    });
+    this.$nextTick(function () {});
   },
 };
 </script>
