@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div class="container mx-auto grid-cols-4 grid md:grid-cols-5 text-center">
+    <div
+      class="container mx-auto grid-cols-4 md:grid md:grid-cols-5 text-center"
+    >
       <div class="col-span-1 md:mt-56 text-center">
         <img
           v-if="user.image.url"
@@ -50,7 +52,6 @@
         </router-link>
       </div>
 
-      <!-- This is an example component -->
       <div
         class="min-h-screen flex items-center justify-center px-4 col-span-4"
       >
@@ -61,8 +62,6 @@
               <p class="text-sm text-gray-500">ユーザー情報</p>
             </div>
             <div class="col-span-1">
-              <!--<% if @user == current_user %>-->
-
               <router-link :to="{ name: 'UserEdit', params: { id: user.id } }">
                 <button
                   v-if="this.$store.state.userId === user.id"
