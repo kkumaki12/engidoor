@@ -6,7 +6,7 @@ module Api
       include QuestionsHelper
 
       rescue_from ActiveRecord::RecordNotFound do |_exception|
-        render json: { error: '404 not found' }, status: :not_found
+        render json: { error: "404 not found" }, status: :not_found
       end
 
       def index
@@ -23,7 +23,7 @@ module Api
       end
 
       def list
-        questions = Question.joins(:user).select('questions.*,users.name')
+        questions = Question.joins(:user).select("questions.*,users.name")
         render json: questions.as_json(include: :user)
       end
 
@@ -32,7 +32,7 @@ module Api
         if question.save!
           render json: question
         else
-          render json: { status: 'ERROR', data: question.errors }
+          render json: { status: "ERROR", data: question.errors }
         end
       end
 
@@ -44,21 +44,21 @@ module Api
       def destroy
         question = Question.find(params[:id])
         question.destroy
-        render json: { status: 'SUCCESS', message: 'Deleted the question', data: question }
+        render json: { status: "SUCCESS", message: "Deleted the question", data: question }
       end
 
       def best
-        question = Question.joins(:best_answer).select('questions.*,best_answers.*').find(params[:id])
+        question = Question.joins(:best_answer).select("questions.*,best_answers.*").find(params[:id])
         render json: question.as_json(include: :user)
       end
 
       def search
-        questions = Question.search(params[:search]).page(params[:page]).per(7)
+        questions = Question.joins(:user).search(params[:search]).page(params[:page]).per(7)
         render json: questions.as_json(include: :user)
       end
 
       def solved_questions
-        questions = Question.joins(:best_answer, :user).select('questions.*,users.name')
+        questions = Question.joins(:best_answer, :user).select("questions.*,users.name")
         render json: questions.as_json(include: :user)
       end
 
@@ -69,10 +69,9 @@ module Api
       end
 
       def specialty
-        questions = Question.joins(:user).where(tag: params[:tag]).select('questions.*,users.name')
+        questions = Question.joins(:user).where(tag: params[:tag]).select("questions.*,users.name")
         render json: questions.as_json(include: :user)
       end
-
 
       private
 
