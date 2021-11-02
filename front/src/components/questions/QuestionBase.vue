@@ -133,7 +133,7 @@
                           inline-block
                         "
                       >
-                        {{ question.name }}さん
+                        {{ question.user.name }}さん
                       </div>
                     </router-link>
                   </div>
