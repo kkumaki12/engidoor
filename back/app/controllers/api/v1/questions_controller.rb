@@ -23,7 +23,7 @@ module Api
       end
 
       def list
-        questions = Question.joins(:user).select("questions.*,users.name")
+        questions = Question.eager_load(:user).select("questions.*,users.name")
         render json: questions.as_json(include: :user)
       end
 
