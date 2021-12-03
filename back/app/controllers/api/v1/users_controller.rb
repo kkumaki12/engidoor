@@ -1,22 +1,19 @@
-# encoding: utf-8
 module Api
   module V1
     class UsersController < ApiController
-
       before_action :set_user, only: %i[edit update show comments_by_tag_count comments_by_tag_count_values correct_user]
 
       def new
         @user = User.new
       end
 
-      def edit
-      end
+      def edit; end
 
       def update
         if @user.update(user_params)
-          render json:@user
+          render json: @user
         else
-          render json: { message: '更新に失敗しました'}
+          render json: { message: '更新に失敗しました' }
         end
       end
 
@@ -26,7 +23,7 @@ module Api
 
       def create
         user = User.new(user_params)
-        user.image = "default.png"
+        user.image = 'default.png'
         if user.save!
           render json: user
         else
@@ -52,7 +49,7 @@ module Api
         comments = Comment.post_question(@user.id)
         question_id = comments.map(&:question_id)
         add_list(question_id)
-        result = @tags.group_by{ |d| d[:tag] }
+        result = @tags.group_by { |d| d[:tag] }
         keys = result.keys
         number = []
 
@@ -67,7 +64,7 @@ module Api
         comments = Comment.post_question(@user.id)
         question_id = comments.map(&:question_id)
         add_list(question_id)
-        result = @tags.group_by{ |d| d[:tag] }
+        result = @tags.group_by { |d| d[:tag] }
         keys = result.keys
         number = []
 
@@ -88,7 +85,7 @@ module Api
         @tags = []
         question_id.each do |q_id|
           @tags << Question.find(q_id)
-        end 
+        end
       end
 
       def user_params
@@ -107,9 +104,8 @@ module Api
       end
     end
 
-      def current_user
-        user = User.find_by(params[:token])
-      end
+    def current_user
+      user = User.find_by(params[:token])
     end
-  end 
-
+  end
+end
