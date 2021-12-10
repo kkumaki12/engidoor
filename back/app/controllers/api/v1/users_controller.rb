@@ -1,8 +1,9 @@
 module Api
   module V1
     class UsersController < ApiController
-      before_action :set_user, only: %i[edit update show comments_by_tag_count comments_by_tag_count_values correct_user]
-
+      before_action :set_user, only: %i[edit update show correct_user]
+      before_action :create_array_by_tag, only: %i[comments_by_tag_count comments_by_tag_count_values]
+      
       def new
         @user = User.new
       end
@@ -46,33 +47,28 @@ module Api
       end
 
       def comments_by_tag_count
-        comments = Comment.post_question(@user.id)
-        question_id = comments.map(&:question_id)
-        add_list(question_id)
-        result = @tags.group_by { |d| d[:tag] }
-        keys = result.keys
-        number = []
-
-        keys.each do |n|
-          number << result[n].count
-        end
-        value = keys.zip(number).to_h.keys
+        value = @keys.zip(@number).to_h.keys
         render json: value
       end
 
-      def comments_by_tag_count_values
+      def comments_by_tag_count_values      
+        value = @keys.zip(@number).to_h.values
+        render json: value
+      end
+
+      def create_array_by_tag
+        @user = User.find(params[:id])
         comments = Comment.post_question(@user.id)
         question_id = comments.map(&:question_id)
         add_list(question_id)
         result = @tags.group_by { |d| d[:tag] }
-        keys = result.keys
-        number = []
+        @keys = result.keys
+        @number = []
 
-        keys.each do |n|
-          number << result[n].count
+        @keys.each do |n|
+          @number << result[n].count
         end
-        value = keys.zip(number).to_h.values
-        render json: value
+        
       end
 
       private
