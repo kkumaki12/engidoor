@@ -83,7 +83,7 @@
               </router-link>
 
               <p class="mt-2 text-gray-600 text-sm md:text-md md:h-10">
-                {{ contentSlice(question.content) }}
+                {{ sliceContent(question.content) }}
               </p>
             </div>
 
@@ -185,19 +185,17 @@ export default {
   },
   methods: {
     questionViewsCount: function (view) {
-      let count;
       if (view > 0) {
-        count = view;
+        return view;
       } else {
-        count = 0;
+        return 0;
       }
-      return count;
     },
     clickCallback: function (pageNum) {
       this.currentPage = Number(pageNum);
       console.log(this.currentPage);
     },
-    contentSlice: function (content) {
+    sliceContent: function (content) {
       if (content.length > 70) {
         return content.slice(0, 70) + "…";
       } else {
