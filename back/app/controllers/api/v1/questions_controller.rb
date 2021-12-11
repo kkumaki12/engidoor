@@ -4,6 +4,7 @@ module Api
       attr_accessor :good
 
       include QuestionsHelper
+      before_action :set_question, only: %i[show destroy]
 
       rescue_from ActiveRecord::RecordNotFound do |_exception|
         render json: { error: "404 not found" }, status: :not_found
@@ -18,7 +19,7 @@ module Api
         if logged_in?
           @question = Question.new
         else
-          redirect_to login_pat
+          redirect_to login_path
         end
       end
 
@@ -37,13 +38,11 @@ module Api
       end
 
       def show
-        question = Question.find(params[:id])
-        render json: question.as_json(include: :user)
+        render json: @question.as_json(include: :user)
       end
 
       def destroy
-        question = Question.find(params[:id])
-        question.destroy
+        @question.destroy
         render json: { status: "SUCCESS", message: "Deleted the question", data: question }
       end
 
@@ -74,6 +73,10 @@ module Api
       end
 
       private
+
+      def set_question
+        @question = Question.find(params[:id])
+      end
 
       def question_params
         params.permit(:title, :content, :tag, :user_id)
