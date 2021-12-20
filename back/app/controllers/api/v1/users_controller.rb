@@ -33,15 +33,15 @@ module Api
       end
 
       def good_ranking
-        join = User.joins({ comments: :goods })
-        table = join.group(:id).ranking
+        joined_table = User.joins({ comments: :goods })
+        table = joined_table.group(:id).ranking
         rank = User.find(table)
         render json: rank
       end
 
       def bestanswer_ranking
-        join = User.joins({ questions: :best_answer })
-        table = join.group(:id).ranking
+        joined_table = User.joins({ questions: :best_answer })
+        table = joined_table.group(:id).ranking
         rank = User.find(table)
         render json: rank
       end

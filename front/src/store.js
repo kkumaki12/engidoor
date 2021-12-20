@@ -43,13 +43,11 @@ export default new Vuex.Store({
           },
         })
         .then((response) => {
-          console.log(response);
           commit('updateToken', response.data.token);
           commit('updateUserId', response.data.id);
           commit('updateSpecialty', response.data.specialty)
           router.push('/');
         }).catch((error) => {
-          console.log(error);
           alert("入力内容に誤りがあります");
         })
     },
@@ -60,7 +58,6 @@ export default new Vuex.Store({
       router.push('/login');
     },
     search({ commit }, searchWord) {
-      console.log(searchWord);
       commit('updateSearchWord', searchWord.searchWord);
       this.keyword = '';
       router.push(`/question/search/${searchWord.searchWord}`)
