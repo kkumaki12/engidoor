@@ -47,7 +47,7 @@ export default new Vuex.Store({
           commit('updateUserId', response.data.id);
           commit('updateSpecialty', response.data.specialty)
           router.push('/');
-        }).catch((error) => {
+        }).catch(() => {
           alert("入力内容に誤りがあります");
         })
     },
