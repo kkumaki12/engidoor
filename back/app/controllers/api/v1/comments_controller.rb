@@ -8,16 +8,15 @@ module Api
       def index; end
 
       def new
-        @comment = Comment.new
+        comment = Comment.new
       end
 
       def create
         comment = Comment.create(comment_params)
-        puts(comment_params)
         if comment.save!
           render json: comment
         else
-          render json: { status: 'ERROR', data: comment.errors }
+          render json: { status: "ERROR", data: comment.errors }
         end
       end
 
@@ -27,7 +26,7 @@ module Api
       end
 
       def comment_by_question
-        comments = Comment.includes(:user).where(question_id: params[:id], reply_comment: [nil, '']).select('*')
+        comments = Comment.includes(:user).where(question_id: params[:id], reply_comment: [nil, ""]).select("*")
         render json: comments.as_json(include: :user)
       end
 
@@ -37,7 +36,7 @@ module Api
       end
 
       def reply
-        comments = Comment.includes(:user).where(reply_comment: params[:id]).select('*')
+        comments = Comment.includes(:user).where(reply_comment: params[:id]).select("*")
         render json: comments.as_json(include: :user)
       end
 
