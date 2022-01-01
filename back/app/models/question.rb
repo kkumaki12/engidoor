@@ -1,7 +1,7 @@
 class Question < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
-  has_many :replies, class_name: 'Comment', foreign_key: :reply_comment, dependent: :destroy
+  has_many :replies, class_name: "Comment", foreign_key: :reply_comment, dependent: :destroy
 
   has_many :tag_relationships, dependent: :destroy
   has_many :tags, through: :tag_relationships
@@ -21,9 +21,12 @@ class Question < ApplicationRecord
 
   def self.search(search)
     if search
-      Question.where(['content LIKE ?', "%#{search}%"])
+      Question.where(["content LIKE ?", "%#{search}%"])
     else
       Question.all
     end
+  end
+
+  def solved_question?
   end
 end

@@ -3,7 +3,6 @@ module Api
     class QuestionsController < ApiController
       attr_accessor :good
 
-      include QuestionsHelper
       before_action :set_question, only: %i[show destroy]
 
       rescue_from ActiveRecord::RecordNotFound do |_exception|
