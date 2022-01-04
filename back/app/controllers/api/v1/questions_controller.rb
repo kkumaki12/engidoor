@@ -41,8 +41,11 @@ module Api
       end
 
       def destroy
-        @question.destroy
-        render json: { status: "SUCCESS", message: "Deleted the question", data: @question }
+        if @question.destroy
+          render json: { status: "SUCCESS", message: "Deleted the question", data: @question }
+        else
+          render json: { status: 400 }
+        end
       end
 
       def best
