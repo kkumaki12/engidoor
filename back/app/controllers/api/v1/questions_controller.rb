@@ -11,7 +11,7 @@ module Api
 
       def index
         questions = Question.where(user_id: params[:user_id])
-        render json: questions.as_json(include: :best_answer)
+        render json: questions
       end
 
       def new
@@ -59,7 +59,7 @@ module Api
       end
 
       def solved_questions
-        questions = Question.joins(:best_answer, :user).select("questions.*,users.name")
+        questions = Question.eager_load(:best_answer, :user).where.not(best_answer: { id: nil })
         render json: questions.as_json(include: :user)
       end
 
