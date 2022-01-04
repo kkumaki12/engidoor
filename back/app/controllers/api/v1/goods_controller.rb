@@ -15,18 +15,18 @@ module Api
       end
 
       def show
-        @goods = Good.where(comment_id: params[:comment_id])
-        render json: @goods
+        goods = Good.where(comment_id: params[:comment_id])
+        render json: goods
       end
 
       def create
-        @good = Good.create(user_id: params[:user_id], comment_id: params[:comment_id])
-        @good.save
+        good = Good.create(user_id: params[:user_id], comment_id: params[:comment_id])
+        good.save
       end
 
       def destroy
-        @good = Good.find_by(user_id: params[:user_id], comment_id: params[:comment_id])
-        @good.destroy
+        good = Good.find_by(user_id: params[:user_id], comment_id: params[:comment_id])
+        good.destroy
       end
 
       private
