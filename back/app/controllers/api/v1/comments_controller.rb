@@ -8,7 +8,6 @@ module Api
       def index; end
 
       def new
-        comment = Comment.new
       end
 
       def create

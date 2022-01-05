@@ -19,14 +19,13 @@ class Question < ApplicationRecord
     end
   end
 
-  def self.search(search)
-    if search
-      Question.where(["content LIKE ?", "%#{search}%"])
+  def self.search(word)
+    if word
+      Question.where(["content LIKE ?", "%#{word}%"])
     else
       Question.all
     end
   end
 
-  def solved_question?
-  end
+  scope :is_solved, -> { eager_load(:best_answer, :user).where.not(best_answer: { id: nil }) }
 end

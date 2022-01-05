@@ -54,12 +54,12 @@ module Api
       end
 
       def search
-        questions = Question.joins(:user).search(params[:search]).page(params[:page]).per(7)
+        questions = Question.eager_load(:user).search(params[:search]).page(params[:page]).per(7)
         render json: questions.as_json(include: :user)
       end
 
       def solved_questions
-        questions = Question.eager_load(:best_answer, :user).where.not(best_answer: { id: nil })
+        questions = Question.is_solved
         render json: questions.as_json(include: :user)
       end
 
@@ -70,7 +70,7 @@ module Api
       end
 
       def specialty
-        questions = Question.joins(:user).where(tag: params[:tag]).select("questions.*,users.name")
+        questions = Question.eager_load(:user).where(tag: params[:tag])
         render json: questions.as_json(include: :user)
       end
 
