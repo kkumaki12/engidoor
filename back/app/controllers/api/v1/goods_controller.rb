@@ -10,8 +10,8 @@ module Api
       def index
         goods = Good.where(user_id: params[:user_id])
         comment_id = goods.map(&:comment_id)
-        comments = Comment.includes(:user).where(id: comment_id)
-        render json: comments.as_json(include: :user)
+        liked_comments = Comment.includes(:user).where(id: comment_id)
+        render json: liked_comments.as_json(include: :user)
       end
 
       def show

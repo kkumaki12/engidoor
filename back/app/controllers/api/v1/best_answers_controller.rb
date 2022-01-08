@@ -4,8 +4,13 @@ module Api
       def create
         comment = Comment.find(params[:comment_id])
         question_id = comment.question_id
-        best_answer = BestAnswer.create(question_id: question_id, comment_id: params[:comment_id])
-        best_answer.save
+        binding.pry
+        best_answer = BestAnswer.new(question_id: question_id, comment_id: params[:comment_id])
+        if best_answer.save
+          render json: best_answer, status: :created
+        else
+          render json: { status: 400 }
+        end
       end
 
       def show
